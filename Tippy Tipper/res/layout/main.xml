@@ -7,25 +7,16 @@
 <TextView  
     android:layout_width="fill_parent" 
     android:layout_height="wrap_content" 
-    android:text="@string/hello"
+    android:text="@string/enter_bill_ammount"
     />
-
-    <LinearLayout
-    android:orientation="horizontal"
-    android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
-    
-    >
         <TableLayout
     	android:layout_height="wrap_content"
     	android:layout_width="wrap_content"
     	android:layout_gravity="center"
     	android:stretchColumns="*"
     >
-    <tablerow>
+    <TableRow>
     
-    </tablerow>
-    </TableLayout>
 <Button 
 	android:textSize="@dimen/calc_button"
 	android:layout_width="wrap_content"
@@ -45,14 +36,10 @@
 	android:layout_height="fill_parent"
 	android:text="9"
 	/>
-	</LinearLayout>
-	
-	 <LinearLayout
-    android:orientation="horizontal"
-    android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
-    >
-	<Button 
+    
+    </TableRow>
+    <TableRow>
+    <Button 
 	android:textSize="@dimen/calc_button"
 	android:layout_width="wrap_content"
 	android:layout_height="fill_parent"
@@ -72,12 +59,9 @@
 	android:layout_height="fill_parent"
 	android:text="3"
 	/>
-	</LinearLayout>
-	 <LinearLayout
-    android:orientation="horizontal"
-    android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
-    >
+	</TableRow>
+	<TableRow>
+	
 	<Button 
 	android:textSize="@dimen/calc_button"
 	android:layout_width="wrap_content"
@@ -98,12 +82,16 @@
 	android:layout_height="fill_parent"
 	android:text="3"
 	/>
-	</LinearLayout>
+	</TableRow>
+	<TableRow>
+	
 	<Button 
 	android:textSize="@dimen/calc_button"
 	android:layout_width="wrap_content"
 	android:layout_height="fill_parent"
 	android:text="0"
-	/>
+	/> 
+	</TableRow>
+    </TableLayout>
 	
 </LinearLayout>
