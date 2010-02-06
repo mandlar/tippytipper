@@ -2,5 +2,5 @@
 <resources>
     <string name="hello">Hello World, TippyTipper!</string>
     <string name="app_name">Tippy Tipper</string> 
-<string name="enter_bill_ammount">Enter bill amount:</string>
+<string name="enter_bill_amount">Enter bill amount:</string>
 </resources>
