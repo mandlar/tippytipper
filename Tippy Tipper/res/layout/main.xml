@@ -9,4 +9,101 @@
     android:layout_height="wrap_content" 
     android:text="@string/hello"
     />
+
+    <LinearLayout
+    android:orientation="horizontal"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    
+    >
+        <TableLayout
+    	android:layout_height="wrap_content"
+    	android:layout_width="wrap_content"
+    	android:layout_gravity="center"
+    	android:stretchColumns="*"
+    >
+    <tablerow>
+    
+    </tablerow>
+    </TableLayout>
+<Button 
+	android:textSize="@dimen/calc_button"
+	android:layout_width="wrap_content"
+	android:layout_height="fill_parent"
+	android:text="7"
+	/>
+	<Button 
+	android:textSize="@dimen/calc_button"
+	android:layout_width="wrap_content"
+	android:layout_height="fill_parent"
+	android:text="8"
+	/>
+	
+	<Button
+	android:textSize="@dimen/calc_button" 
+	android:layout_width="wrap_content"
+	android:layout_height="fill_parent"
+	android:text="9"
+	/>
+	</LinearLayout>
+	
+	 <LinearLayout
+    android:orientation="horizontal"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    >
+	<Button 
+	android:textSize="@dimen/calc_button"
+	android:layout_width="wrap_content"
+	android:layout_height="fill_parent"
+	android:text="4"
+	/>
+	
+	<Button 
+	android:textSize="@dimen/calc_button"
+	android:layout_width="wrap_content"
+	android:layout_height="fill_parent"
+	android:text="5"
+	/>
+	
+	<Button 
+	android:textSize="@dimen/calc_button"
+	android:layout_width="wrap_content"
+	android:layout_height="fill_parent"
+	android:text="3"
+	/>
+	</LinearLayout>
+	 <LinearLayout
+    android:orientation="horizontal"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    >
+	<Button 
+	android:textSize="@dimen/calc_button"
+	android:layout_width="wrap_content"
+	android:layout_height="fill_parent"
+	android:text="1"
+	/>
+	
+	<Button 
+	android:textSize="@dimen/calc_button"
+	android:layout_width="wrap_content"
+	android:layout_height="fill_parent"
+	android:text="2"
+	/>
+	
+	<Button 
+	android:textSize="@dimen/calc_button"
+	android:layout_width="wrap_content"
+	android:layout_height="fill_parent"
+	android:text="3"
+	/>
+	</LinearLayout>
+	<Button 
+	android:textSize="@dimen/calc_button"
+	android:layout_width="wrap_content"
+	android:layout_height="fill_parent"
+	android:text="0"
+	/>
+	
 </LinearLayout>
