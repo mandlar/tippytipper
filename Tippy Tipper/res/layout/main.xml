@@ -10,9 +10,12 @@
 		android:text="@string/enter_bill_amount" />
 	<EditText 
 		android:id="@+id/txt_amount"
+		android:textSize="@dimen/calc_text"
 		android:layout_width="fill_parent"
 		android:layout_height="wrap_content" 
-		android:editable="false"/>
+		android:editable="false"
+		android:cursorVisible="false"
+		android:gravity="right"/>
 
 	<TableLayout 
 		android:layout_height="wrap_content"
@@ -88,12 +91,26 @@
 				android:text="3" />
 		</TableRow>
 		<TableRow>
-
 			<Button 
+				android:id="@+id/btn_delete"
+				android:textSize="@dimen/calc_button"
+				android:layout_width="wrap_content" 
+				android:layout_height="fill_parent"
+				android:text="DEL" />
+				
+			<Button 
+				android:id="@+id/btn_zero"
 				android:textSize="@dimen/calc_button"
 				android:layout_width="wrap_content" 
 				android:layout_height="fill_parent"
 				android:text="0" />
+				
+			<Button 
+				android:id="@+id/btn_ok"
+				android:textSize="@dimen/calc_button"
+				android:layout_width="wrap_content" 
+				android:layout_height="fill_parent"
+				android:text="OK" />
 		</TableRow>
 	</TableLayout>
 
