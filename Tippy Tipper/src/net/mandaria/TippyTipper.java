@@ -10,7 +10,7 @@ import android.widget.*;
 
 public class TippyTipper extends Activity  {
 	
-	private String BillAmount = "";
+	//private String BillAmount = "";
 	
     /** Called when the activity is first created. */
     @Override
@@ -93,12 +93,12 @@ public class TippyTipper extends Activity  {
             });
         View btn_zero = findViewById(R.id.btn_zero);
         btn_zero.setOnClickListener(new OnClickListener() 
-        	{
-            	public void onClick(View v) 
-            	{
-            		AddBillAmount("0");
-            	}
-            });
+	        {
+	        	public void onClick(View v) 
+	        	{
+	        		AddBillAmount("0");
+	        	}
+	        });
         View btn_delete = findViewById(R.id.btn_delete);
         btn_delete.setOnClickListener(new OnClickListener() 
         	{
@@ -108,7 +108,7 @@ public class TippyTipper extends Activity  {
             	}
             });
         View btn_ok = findViewById(R.id.btn_ok);
-        btn_zero.setOnClickListener(new OnClickListener() 
+        btn_ok.setOnClickListener(new OnClickListener() 
         	{
             	public void onClick(View v) 
             	{
@@ -119,16 +119,19 @@ public class TippyTipper extends Activity  {
     
     private void AddBillAmount(String number)
     {
+    	String BillAmount = ((TippyTipperApplication)this.getApplication()).getBillAmount();
     	BillAmount = BillAmount + "" + number;
     	double amount = Double.valueOf(BillAmount);
     	amount = amount / 100;
 		EditText txt_amount = (EditText)findViewById(R.id.txt_amount);
 		txt_amount.setText("$" + Double.toString(amount));
+		((TippyTipperApplication)this.getApplication()).setBillAmmount(BillAmount);
     	
     }
     
     private void RemoveBillAmount()
     {
+    	String BillAmount = ((TippyTipperApplication)this.getApplication()).getBillAmount();
     	if(BillAmount.length() > 1)
     	{
     		BillAmount = BillAmount.substring(0, BillAmount.length() - 1);
@@ -143,6 +146,7 @@ public class TippyTipper extends Activity  {
     		EditText txt_amount = (EditText)findViewById(R.id.txt_amount);
     		txt_amount.setText("");
 		}
+    	((TippyTipperApplication)this.getApplication()).setBillAmmount(BillAmount);
     }
  
 }
