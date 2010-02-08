@@ -1,12 +1,11 @@
 package net.mandaria;
 
-import java.math.BigDecimal;
-
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
-import android.view.*;
+import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.*;
+import android.widget.EditText;
 
 public class TippyTipper extends Activity  {
 	
@@ -112,7 +111,8 @@ public class TippyTipper extends Activity  {
         	{
             	public void onClick(View v) 
             	{
-            		
+            		Intent i = new Intent(getBaseContext(), Total.class);//new Intent(this, Total.class);
+            		startActivity(i);
             	}
             });
     }

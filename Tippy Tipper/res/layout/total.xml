@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="vertical" 
+	android:layout_width="fill_parent"
+	android:layout_height="fill_parent">
+	
+	<TableLayout 
+		android:layout_height="wrap_content"
+		android:layout_width="wrap_content" 
+		android:layout_gravity="center"
+		android:stretchColumns="*">
+		<TableRow>
+			<TextView 
+				android:textSize="@dimen/enter_bill_amount"
+				android:layout_width="fill_parent"
+				android:layout_height="wrap_content" 
+				android:text="@string/bill_amount" />
+			<TextView 
+				android:id="@+id/lbl_amount"
+				android:textSize="@dimen/enter_bill_amount"
+				android:layout_width="fill_parent"
+				android:layout_height="wrap_content"/>
+		</TableRow>
+		<TableRow>
+			<TextView 
+				android:textSize="@dimen/enter_bill_amount"
+				android:layout_width="fill_parent"
+				android:layout_height="wrap_content" 
+				android:text="@string/tip" />
+			<TextView 
+				android:id="@+id/lbl_tip"
+				android:textSize="@dimen/enter_bill_amount"
+				android:layout_width="fill_parent"
+				android:layout_height="wrap_content"/>
+		</TableRow>
+		<TableRow>
+			<TextView 
+				android:textSize="@dimen/enter_bill_amount"
+				android:layout_width="fill_parent"
+				android:layout_height="wrap_content" 
+				android:text="@string/total" />
+			<TextView 
+				android:id="@+id/lbl_total"
+				android:textSize="@dimen/enter_bill_amount"
+				android:layout_width="fill_parent"
+				android:layout_height="wrap_content"/>
+		</TableRow>
+	</TableLayout>
+</LinearLayout>
