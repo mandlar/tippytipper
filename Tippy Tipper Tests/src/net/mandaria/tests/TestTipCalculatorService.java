@@ -367,4 +367,64 @@ public class TestTipCalculatorService
 		service.AppendNumberToBillAmount("6");
 		assertTrue(service.GetBillAmount(), service.GetBillAmount().equals("$12,345,678,901,234.56"));
 	};
+	
+	@Test public void Test_AppendSeventeenNumbersToBillAmount()
+	{
+		TipCalculatorService service = new TipCalculatorService();
+		service.AppendNumberToBillAmount("1");
+		assertTrue(service.GetBillAmount().equals("$0.01"));
+		service.AppendNumberToBillAmount("2");
+		assertTrue(service.GetBillAmount().equals("$0.12"));
+		service.AppendNumberToBillAmount("3");
+		assertTrue(service.GetBillAmount().equals("$1.23"));
+		service.AppendNumberToBillAmount("4");
+		assertTrue(service.GetBillAmount().equals("$12.34"));
+		service.AppendNumberToBillAmount("5");
+		assertTrue(service.GetBillAmount().equals("$123.45"));
+		service.AppendNumberToBillAmount("6");
+		assertTrue(service.GetBillAmount().equals("$1,234.56"));
+		service.AppendNumberToBillAmount("7");
+		assertTrue(service.GetBillAmount().equals("$12,345.67"));
+		service.AppendNumberToBillAmount("8");
+		assertTrue(service.GetBillAmount().equals("$123,456.78"));
+		service.AppendNumberToBillAmount("9");
+		assertTrue(service.GetBillAmount().equals("$1,234,567.89"));
+		service.AppendNumberToBillAmount("0");
+		assertTrue(service.GetBillAmount(), service.GetBillAmount().equals("$12,345,678.90"));
+		service.AppendNumberToBillAmount("1");
+		assertTrue(service.GetBillAmount(), service.GetBillAmount().equals("$123,456,789.01"));
+		service.AppendNumberToBillAmount("2");
+		assertTrue(service.GetBillAmount(), service.GetBillAmount().equals("$1,234,567,890.12"));
+		service.AppendNumberToBillAmount("3");
+		assertTrue(service.GetBillAmount(), service.GetBillAmount().equals("$12,345,678,901.23"));
+		service.AppendNumberToBillAmount("4");
+		assertTrue(service.GetBillAmount(), service.GetBillAmount().equals("$123,456,789,012.34"));
+		service.AppendNumberToBillAmount("5");
+		assertTrue(service.GetBillAmount(), service.GetBillAmount().equals("$1,234,567,890,123.45"));
+		service.AppendNumberToBillAmount("6");
+		assertTrue(service.GetBillAmount(), service.GetBillAmount().equals("$12,345,678,901,234.56"));
+		service.AppendNumberToBillAmount("7");
+		assertTrue(service.GetBillAmount(), service.GetBillAmount().equals("$12,345,678,901,234.56"));
+	};
+	
+	@Test public void Test_ClearBillAmount()
+	{
+		TipCalculatorService service = new TipCalculatorService();
+		assertTrue(service.GetBillAmount(), service.GetBillAmount().equals("$0.00"));
+		service.ClearBillAmount();
+		assertTrue(service.GetBillAmount(), service.GetBillAmount().equals("$0.00"));
+	}
+	
+	@Test public void Test_ClearBillAmountAfterAddingValueToBillAmount()
+	{
+		TipCalculatorService service = new TipCalculatorService();
+		assertTrue(service.GetBillAmount(), service.GetBillAmount().equals("$0.00"));
+		service.AppendNumberToBillAmount("1");
+		service.AppendNumberToBillAmount("2");
+		service.AppendNumberToBillAmount("3");
+		assertTrue(service.GetBillAmount().equals("$1.23"));
+		service.ClearBillAmount();
+		assertTrue(service.GetBillAmount(), service.GetBillAmount().equals("$0.00"));
+	}
+	
 }
