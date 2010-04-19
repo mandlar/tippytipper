@@ -9,8 +9,6 @@ import android.widget.EditText;
 
 public class TippyTipper extends Activity  {
 	
-	//private String BillAmount = "";
-	
     /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -122,15 +120,8 @@ public class TippyTipper extends Activity  {
     	TippyTipperApplication appState = ((TippyTipperApplication)this.getApplication());
     	appState.service.AppendNumberToBillAmount(number);
     	
-//    	String BillAmount = ((TippyTipperApplication)this.getApplication()).getBillAmount();
-//    	BillAmount = BillAmount + "" + number;
-//    	double amount = Double.valueOf(BillAmount);
-//    	amount = amount / 100;
-    	
 		EditText txt_amount = (EditText)findViewById(R.id.txt_amount);
 		txt_amount.setText(appState.service.GetBillAmount());
-		//((TippyTipperApplication)this.getApplication()).setBillAmmount(BillAmount);
-    	
     }
     
     private void RemoveBillAmount()
@@ -140,23 +131,6 @@ public class TippyTipper extends Activity  {
     	
     	EditText txt_amount = (EditText)findViewById(R.id.txt_amount);
 		txt_amount.setText(appState.service.GetBillAmount());
-    	
-//    	String BillAmount = ((TippyTipperApplication)this.getApplication()).getBillAmount();
-//    	if(BillAmount.length() > 1)
-//    	{
-//    		BillAmount = BillAmount.substring(0, BillAmount.length() - 1);
-//    		double amount = Double.valueOf(BillAmount);
-//    		amount = amount / 100;
-//    		EditText txt_amount = (EditText)findViewById(R.id.txt_amount);
-//    		txt_amount.setText("$" + Double.toString(amount));
-//    	}
-//    	else 
-//    	{
-//    		BillAmount = "";
-//    		EditText txt_amount = (EditText)findViewById(R.id.txt_amount);
-//    		txt_amount.setText("");
-//		}
-//    	((TippyTipperApplication)this.getApplication()).setBillAmmount(BillAmount);
     }
  
 }

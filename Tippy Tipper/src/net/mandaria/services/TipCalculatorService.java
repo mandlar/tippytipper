@@ -24,25 +24,17 @@ public class TipCalculatorService
 	{
 		
 		return nf.format(BillAmount);
-        //return "$" + BillAmount;
     }
 	
 	public String GetTipAmount()
 	{
 		return nf.format(TipAmount);
-		//return "$" + ;
 	}
 	
 	public String GetTotalAmount()
 	{
 		return nf.format(TotalAmount);
-		//return "$" + ;
 	}
-
-   /* public void setBillAmmount(String BillAmmunt) 
-    {
-        this.BillAmount = BillAmmunt;
-    }*/
     
     public void AppendNumberToBillAmount(String number)
     {
@@ -78,16 +70,12 @@ public class TipCalculatorService
     }
     
     public void CalculateTip(double percent)
-    {
-        //double bill_amount = Double.valueOf(BillEntry);
-  		//bill_amount = bill_amount / 100;
-  		
+    {	
   		double tip_amount = BillAmount * percent;
   		double total_amount = BillAmount + tip_amount; 
   		
   		TipAmount = tip_amount;
   		TotalAmount = total_amount;
-  		
     }
     
 }
