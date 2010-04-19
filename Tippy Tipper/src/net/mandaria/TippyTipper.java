@@ -119,34 +119,44 @@ public class TippyTipper extends Activity  {
     
     private void AddBillAmount(String number)
     {
-    	String BillAmount = ((TippyTipperApplication)this.getApplication()).getBillAmount();
-    	BillAmount = BillAmount + "" + number;
-    	double amount = Double.valueOf(BillAmount);
-    	amount = amount / 100;
+    	TippyTipperApplication appState = ((TippyTipperApplication)this.getApplication());
+    	appState.service.AppendNumberToBillAmount(number);
+    	
+//    	String BillAmount = ((TippyTipperApplication)this.getApplication()).getBillAmount();
+//    	BillAmount = BillAmount + "" + number;
+//    	double amount = Double.valueOf(BillAmount);
+//    	amount = amount / 100;
+    	
 		EditText txt_amount = (EditText)findViewById(R.id.txt_amount);
-		txt_amount.setText("$" + Double.toString(amount));
-		((TippyTipperApplication)this.getApplication()).setBillAmmount(BillAmount);
+		txt_amount.setText(appState.service.GetBillAmount());
+		//((TippyTipperApplication)this.getApplication()).setBillAmmount(BillAmount);
     	
     }
     
     private void RemoveBillAmount()
     {
-    	String BillAmount = ((TippyTipperApplication)this.getApplication()).getBillAmount();
-    	if(BillAmount.length() > 1)
-    	{
-    		BillAmount = BillAmount.substring(0, BillAmount.length() - 1);
-    		double amount = Double.valueOf(BillAmount);
-    		amount = amount / 100;
-    		EditText txt_amount = (EditText)findViewById(R.id.txt_amount);
-    		txt_amount.setText("$" + Double.toString(amount));
-    	}
-    	else 
-    	{
-    		BillAmount = "";
-    		EditText txt_amount = (EditText)findViewById(R.id.txt_amount);
-    		txt_amount.setText("");
-		}
-    	((TippyTipperApplication)this.getApplication()).setBillAmmount(BillAmount);
+    	TippyTipperApplication appState = ((TippyTipperApplication)this.getApplication());
+    	appState.service.RemoveEndNumberFromBillAmount();
+    	
+    	EditText txt_amount = (EditText)findViewById(R.id.txt_amount);
+		txt_amount.setText(appState.service.GetBillAmount());
+    	
+//    	String BillAmount = ((TippyTipperApplication)this.getApplication()).getBillAmount();
+//    	if(BillAmount.length() > 1)
+//    	{
+//    		BillAmount = BillAmount.substring(0, BillAmount.length() - 1);
+//    		double amount = Double.valueOf(BillAmount);
+//    		amount = amount / 100;
+//    		EditText txt_amount = (EditText)findViewById(R.id.txt_amount);
+//    		txt_amount.setText("$" + Double.toString(amount));
+//    	}
+//    	else 
+//    	{
+//    		BillAmount = "";
+//    		EditText txt_amount = (EditText)findViewById(R.id.txt_amount);
+//    		txt_amount.setText("");
+//		}
+//    	((TippyTipperApplication)this.getApplication()).setBillAmmount(BillAmount);
     }
  
 }
