@@ -13,6 +13,7 @@ public class TipCalculatorService
 	private double BillAmount = 0;
 	private double TipAmount = 0;
 	private double TotalAmount = 0;
+	NumberFormat nf = NumberFormat.getCurrencyInstance();
 	
 	public TipCalculatorService()
 	{
@@ -21,19 +22,21 @@ public class TipCalculatorService
 	
 	public String GetBillAmount() 
 	{
-		NumberFormat nf = NumberFormat.getCurrencyInstance();
+		
 		return nf.format(BillAmount);
         //return "$" + BillAmount;
     }
 	
 	public String GetTipAmount()
 	{
-		return "$" + TipAmount;
+		return nf.format(TipAmount);
+		//return "$" + ;
 	}
 	
 	public String GetTotalAmount()
 	{
-		return "$" + TotalAmount;
+		return nf.format(TotalAmount);
+		//return "$" + ;
 	}
 
    /* public void setBillAmmount(String BillAmmunt) 
@@ -76,11 +79,11 @@ public class TipCalculatorService
     
     public void CalculateTip(double percent)
     {
-        double bill_amount = Double.valueOf(BillEntry);
-  		bill_amount = bill_amount / 100;
+        //double bill_amount = Double.valueOf(BillEntry);
+  		//bill_amount = bill_amount / 100;
   		
-  		double tip_amount = bill_amount * percent;
-  		double total_amount = bill_amount + tip_amount; 
+  		double tip_amount = BillAmount * percent;
+  		double total_amount = BillAmount + tip_amount; 
   		
   		TipAmount = tip_amount;
   		TotalAmount = total_amount;
