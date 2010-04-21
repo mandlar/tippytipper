@@ -38,7 +38,7 @@ public class TipCalculatorService
     
     public void AppendNumberToBillAmount(String number)
     {
-    	if(BillEntry.length() < 16)
+    	if(BillEntry.length() < 15)
     	{
 	    	BillEntry = BillEntry + "" + number;
     	}
