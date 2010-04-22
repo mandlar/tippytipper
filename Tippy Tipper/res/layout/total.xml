@@ -66,16 +66,41 @@
 				android:layout_width="fill_parent"
 				android:layout_height="wrap_content"/>
 		</TableRow>
-		<TableRow>
-			<TextView 
-				android:textSize="@dimen/enter_bill_amount"
-				android:textStyle="bold"
-				android:layout_width="fill_parent"
-				android:layout_height="wrap_content" 
-				android:text="@string/tip_percentage" />
+		<TableRow 
+			android:background="#777777"
+			android:layout_marginLeft="10sp"
+			android:layout_marginRight="10sp"
+			android:layout_marginTop="10sp"
+			android:layout_marginBottom="10sp"
+			android:minHeight="3sp">
+			
 		</TableRow>
 		<TableRow>
-			<SeekBar android:id="@+id/seek"
+			<TableLayout
+				android:layout_height="wrap_content"
+				android:layout_width="wrap_content" 
+				android:stretchColumns="*">
+				<TableRow>
+				<TextView 
+					android:textSize="@dimen/enter_bill_amount"
+					android:textStyle="bold"
+					android:layout_width="fill_parent"
+					android:layout_height="wrap_content" 
+					android:text="@string/tip_percentage" />
+				
+				<TextView
+					android:id="@+id/lbl_tip_percentage"
+					android:textSize="@dimen/enter_bill_amount"
+					android:layout_width="fill_parent"
+					android:layout_height="wrap_content" 
+					android:text="0%"
+				/>
+				</TableRow>
+			</TableLayout>
+			
+		</TableRow>
+		<TableRow>
+			<SeekBar android:id="@+id/seek_tip_percentage"
 				android:paddingLeft="30sp"
 				android:paddingRight="30sp"
 		        android:layout_width="fill_parent"
