@@ -1,5 +1,6 @@
 package net.mandaria.services;
 
+import java.text.DecimalFormat;
 import java.text.NumberFormat;
 
 import net.mandaria.R;
@@ -13,6 +14,7 @@ public class TipCalculatorService
 	private double BillAmount = 0;
 	private double TipAmount = 0;
 	private double TotalAmount = 0;
+	private double TipPercentage = 0.15;
 	NumberFormat nf = NumberFormat.getCurrencyInstance();
 	
 	public TipCalculatorService()
@@ -34,6 +36,24 @@ public class TipCalculatorService
 	public String GetTotalAmount()
 	{
 		return nf.format(TotalAmount);
+	}
+	
+	public String GetTipPercentage()
+	{
+		double percent = TipPercentage * 100;
+		DecimalFormat dec = new DecimalFormat("0.0");
+		return dec.format(percent) + "%";
+	}
+	
+	public int GetTipPercentageRounded()
+	{
+		int percent = (int)Math.round(TipPercentage * 100);
+		return percent;
+	}
+	
+	public void SetTipPercentage(double percent)
+	{
+		TipPercentage = percent;
 	}
     
     public void AppendNumberToBillAmount(String number)
@@ -69,13 +89,36 @@ public class TipCalculatorService
     	BillAmount = 0;
     }
     
-    public void CalculateTip(double percent)
+    public void CalculateTip()
     {	
-  		double tip_amount = BillAmount * percent;
+  		double tip_amount = BillAmount * TipPercentage;
   		double total_amount = BillAmount + tip_amount; 
   		
   		TipAmount = tip_amount;
   		TotalAmount = total_amount;
+    }
+    
+    public void CalculateTip(double percent)
+    {
+    	TipPercentage = percent;
+    	CalculateTip();
+    }
+    
+    public void RoundUp()
+    {
+    	TotalAmount = Math.ceil(TotalAmount);
+    	TipAmount = TotalAmount - BillAmount;
+    	TipPercentage = (TotalAmount/BillAmount) - 1;
+    }
+    
+    public void RoundDown()
+    {
+    	if(Math.floor(TotalAmount) >= BillAmount)
+    	{
+    		TotalAmount = Math.floor(TotalAmount);
+    		TipAmount = TotalAmount - BillAmount;
+    		TipPercentage = (TotalAmount/BillAmount) - 1;
+    	}
     }
     
 }
