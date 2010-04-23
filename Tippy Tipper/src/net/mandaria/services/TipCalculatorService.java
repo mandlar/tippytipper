@@ -14,6 +14,7 @@ public class TipCalculatorService
 	private double BillAmount = 0;
 	private double TipAmount = 0;
 	private double TotalAmount = 0;
+	private double TotalAmountBeforeRounded = 0;
 	private double TipPercentage = 0.15;
 	NumberFormat nf = NumberFormat.getCurrencyInstance();
 	
@@ -96,16 +97,18 @@ public class TipCalculatorService
   		
   		TipAmount = tip_amount;
   		TotalAmount = total_amount;
+  		TotalAmountBeforeRounded = TotalAmount;
     }
     
     public void CalculateTip(double percent)
     {
-    	TipPercentage = percent;
+    	SetTipPercentage(percent);
     	CalculateTip();
     }
     
     public void RoundUp()
     {
+    	TotalAmount = TotalAmountBeforeRounded;
     	TotalAmount = Math.ceil(TotalAmount);
     	TipAmount = TotalAmount - BillAmount;
     	TipPercentage = (TotalAmount/BillAmount) - 1;
@@ -113,8 +116,9 @@ public class TipCalculatorService
     
     public void RoundDown()
     {
-    	if(Math.floor(TotalAmount) >= BillAmount)
+    	if(Math.floor(TotalAmountBeforeRounded) >= BillAmount)
     	{
+    		TotalAmount = TotalAmountBeforeRounded;
     		TotalAmount = Math.floor(TotalAmount);
     		TipAmount = TotalAmount - BillAmount;
     		TipPercentage = (TotalAmount/BillAmount) - 1;
