@@ -93,6 +93,7 @@ public class TipCalculatorService
     public void CalculateTip()
     {	
   		double tip_amount = BillAmount * TipPercentage;
+  		tip_amount = Math.round(tip_amount * 100) / 100.0; // round tip to nearest penny
   		double total_amount = BillAmount + tip_amount; 
   		
   		TipAmount = tip_amount;
