@@ -474,6 +474,20 @@ public class TestTipCalculatorService
 		assertTrue(service.GetTotalAmount(), service.GetTotalAmount().equals("$11.00"));
 	}
 	
+	@Test public void GetTipAndTotalFromFifteenDollarAndFifteenCentsBillAmountTenPercentTipRoundingErrorBoundaryCondition()
+	{
+		TipCalculatorService service = new TipCalculatorService();
+		assertTrue(service.GetBillAmount(), service.GetBillAmount().equals("$0.00"));
+		service.AppendNumberToBillAmount("1");
+		service.AppendNumberToBillAmount("5");
+		service.AppendNumberToBillAmount("1");
+		service.AppendNumberToBillAmount("5");
+		assertTrue(service.GetBillAmount(), service.GetBillAmount().equals("$15.15"));
+		service.CalculateTip(0.10);
+		assertTrue(service.GetTipAmount(), service.GetTipAmount().equals("$1.52"));
+		assertTrue(service.GetTotalAmount(), service.GetTotalAmount().equals("$16.67"));
+	}
+	
 	@Test public void GetTipAndTotalFromNineDollarsAndNintyNineCentsBillAmountTenPercentTip()
 	{
 		TipCalculatorService service = new TipCalculatorService();
