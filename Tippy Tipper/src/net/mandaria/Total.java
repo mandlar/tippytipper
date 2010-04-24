@@ -35,6 +35,33 @@ public class Total extends Activity {
             		RoundUp();
             	}
             });
+        
+        View btn_TipAmount1 = findViewById(R.id.btn_TipAmount1);
+        btn_TipAmount1.setOnClickListener(new OnClickListener() 
+    	{
+        	public void onClick(View v) 
+        	{
+        		CalculateTip(10.0);
+        	}
+        });
+        
+        View btn_TipAmount2 = findViewById(R.id.btn_TipAmount2);
+        btn_TipAmount2.setOnClickListener(new OnClickListener() 
+    	{
+        	public void onClick(View v) 
+        	{
+        		CalculateTip(15.0);
+        	}
+        });
+        
+        View btn_TipAmount3 = findViewById(R.id.btn_TipAmount3);
+        btn_TipAmount3.setOnClickListener(new OnClickListener() 
+    	{
+        	public void onClick(View v) 
+        	{
+        		CalculateTip(20.0);
+        	}
+        });
 		
 		SeekBar seek_tip_percentage = (SeekBar)findViewById(R.id.seek_tip_percentage);
 		seek_tip_percentage.setOnSeekBarChangeListener(new OnSeekBarChangeListener()

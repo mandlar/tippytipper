@@ -140,6 +140,34 @@
 				android:layout_gravity="center"
 				android:stretchColumns="*">
 				<TableRow>
+					<Button
+						android:id="@+id/btn_TipAmount1" 
+						android:textSize="@dimen/calc_button"
+						android:layout_width="wrap_content" 
+						android:layout_height="fill_parent"
+						android:text="10%" />
+					<Button
+						android:id="@+id/btn_TipAmount2" 
+						android:textSize="@dimen/calc_button"
+						android:layout_width="wrap_content" 
+						android:layout_height="fill_parent"
+						android:text="15%" />
+					<Button
+						android:id="@+id/btn_TipAmount3" 
+						android:textSize="@dimen/calc_button"
+						android:layout_width="wrap_content" 
+						android:layout_height="fill_parent"
+						android:text="20%" />
+				</TableRow>
+			</TableLayout>
+		</TableRow>
+		<TableRow>
+			<TableLayout
+				android:layout_height="wrap_content"
+				android:layout_width="wrap_content" 
+				android:layout_gravity="center"
+				android:stretchColumns="*">
+				<TableRow>
 				<Button 
 					android:id="@+id/btn_round_down"
 					android:textSize="@dimen/calc_button"
