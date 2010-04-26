@@ -16,6 +16,9 @@ public class TipCalculatorService
 	private double TotalAmount = 0;
 	private double TotalAmountBeforeRounded = 0;
 	private double TipPercentage = 0.15;
+	private double SplitBillAmount = 0;
+	private double SplitTipAmount = 0;
+	private double SplitTotalAmount = 0;
 	NumberFormat nf = NumberFormat.getCurrencyInstance();
 	
 	public TipCalculatorService()
@@ -25,7 +28,6 @@ public class TipCalculatorService
 	
 	public String GetBillAmount() 
 	{
-		
 		return nf.format(BillAmount);
     }
 	
@@ -37,6 +39,21 @@ public class TipCalculatorService
 	public String GetTotalAmount()
 	{
 		return nf.format(TotalAmount);
+	}
+	
+	public String GetSplitBillAmount()
+	{
+		return nf.format(SplitBillAmount);
+	}
+	
+	public String GetSplitTipAmount()
+	{
+		return nf.format(SplitTipAmount);
+	}
+	
+	public String GetSplitTotalAmount()
+	{
+		return nf.format(SplitTotalAmount);
 	}
 	
 	public String GetTipPercentage()
@@ -124,6 +141,28 @@ public class TipCalculatorService
     		TipAmount = TotalAmount - BillAmount;
     		TipPercentage = (TotalAmount/BillAmount) - 1;
     	}
+    }
+    
+    public void SplitBill(int people)
+    {
+    	if(people < 1)
+    		throw new IllegalArgumentException("Number of people cannot be below one.");
+    	int SplitBillInteger = (int)(BillAmount * 100.0);
+    	int SplitBillRemainder = (int)SplitBillInteger % people;
+    	if(SplitBillRemainder != 0)
+    		SplitBillAmount = (double)SplitBillInteger - (double)SplitBillRemainder + (double)people;
+    	else
+    		SplitBillAmount = (double)SplitBillInteger;
+    	SplitBillAmount = SplitBillAmount / 100.0;
+    	SplitBillAmount = SplitBillAmount / people;
+    	
+    	// calculate tip TODO: Can be refactored with CalculateTip() function into a generic function for both places
+    	double tip_amount = SplitBillAmount * TipPercentage;
+  		tip_amount = Math.round(tip_amount * 100) / 100.0; // round tip to nearest penny
+  		double total_amount = SplitBillAmount + tip_amount; 
+  		
+  		SplitTipAmount = tip_amount;
+  		SplitTotalAmount = total_amount;
     }
     
 }
