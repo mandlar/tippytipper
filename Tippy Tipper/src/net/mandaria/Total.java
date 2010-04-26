@@ -1,6 +1,7 @@
 package net.mandaria;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.*;
 import android.view.View.OnClickListener;
@@ -17,6 +18,16 @@ public class Total extends Activity {
         setContentView(R.layout.total);  
 		
         CalculateTip(15.0);
+        
+        View btn_SplitBill = findViewById(R.id.btn_SplitBill);
+        btn_SplitBill.setOnClickListener(new OnClickListener() 
+        	{
+            	public void onClick(View v) 
+            	{
+            		Intent i = new Intent(getBaseContext(), SplitBill.class);
+            		startActivity(i);
+            	}
+            });
 		
         View btn_round_down = findViewById(R.id.btn_round_down);
         btn_round_down.setOnClickListener(new OnClickListener() 

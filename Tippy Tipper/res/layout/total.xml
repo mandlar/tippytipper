@@ -173,15 +173,23 @@
 					android:textSize="@dimen/calc_button"
 					android:layout_width="wrap_content" 
 					android:layout_height="fill_parent"
-					android:text="Round Down" />
+					android:text="@string/round_down" />
 				<Button 
 					android:id="@+id/btn_round_up"
 					android:textSize="@dimen/calc_button"
 					android:layout_width="wrap_content" 
 					android:layout_height="fill_parent"
-					android:text="Round Up" />
+					android:text="@string/round_up" />
 				</TableRow>
 			</TableLayout>				
+		</TableRow>
+		<TableRow>
+			<Button
+				android:id="@+id/btn_SplitBill" 
+				android:textSize="@dimen/calc_button"
+				android:layout_width="wrap_content" 
+				android:layout_height="fill_parent"
+				android:text="@string/split_bill" />
 		</TableRow>
 	</TableLayout>
 </LinearLayout>

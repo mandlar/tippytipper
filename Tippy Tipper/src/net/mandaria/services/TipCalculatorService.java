@@ -19,6 +19,7 @@ public class TipCalculatorService
 	private double SplitBillAmount = 0;
 	private double SplitTipAmount = 0;
 	private double SplitTotalAmount = 0;
+	private int NumberOfPeople = 2;
 	NumberFormat nf = NumberFormat.getCurrencyInstance();
 	
 	public TipCalculatorService()
@@ -61,6 +62,11 @@ public class TipCalculatorService
 		double percent = TipPercentage * 100;
 		DecimalFormat dec = new DecimalFormat("0.0");
 		return dec.format(percent) + "%";
+	}
+	
+	public int GetNumberOfPeople()
+	{
+		return NumberOfPeople;
 	}
 	
 	public int GetTipPercentageRounded()
@@ -147,14 +153,15 @@ public class TipCalculatorService
     {
     	if(people < 1)
     		throw new IllegalArgumentException("Number of people cannot be below one.");
+    	NumberOfPeople = people;
     	int SplitBillInteger = (int)(BillAmount * 100.0);
-    	int SplitBillRemainder = (int)SplitBillInteger % people;
+    	int SplitBillRemainder = (int)SplitBillInteger % NumberOfPeople;
     	if(SplitBillRemainder != 0)
-    		SplitBillAmount = (double)SplitBillInteger - (double)SplitBillRemainder + (double)people;
+    		SplitBillAmount = (double)SplitBillInteger - (double)SplitBillRemainder + (double)NumberOfPeople;
     	else
     		SplitBillAmount = (double)SplitBillInteger;
     	SplitBillAmount = SplitBillAmount / 100.0;
-    	SplitBillAmount = SplitBillAmount / people;
+    	SplitBillAmount = SplitBillAmount / NumberOfPeople;
     	
     	// calculate tip TODO: Can be refactored with CalculateTip() function into a generic function for both places
     	double tip_amount = SplitBillAmount * TipPercentage;
