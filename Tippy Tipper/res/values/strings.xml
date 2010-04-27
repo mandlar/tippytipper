@@ -13,4 +13,7 @@
 <string name="split_bill_amount">Split Bill Amount:</string>
 <string name="split_tip">Split Tip:</string>
 <string name="split_total">Split Total:</string>
+
+
+<string name="settings">Settings</string>
 </resources>

@@ -6,6 +6,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.EditText;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 
 public class TippyTipper extends Activity  {
 	
@@ -114,6 +117,27 @@ public class TippyTipper extends Activity  {
             	}
             });
     }
+    
+    @Override
+  	public boolean onCreateOptionsMenu(Menu menu)
+  	{
+  		super.onCreateOptionsMenu(menu);
+  		MenuInflater inflater = getMenuInflater();
+  		inflater.inflate(R.menu.menu, menu);
+  		return true;
+  	}
+
+  	@Override
+  	public boolean onOptionsItemSelected(MenuItem item)
+  	{
+  		switch(item.getItemId())
+  		{
+  			case R.id.settings:
+  				startActivity(new Intent(this, Settings.class));
+  				return true;
+  		}
+  		return false;
+  	}
     
     private void AddBillAmount(String number)
     {
