@@ -104,6 +104,27 @@ public class Total extends Activity {
 		
     }
     
+    @Override
+  	public boolean onCreateOptionsMenu(Menu menu)
+  	{
+  		super.onCreateOptionsMenu(menu);
+  		MenuInflater inflater = getMenuInflater();
+  		inflater.inflate(R.menu.menu, menu);
+  		return true;
+  	}
+
+  	@Override
+  	public boolean onOptionsItemSelected(MenuItem item)
+  	{
+  		switch(item.getItemId())
+  		{
+  			case R.id.settings:
+  				startActivity(new Intent(this, Settings.class));
+  				return true;
+  		}
+  		return false;
+  	}
+    
     private void CalculateTip(Double percent)
     {
 		TippyTipperApplication appState = ((TippyTipperApplication)this.getApplication());
