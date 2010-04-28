@@ -20,9 +20,11 @@ public class Total extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.total);  
+        setContentView(R.layout.total);
+        
+        double defaultTipPercentage = (double)Settings.getDefaultTipPercentage(getBaseContext());
 		
-        CalculateTip(15.0);
+        CalculateTip(defaultTipPercentage);
         
         View btn_SplitBill = findViewById(R.id.btn_SplitBill);
         btn_SplitBill.setOnClickListener(new OnClickListener() 
