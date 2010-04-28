@@ -1,5 +1,7 @@
-package net.mandaria;
+package net.mandaria.activities;
 
+import net.mandaria.R;
+import net.mandaria.R.xml;
 import android.os.Bundle;
 import android.preference.*;
 

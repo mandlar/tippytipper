@@ -1,5 +1,10 @@
-package net.mandaria;
+package net.mandaria.activities;
 
+import net.mandaria.R;
+import net.mandaria.TippyTipperApplication;
+import net.mandaria.R.id;
+import net.mandaria.R.layout;
+import net.mandaria.R.menu;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
