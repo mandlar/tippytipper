@@ -64,6 +64,12 @@ public class TipCalculatorService
 		return dec.format(percent) + "%";
 	}
 	
+	public double GetTipPercentageAsDouble()
+	{
+		double percent = TipPercentage * 100;
+		return percent;
+	}
+	
 	public int GetNumberOfPeople()
 	{
 		return NumberOfPeople;

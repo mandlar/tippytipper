@@ -22,9 +22,11 @@ public class Total extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.total);
         
-        double defaultTipPercentage = (double)Settings.getDefaultTipPercentage(getBaseContext());
-		
-        CalculateTip(defaultTipPercentage);
+        //double defaultTipPercentage = (double)Settings.getDefaultTipPercentage(getBaseContext());
+        
+        TippyTipperApplication appState = ((TippyTipperApplication)this.getApplication());
+        
+        CalculateTip(appState.service.GetTipPercentageAsDouble());
         
         View btn_SplitBill = findViewById(R.id.btn_SplitBill);
         btn_SplitBill.setOnClickListener(new OnClickListener() 
@@ -135,7 +137,7 @@ public class Total extends Activity {
     private void CalculateTip(Double percent)
     {
 		TippyTipperApplication appState = ((TippyTipperApplication)this.getApplication());
-		appState.service.CalculateTip(percent/100);
+		appState.service.CalculateTip(percent/100.0);
 
 		BindData();
     }

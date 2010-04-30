@@ -117,6 +117,8 @@ public class TippyTipper extends Activity  {
         	{
             	public void onClick(View v) 
             	{
+            		CalcualteTipWithDefaultTipPercentage();
+            		
             		Intent i = new Intent(getBaseContext(), Total.class);//new Intent(this, Total.class);
             		startActivity(i);
             	}
@@ -142,6 +144,14 @@ public class TippyTipper extends Activity  {
   				return true;
   		}
   		return false;
+  	}
+  	
+  	private void CalcualteTipWithDefaultTipPercentage()
+  	{
+  		TippyTipperApplication appState = ((TippyTipperApplication)this.getApplication());
+		double defaultTipPercentage = (double)Settings.getDefaultTipPercentage(getBaseContext());
+		
+		appState.service.CalculateTip(defaultTipPercentage/100.0);
   	}
     
     private void AddBillAmount(String number)
