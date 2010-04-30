@@ -15,7 +15,6 @@ import android.widget.SeekBar.OnSeekBarChangeListener;
 
 public class Total extends Activity {
 
-	
 	/** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -55,33 +54,6 @@ public class Total extends Activity {
             		RoundUp();
             	}
             });
-        
-        View btn_TipAmount1 = findViewById(R.id.btn_TipAmount1);
-        btn_TipAmount1.setOnClickListener(new OnClickListener() 
-    	{
-        	public void onClick(View v) 
-        	{
-        		CalculateTip(10.0);
-        	}
-        });
-        
-        View btn_TipAmount2 = findViewById(R.id.btn_TipAmount2);
-        btn_TipAmount2.setOnClickListener(new OnClickListener() 
-    	{
-        	public void onClick(View v) 
-        	{
-        		CalculateTip(15.0);
-        	}
-        });
-        
-        View btn_TipAmount3 = findViewById(R.id.btn_TipAmount3);
-        btn_TipAmount3.setOnClickListener(new OnClickListener() 
-    	{
-        	public void onClick(View v) 
-        	{
-        		CalculateTip(20.0);
-        	}
-        });
 		
 		SeekBar seek_tip_percentage = (SeekBar)findViewById(R.id.seek_tip_percentage);
 		seek_tip_percentage.setOnSeekBarChangeListener(new OnSeekBarChangeListener()
@@ -112,6 +84,49 @@ public class Total extends Activity {
 			});
 		
     }
+    
+    /* Called after onCreate or onRestart */
+	@Override
+	public void onStart()
+	{
+		super.onStart();
+		
+		Button btn_TipAmount1 = (Button)findViewById(R.id.btn_TipAmount1);
+        double tipPercentagePresetOne = (double)Settings.getTipPercentagePresetOne(getBaseContext());
+        btn_TipAmount1.setText((int)tipPercentagePresetOne + "%");
+        btn_TipAmount1.setOnClickListener(new OnClickListener() 
+    	{
+        	public void onClick(View v) 
+        	{
+        		double tipPercentagePresetOne = (double)Settings.getTipPercentagePresetOne(getBaseContext());
+        		CalculateTip(tipPercentagePresetOne);
+        	}
+        });
+        
+        Button btn_TipAmount2 = (Button)findViewById(R.id.btn_TipAmount2);
+        double tipPercentagePresetTwo = (double)Settings.getTipPercentagePresetTwo(getBaseContext());
+        btn_TipAmount2.setText((int)tipPercentagePresetTwo + "%");
+        btn_TipAmount2.setOnClickListener(new OnClickListener() 
+    	{
+        	public void onClick(View v) 
+        	{
+        		double tipPercentagePresetTwo = (double)Settings.getTipPercentagePresetTwo(getBaseContext());
+        		CalculateTip(tipPercentagePresetTwo);
+        	}
+        });
+        
+        Button btn_TipAmount3 = (Button)findViewById(R.id.btn_TipAmount3);
+        double tipPercentagePresetThree = (double)Settings.getTipPercentagePresetThree(getBaseContext());
+        btn_TipAmount3.setText((int)tipPercentagePresetThree + "%");
+        btn_TipAmount3.setOnClickListener(new OnClickListener() 
+    	{
+        	public void onClick(View v) 
+        	{
+        		double tipPercentagePresetThree = (double)Settings.getTipPercentagePresetThree(getBaseContext());
+        		CalculateTip(tipPercentagePresetThree);
+        	}
+        });
+	}
     
     @Override
   	public boolean onCreateOptionsMenu(Menu menu)
