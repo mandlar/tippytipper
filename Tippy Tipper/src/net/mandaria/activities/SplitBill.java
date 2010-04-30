@@ -22,7 +22,9 @@ public class SplitBill extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.splitbill);  
         
-        SplitBill(2);
+        TippyTipperApplication appState = ((TippyTipperApplication)this.getApplication());
+        
+        SplitBill(appState.service.GetNumberOfPeople());
 		
         View btn_add_person = findViewById(R.id.btn_add_person);
         btn_add_person.setOnClickListener(new OnClickListener() 

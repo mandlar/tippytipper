@@ -35,4 +35,9 @@ public class Settings extends PreferenceActivity
 	{
 		return PreferenceManager.getDefaultSharedPreferences(context).getInt("tip_percentage_three", 20);
 	}
+	
+	public static int getDefaultNumberOfPeopleToSplitBill(Context context)
+	{
+		return PreferenceManager.getDefaultSharedPreferences(context).getInt("default_number_of_people", 2);
+	}
 }

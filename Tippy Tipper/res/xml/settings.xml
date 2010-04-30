@@ -5,7 +5,7 @@
 	<net.mandaria.preferences.SeekBarPreference
 		android:key="default_tip_percentage"
         android:title="Default Tip Percentage"
-        android:summary="How long something will last"
+        android:summary="Percentage to tip by default"
         android:dialogMessage="Percentage to tip by default"
         android:defaultValue="15"
         android:text="%"
@@ -14,7 +14,7 @@
         />
     <ListPreference
 		android:title="Round Type"
-		android:summary="Choose to round up/down by tip or total"
+		android:summary="Choose to round by tip or total"
 		android:key="round_type"
 		android:defaultValue="round_total"
 		android:entries="@array/listRoundArray"
@@ -22,7 +22,7 @@
 	<net.mandaria.preferences.SeekBarPreference
 		android:key="default_number_of_people"
         android:title="Default Number People"
-        android:summary="The number of people to split tip by"
+        android:summary="The number of people to split bill by"
         android:dialogMessage="Number of people"
         android:defaultValue="2"
         android:text=" people"
@@ -32,7 +32,7 @@
     <net.mandaria.preferences.SeekBarPreference
 		android:key="tip_percentage_one"
         android:title="First Tip Percentage"
-        android:summary="Custom value for first tip percentage button"
+        android:summary="Custom value for first tip percentage preset button"
         android:dialogMessage="Tip percentage"
         android:defaultValue="10"
         android:text="%"
@@ -42,7 +42,7 @@
     <net.mandaria.preferences.SeekBarPreference
 		android:key="tip_percentage_two"
         android:title="Second Tip Percentage"
-        android:summary="Custom value for second tip percentage button"
+        android:summary="Custom value for second tip percentage preset button"
         android:dialogMessage="Tip percentage"
         android:defaultValue="15"
         android:text="%"
@@ -52,7 +52,7 @@
     <net.mandaria.preferences.SeekBarPreference
 		android:key="tip_percentage_three"
         android:title="Third Tip Percentage"
-        android:summary="Custom value for third tip percentage button"
+        android:summary="Custom value for third tip percentage preset button"
         android:dialogMessage="Tip percentage"
         android:defaultValue="20"
         android:text="%"
