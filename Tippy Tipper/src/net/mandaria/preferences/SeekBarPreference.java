@@ -79,7 +79,7 @@ public class SeekBarPreference extends DialogPreference implements SeekBar.OnSee
   protected void onBindDialogView(View v) {
     super.onBindDialogView(v);
     mSeekBar.setMax(mMax);
-    mSeekBar.setProgress(mValue);
+    mSeekBar.setProgress(mValue - mMin);
   }
   @Override
   protected void onSetInitialValue(boolean restore, Object defaultValue)  
