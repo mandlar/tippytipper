@@ -168,7 +168,8 @@ public class Total extends Activity {
     private void RoundDown()
     {
     	TippyTipperApplication appState = ((TippyTipperApplication)this.getApplication());
-    	appState.service.RoundDown(false);
+    	boolean roundTip = (boolean)Settings.isSetToRoundByTip(getBaseContext());
+    	appState.service.RoundDown(roundTip);
     	
     	BindData();
     }
@@ -176,7 +177,8 @@ public class Total extends Activity {
     private void RoundUp()
     {
     	TippyTipperApplication appState = ((TippyTipperApplication)this.getApplication());
-    	appState.service.RoundUp(false);
+    	boolean roundTip = (boolean)Settings.isSetToRoundByTip(getBaseContext());
+    	appState.service.RoundUp(roundTip);
     	
     	BindData();
     }

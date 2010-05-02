@@ -40,4 +40,17 @@ public class Settings extends PreferenceActivity
 	{
 		return PreferenceManager.getDefaultSharedPreferences(context).getInt("default_number_of_people", 2);
 	}
+	
+	public static boolean isSetToRoundByTip(Context context)
+	{
+		String RoundType = PreferenceManager.getDefaultSharedPreferences(context).getString("round_type", "round_total");
+		if(RoundType.equals("round_tip"))
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
 }
