@@ -168,7 +168,7 @@ public class Total extends Activity {
     private void RoundDown()
     {
     	TippyTipperApplication appState = ((TippyTipperApplication)this.getApplication());
-    	appState.service.RoundDown();
+    	appState.service.RoundDown(false);
     	
     	BindData();
     }
@@ -176,7 +176,7 @@ public class Total extends Activity {
     private void RoundUp()
     {
     	TippyTipperApplication appState = ((TippyTipperApplication)this.getApplication());
-    	appState.service.RoundUp();
+    	appState.service.RoundUp(false);
     	
     	BindData();
     }

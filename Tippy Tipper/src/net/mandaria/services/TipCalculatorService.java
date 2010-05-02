@@ -13,6 +13,7 @@ public class TipCalculatorService
 	private String BillEntry = "";
 	private double BillAmount = 0;
 	private double TipAmount = 0;
+	private double TipAmountBeforeRounded = 0;
 	private double TotalAmount = 0;
 	private double TotalAmountBeforeRounded = 0;
 	private double TipPercentage = 0.15;
@@ -128,6 +129,7 @@ public class TipCalculatorService
   		TipAmount = tip_amount;
   		TotalAmount = total_amount;
   		TotalAmountBeforeRounded = TotalAmount;
+  		TipAmountBeforeRounded = TipAmount;
     }
     
     public void CalculateTip(double percent)
@@ -136,22 +138,41 @@ public class TipCalculatorService
     	CalculateTip();
     }
     
-    public void RoundUp()
+    public void RoundUp(boolean RoundTip)
     {
-    	TotalAmount = TotalAmountBeforeRounded;
-    	TotalAmount = Math.ceil(TotalAmount);
-    	TipAmount = TotalAmount - BillAmount;
+    	if(RoundTip)
+    	{
+    		TipAmount = TipAmountBeforeRounded;
+    		TipAmount = Math.ceil(TipAmount);
+    		TotalAmount = BillAmount + TipAmount;
+    	}
+    	else
+    	{
+    		TotalAmount = TotalAmountBeforeRounded;
+        	TotalAmount = Math.ceil(TotalAmount);
+        	TipAmount = TotalAmount - BillAmount;
+    	}
     	TipPercentage = (TotalAmount/BillAmount) - 1;
     }
     
-    public void RoundDown()
+    public void RoundDown(boolean RoundTip)
     {
-    	if(Math.floor(TotalAmountBeforeRounded) >= BillAmount)
+    	if(RoundTip)
     	{
-    		TotalAmount = TotalAmountBeforeRounded;
-    		TotalAmount = Math.floor(TotalAmount);
-    		TipAmount = TotalAmount - BillAmount;
+    		TipAmount = TipAmountBeforeRounded;
+    		TipAmount = Math.floor(TipAmount);
+    		TotalAmount = BillAmount + TipAmount;
     		TipPercentage = (TotalAmount/BillAmount) - 1;
+    	}
+    	else
+    	{
+	    	if(Math.floor(TotalAmountBeforeRounded) >= BillAmount)
+	    	{
+	    		TotalAmount = TotalAmountBeforeRounded;
+	    		TotalAmount = Math.floor(TotalAmount);
+	    		TipAmount = TotalAmount - BillAmount;
+	    		TipPercentage = (TotalAmount/BillAmount) - 1;
+	    	}
     	}
     }
     
