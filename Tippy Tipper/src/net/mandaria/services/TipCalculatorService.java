@@ -12,12 +12,15 @@ public class TipCalculatorService
 {
 	private String BillEntry = "";
 	private double BillAmount = 0;
+	private double TaxAmount = 0;
 	private double TipAmount = 0;
 	private double TipAmountBeforeRounded = 0;
 	private double TotalAmount = 0;
 	private double TotalAmountBeforeRounded = 0;
 	private double TipPercentage = 0.15;
+	private double TaxPercentage = 0;
 	private double SplitBillAmount = 0;
+	private double SplitTaxAmount = 0;
 	private double SplitTipAmount = 0;
 	private double SplitTotalAmount = 0;
 	private int NumberOfPeople = 2;
@@ -43,9 +46,19 @@ public class TipCalculatorService
 		return nf.format(TotalAmount);
 	}
 	
+	public String GetTaxAmount()
+	{
+		return nf.format(TaxAmount);
+	}
+	
 	public String GetSplitBillAmount()
 	{
 		return nf.format(SplitBillAmount);
+	}
+	
+	public String GetSplitTaxAmount()
+	{
+		return nf.format(SplitTaxAmount);
 	}
 	
 	public String GetSplitTipAmount()
@@ -61,6 +74,13 @@ public class TipCalculatorService
 	public String GetTipPercentage()
 	{
 		double percent = TipPercentage * 100;
+		DecimalFormat dec = new DecimalFormat("0.0");
+		return dec.format(percent) + "%";
+	}
+	
+	public String GetTaxPercentage()
+	{
+		double percent = TaxPercentage * 100;
 		DecimalFormat dec = new DecimalFormat("0.0");
 		return dec.format(percent) + "%";
 	}
@@ -85,6 +105,11 @@ public class TipCalculatorService
 	public void SetTipPercentage(double percent)
 	{
 		TipPercentage = percent;
+	}
+	
+	public void SetTaxPercentage(double percent)
+	{
+		TaxPercentage = percent;
 	}
     
     public void AppendNumberToBillAmount(String number)
@@ -122,9 +147,20 @@ public class TipCalculatorService
     
     public void CalculateTip()
     {	
+    	if(TaxPercentage > 0)
+    	{
+    		double bill_amount = BillAmount / (1 + TaxPercentage);
+    		bill_amount = Math.round(bill_amount * 100) / 100.0; // round bill to nearest penny
+    		BillAmount = bill_amount;
+    		
+    		double tax_amount = BillAmount * TaxPercentage;;
+    		tax_amount = Math.round(tax_amount * 100) / 100.0; // round tax to nearest penny
+    		TaxAmount = tax_amount;
+    	}
+    	
   		double tip_amount = BillAmount * TipPercentage;
   		tip_amount = Math.round(tip_amount * 100) / 100.0; // round tip to nearest penny
-  		double total_amount = BillAmount + tip_amount; 
+  		double total_amount = BillAmount + TaxAmount + tip_amount; 
   		
   		TipAmount = tip_amount;
   		TotalAmount = total_amount;
@@ -138,21 +174,27 @@ public class TipCalculatorService
     	CalculateTip();
     }
     
+    public void CalculateTip(double percent, double taxPercent)
+    {
+    	SetTaxPercentage(taxPercent);
+    	CalculateTip(percent);
+    }
+    
     public void RoundUp(boolean RoundTip)
     {
     	if(RoundTip)
     	{
     		TipAmount = TipAmountBeforeRounded;
     		TipAmount = Math.ceil(TipAmount);
-    		TotalAmount = BillAmount + TipAmount;
+    		TotalAmount = BillAmount + TaxAmount + TipAmount;
     	}
     	else
     	{
     		TotalAmount = TotalAmountBeforeRounded;
         	TotalAmount = Math.ceil(TotalAmount);
-        	TipAmount = TotalAmount - BillAmount;
+        	TipAmount = TotalAmount - BillAmount - TaxAmount;
     	}
-    	TipPercentage = (TotalAmount/BillAmount) - 1;
+    	TipPercentage = ((TotalAmount - TaxAmount)/BillAmount) - 1;
     }
     
     public void RoundDown(boolean RoundTip)
@@ -161,17 +203,17 @@ public class TipCalculatorService
     	{
     		TipAmount = TipAmountBeforeRounded;
     		TipAmount = Math.floor(TipAmount);
-    		TotalAmount = BillAmount + TipAmount;
-    		TipPercentage = (TotalAmount/BillAmount) - 1;
+    		TotalAmount = BillAmount + TaxAmount + TipAmount;
+    		TipPercentage = ((TotalAmount - TaxAmount)/BillAmount) - 1;
     	}
     	else
     	{
-	    	if(Math.floor(TotalAmountBeforeRounded) >= BillAmount)
+	    	if(Math.floor(TotalAmountBeforeRounded) >= (BillAmount + TaxAmount))
 	    	{
 	    		TotalAmount = TotalAmountBeforeRounded;
 	    		TotalAmount = Math.floor(TotalAmount);
-	    		TipAmount = TotalAmount - BillAmount;
-	    		TipPercentage = (TotalAmount/BillAmount) - 1;
+	    		TipAmount = TotalAmount - BillAmount - TaxAmount;
+	    		TipPercentage = ((TotalAmount - TaxAmount)/BillAmount) - 1;
 	    	}
     	}
     }
@@ -191,10 +233,18 @@ public class TipCalculatorService
     	SplitBillAmount = SplitBillAmount / NumberOfPeople;
     	
     	// calculate tip TODO: Can be refactored with CalculateTip() function into a generic function for both places
+    	double tax_amount = 0;
+    	if(TaxPercentage > 0)
+    	{
+    		tax_amount = SplitBillAmount * TaxPercentage;
+    		tax_amount = Math.round(tax_amount * 100) / 100.0; // round tax to nearest penny
+    	}
+    	
     	double tip_amount = SplitBillAmount * TipPercentage;
   		tip_amount = Math.round(tip_amount * 100) / 100.0; // round tip to nearest penny
-  		double total_amount = SplitBillAmount + tip_amount; 
+  		double total_amount = SplitBillAmount + tax_amount + tip_amount; 
   		
+  		SplitTaxAmount = tax_amount;
   		SplitTipAmount = tip_amount;
   		SplitTotalAmount = total_amount;
     }
