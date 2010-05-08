@@ -160,7 +160,10 @@ public class Total extends Activity {
     private void CalculateTip(Double percent)
     {
 		TippyTipperApplication appState = ((TippyTipperApplication)this.getApplication());
+		int excludeTaxRate = (int)Settings.getExcludeTaxRate(getBaseContext());
+		
 		appState.service.CalculateTip(percent/100.0);
+		//appState.service.CalculateTip(percent/100.0, excludeTaxRate/100.0);
 
 		BindData();
     }
@@ -192,7 +195,21 @@ public class Total extends Activity {
 		TextView lbl_total = (TextView)findViewById(R.id.lbl_total);
 		TextView lbl_tip_percentage = (TextView)findViewById(R.id.lbl_tip_percentage);
 		SeekBar seek_tip_percentage = (SeekBar)findViewById(R.id.seek_tip_percentage);
+		ViewStub stub_excludeTax = (ViewStub)findViewById(R.id.stub_excludeTax);
 		
+		int excludeTaxRate = (int)Settings.getExcludeTaxRate(getBaseContext());
+		if(excludeTaxRate != 0)
+		{
+			if(stub_excludeTax != null)
+				stub_excludeTax.setVisibility((int)View.VISIBLE);
+			TextView lbl_tax = (TextView)findViewById(R.id.lbl_tax);
+			lbl_tax.setText(appState.service.GetTaxAmount());
+		}
+		else
+		{
+			
+		}
+
 		lbl_tip_percentage.setText(appState.service.GetTipPercentage());
 		lbl_amount.setText(appState.service.GetBillAmount());
 		lbl_tip.setText(appState.service.GetTipAmount());

@@ -53,4 +53,9 @@ public class Settings extends PreferenceActivity
 			return false;
 		}
 	}
+	
+	public static int getExcludeTaxRate(Context context)
+	{
+		return PreferenceManager.getDefaultSharedPreferences(context).getInt("exclude_tax", 0);
+	}
 }
