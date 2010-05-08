@@ -12,6 +12,7 @@ public class TipCalculatorService
 {
 	private String BillEntry = "";
 	private double BillAmount = 0;
+	private double BillAmountBeforeTax = 0;
 	private double TaxAmount = 0;
 	private double TipAmount = 0;
 	private double TipAmountBeforeRounded = 0;
@@ -149,6 +150,9 @@ public class TipCalculatorService
     {	
     	if(TaxPercentage > 0)
     	{
+    		if(BillAmountBeforeTax != 0)
+    			BillAmount = BillAmountBeforeTax;
+    		BillAmountBeforeTax = BillAmount;
     		double bill_amount = BillAmount / (1 + TaxPercentage);
     		bill_amount = Math.round(bill_amount * 100) / 100.0; // round bill to nearest penny
     		BillAmount = bill_amount;

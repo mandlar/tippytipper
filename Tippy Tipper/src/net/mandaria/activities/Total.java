@@ -162,8 +162,8 @@ public class Total extends Activity {
 		TippyTipperApplication appState = ((TippyTipperApplication)this.getApplication());
 		int excludeTaxRate = (int)Settings.getExcludeTaxRate(getBaseContext());
 		
-		appState.service.CalculateTip(percent/100.0);
-		//appState.service.CalculateTip(percent/100.0, excludeTaxRate/100.0);
+		//appState.service.CalculateTip(percent/100.0);
+		appState.service.CalculateTip(percent/100.0, excludeTaxRate/100.0);
 
 		BindData();
     }
