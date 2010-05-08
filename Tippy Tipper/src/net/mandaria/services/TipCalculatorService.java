@@ -122,6 +122,7 @@ public class TipCalculatorService
     	double amount = Double.valueOf(BillEntry);
     	amount = amount / 100;
     	BillAmount = amount; 
+    	BillAmountBeforeTax = BillAmount;
     }
     
     public void RemoveEndNumberFromBillAmount()
@@ -138,21 +139,21 @@ public class TipCalculatorService
     		BillEntry = "";
     		BillAmount = 0;
 		}
+    	BillAmountBeforeTax = BillAmount;
     }
     
     public void ClearBillAmount()
     {
     	BillEntry = "";
     	BillAmount = 0;
+    	BillAmountBeforeTax = BillAmount;
     }
     
     public void CalculateTip()
     {	
     	if(TaxPercentage > 0)
     	{
-    		if(BillAmountBeforeTax != 0)
-    			BillAmount = BillAmountBeforeTax;
-    		BillAmountBeforeTax = BillAmount;
+    		BillAmount = BillAmountBeforeTax;
     		double bill_amount = BillAmount / (1 + TaxPercentage);
     		bill_amount = Math.round(bill_amount * 100) / 100.0; // round bill to nearest penny
     		BillAmount = bill_amount;
