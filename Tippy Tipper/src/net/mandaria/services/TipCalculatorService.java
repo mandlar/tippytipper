@@ -162,6 +162,10 @@ public class TipCalculatorService
     		tax_amount = Math.round(tax_amount * 100) / 100.0; // round tax to nearest penny
     		TaxAmount = tax_amount;
     	}
+    	else
+    	{
+    		TaxAmount = 0;
+    	}
     	
   		double tip_amount = BillAmount * TipPercentage;
   		tip_amount = Math.round(tip_amount * 100) / 100.0; // round tip to nearest penny
