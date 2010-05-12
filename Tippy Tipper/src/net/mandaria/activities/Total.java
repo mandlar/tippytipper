@@ -91,9 +91,7 @@ public class Total extends Activity {
 	{
 		super.onStart();
 		
-		TippyTipperApplication appState = ((TippyTipperApplication)this.getApplication());
-		appState.service.RefreshBillAmount();
-		BindData();
+		RefreshBillAmount();
 		
 		Button btn_TipAmount1 = (Button)findViewById(R.id.btn_TipAmount1);
         double tipPercentagePresetOne = (double)Settings.getTipPercentagePresetOne(getBaseContext());
@@ -190,6 +188,21 @@ public class Total extends Activity {
     	BindData();
     }
     
+    public void RefreshBillAmount()
+    {
+    	TippyTipperApplication appState = ((TippyTipperApplication)this.getApplication());
+		double tipPercent = appState.service.GetTipPercentageAsDouble();
+		int excludeTaxRate = (int)Settings.getExcludeTaxRate(getBaseContext());
+		
+		if(excludeTaxRate == 0)
+		{
+			appState.service.RefreshBillAmount();
+			BindData();
+		}
+		else
+			CalculateTip(tipPercent);
+    }
+    
     private void BindData()
     {
     	TippyTipperApplication appState = ((TippyTipperApplication)this.getApplication());
@@ -199,19 +212,23 @@ public class Total extends Activity {
 		TextView lbl_total = (TextView)findViewById(R.id.lbl_total);
 		TextView lbl_tip_percentage = (TextView)findViewById(R.id.lbl_tip_percentage);
 		SeekBar seek_tip_percentage = (SeekBar)findViewById(R.id.seek_tip_percentage);
-		ViewStub stub_excludeTax = (ViewStub)findViewById(R.id.stub_excludeTax);
+		View inflated_excludetax = findViewById(R.id.inflated_excludeTax);
 		
 		int excludeTaxRate = (int)Settings.getExcludeTaxRate(getBaseContext());
 		if(excludeTaxRate != 0)
 		{
+			ViewStub stub_excludeTax = (ViewStub)findViewById(R.id.stub_excludeTax);
 			if(stub_excludeTax != null)
 				stub_excludeTax.setVisibility((int)View.VISIBLE);
+			else if(inflated_excludetax != null)
+				inflated_excludetax.setVisibility((int)View.VISIBLE);
 			TextView lbl_tax = (TextView)findViewById(R.id.lbl_tax);
 			lbl_tax.setText(appState.service.GetTaxAmount());
 		}
 		else
 		{
-			
+			if(inflated_excludetax != null)
+				inflated_excludetax.setVisibility((int)View.GONE);
 		}
 
 		lbl_tip_percentage.setText(appState.service.GetTipPercentage());
