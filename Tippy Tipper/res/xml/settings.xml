@@ -2,7 +2,7 @@
 <PreferenceScreen
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:app="http://schemas.android.com/apk/res/net.mandaria">
-	<PreferenceCategory android:title="Tipping Percentages">
+	<PreferenceCategory android:title="Tipping Options">
 		<net.mandaria.preferences.SeekBarPreference
 			android:key="default_tip_percentage"
 	        android:title="Default Tip Percentage"
@@ -44,26 +44,7 @@
 	        app:min="0"
 	        />
 	</PreferenceCategory>
-	<PreferenceCategory android:title="Other Settings">
-	
-	    <ListPreference
-			android:title="Round Type"
-			android:summary="Choose to round by tip or total"
-			android:key="round_type"
-			android:defaultValue="round_total"
-			android:entries="@array/listRoundArray"
-			android:entryValues="@array/listRoundValues" />
-		<net.mandaria.preferences.SeekBarPreference
-			android:key="default_number_of_people"
-	        android:title="Default Number People"
-	        android:summary="The number of people to split bill by"
-	        android:dialogMessage="Number of people"
-	        android:defaultValue="2"
-	        android:text=" people"
-	        android:max="20"
-	        app:min="2"
-	        />
-	    
+	<PreferenceCategory android:title="Tax Options">
 	    <net.mandaria.preferences.SeekBarPreference
 			android:key="exclude_tax"
 	        android:title="Tax Rate to Exclude"
@@ -75,5 +56,25 @@
 	        app:min="0"
 	        />
 	</PreferenceCategory>
-
+	<PreferenceCategory android:title="Rounding Options">
+	    <ListPreference
+			android:title="Round Type"
+			android:summary="Choose to round by tip or total"
+			android:key="round_type"
+			android:defaultValue="round_total"
+			android:entries="@array/listRoundArray"
+			android:entryValues="@array/listRoundValues" />
+	</PreferenceCategory>
+	<PreferenceCategory android:title="Splitting Options">
+		<net.mandaria.preferences.SeekBarPreference
+			android:key="default_number_of_people"
+	        android:title="Default Number People"
+	        android:summary="The number of people to split bill by"
+	        android:dialogMessage="Number of people"
+	        android:defaultValue="2"
+	        android:text=" people"
+	        android:max="20"
+	        app:min="2"
+	        />
+	</PreferenceCategory>
 </PreferenceScreen>
