@@ -28,6 +28,12 @@
 					android:layout_width="fill_parent"
 					android:layout_height="wrap_content"/>
 			</TableRow>
+			<TableRow>		
+			<ViewStub android:id="@+id/stub_splitTax"
+				android:inflatedId="@+id/inflated_splitTax"
+				android:layout="@layout/stub_split_tax"
+				/>
+			</TableRow>
 			<TableRow>
 				<TextView 
 					android:textSize="@dimen/enter_bill_amount"

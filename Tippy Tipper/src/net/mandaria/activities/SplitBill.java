@@ -50,7 +50,7 @@ public class SplitBill extends Activity {
   	{
   		super.onCreateOptionsMenu(menu);
   		MenuInflater inflater = getMenuInflater();
-  		inflater.inflate(R.menu.menu, menu);
+  		//inflater.inflate(R.menu.menu, menu);
   		return true;
   	}
 
@@ -99,6 +99,25 @@ public class SplitBill extends Activity {
 		TextView lbl_split_tip = (TextView)findViewById(R.id.lbl_split_tip);
 		TextView lbl_split_total = (TextView)findViewById(R.id.lbl_split_total);
 		TextView lbl_NumberOfPeople = (TextView)findViewById(R.id.lbl_NumberOfPeople);
+		
+		View inflated_splitTax = findViewById(R.id.inflated_splitTax);
+		
+		int excludeTaxRate = (int)Settings.getExcludeTaxRate(getBaseContext());
+		if(excludeTaxRate != 0)
+		{
+			ViewStub stub_splitTax = (ViewStub)findViewById(R.id.stub_splitTax);
+			if(stub_splitTax != null)
+				stub_splitTax.setVisibility((int)View.VISIBLE);
+			else if(inflated_splitTax != null)
+				inflated_splitTax.setVisibility((int)View.VISIBLE);
+			TextView lbl_split_tax = (TextView)findViewById(R.id.lbl_split_tax);
+			lbl_split_tax.setText(appState.service.GetSplitTaxAmount());
+		}
+		else
+		{
+			if(inflated_splitTax != null)
+				inflated_splitTax.setVisibility((int)View.GONE);
+		}
 		
 		lbl_split_amount.setText(appState.service.GetSplitBillAmount());
 		lbl_split_tip.setText(appState.service.GetSplitTipAmount());
