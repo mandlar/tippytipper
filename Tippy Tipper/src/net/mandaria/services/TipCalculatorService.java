@@ -112,6 +112,14 @@ public class TipCalculatorService
 	{
 		TaxPercentage = percent;
 	}
+	
+	public void RefreshBillAmount()
+	{
+		double amount = Double.valueOf(BillEntry);
+    	amount = amount / 100;
+    	BillAmount = amount; 
+    	BillAmountBeforeTax = BillAmount;
+	}
     
     public void AppendNumberToBillAmount(String number)
     {

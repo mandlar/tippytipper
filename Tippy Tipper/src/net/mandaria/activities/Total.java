@@ -91,6 +91,10 @@ public class Total extends Activity {
 	{
 		super.onStart();
 		
+		TippyTipperApplication appState = ((TippyTipperApplication)this.getApplication());
+		appState.service.RefreshBillAmount();
+		BindData();
+		
 		Button btn_TipAmount1 = (Button)findViewById(R.id.btn_TipAmount1);
         double tipPercentagePresetOne = (double)Settings.getTipPercentagePresetOne(getBaseContext());
         btn_TipAmount1.setText((int)tipPercentagePresetOne + "%");
