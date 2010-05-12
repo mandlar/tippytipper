@@ -55,6 +55,16 @@
 	        android:max="100"
 	        app:min="0"
 	        />
+	    <net.mandaria.preferences.DecimalPreference
+			android:key="test"
+	        android:title="Tax Rate to Exclude"
+	        android:summary="The tax rate to exclude when calculating tip"
+	        android:dialogMessage="Tax Rate"
+	        android:defaultValue="0"
+	        android:text="%"
+	        android:max="100"
+	        app:min="0"
+	        />
 	</PreferenceCategory>
 	<PreferenceCategory android:title="Rounding Options">
 	    <ListPreference
