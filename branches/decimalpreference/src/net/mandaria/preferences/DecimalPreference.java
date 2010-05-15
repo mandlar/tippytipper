@@ -27,7 +27,7 @@ public class DecimalPreference extends DialogPreference
 	private Context mContext;
 
 	private String mDialogMessage, mSuffix;
-	private float mDefault, mMax, mMin, mValue = 0;
+	private float mDefault, mValue = 0;
 	private int mInteger, mDecimal = 0;
 
 	public DecimalPreference(Context context, AttributeSet attrs)
@@ -38,12 +38,6 @@ public class DecimalPreference extends DialogPreference
 		mDialogMessage = attrs.getAttributeValue(androidns, "dialogMessage");
 		mSuffix = attrs.getAttributeValue(androidns, "text");
 		mDefault = attrs.getAttributeIntValue(androidns, "defaultValue", 0);
-		mMax = attrs.getAttributeIntValue(androidns, "max", 100);
-
-		TypedArray a = context.obtainStyledAttributes(attrs,
-				R.styleable.SeekBarPreference);
-		mMin = a.getInt(R.styleable.SeekBarPreference_min, 0);
-		mMax = mMax - mMin;
 	}
 
 	@Override
@@ -159,25 +153,5 @@ public class DecimalPreference extends DialogPreference
 			if (shouldPersist())
 				persistFloat(mValue);
 		}
-	}
-
-	public void setMax(int max)
-	{
-		mMax = max;
-	}
-
-	public float getMax()
-	{
-		return mMax;
-	}
-
-	public void setMin(int min)
-	{
-		mMin = min;
-	}
-
-	public float getMin()
-	{
-		return mMin;
 	}
 }
