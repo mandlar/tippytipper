@@ -19,147 +19,165 @@ import android.content.res.*;
 
 public class DecimalPreference extends DialogPreference
 {
-  private static final String androidns="http://schemas.android.com/apk/res/android";
-  private static final String appns="http://schemas.android.com/apk/res/net.mandaria";
+	private static final String androidns = "http://schemas.android.com/apk/res/android";
+	private static final String appns = "http://schemas.android.com/apk/res/net.mandaria";
 
-  private NumberPicker mPickInteger, mPickDecimal;
-  private TextView mSplashText,mValueText;
-  //private EditText mEditInteger, mEditDecimal;
-  private Context mContext;
+	private NumberPicker mPickInteger, mPickDecimal;
+	private TextView mSplashText, mValueText;
+	private Context mContext;
 
-  private String mDialogMessage, mSuffix;
-  private float mDefault, mMax, mMin, mValue = 0;
-  private int mInteger, mDecimal = 0;
-  
+	private String mDialogMessage, mSuffix;
+	private float mDefault, mMax, mMin, mValue = 0;
+	private int mInteger, mDecimal = 0;
 
-  public DecimalPreference(Context context, AttributeSet attrs) { 
-    super(context,attrs); 
-    mContext = context;
+	public DecimalPreference(Context context, AttributeSet attrs)
+	{
+		super(context, attrs);
+		mContext = context;
 
-    mDialogMessage = attrs.getAttributeValue(androidns,"dialogMessage");
-    mSuffix = attrs.getAttributeValue(androidns,"text");
-    mDefault = attrs.getAttributeIntValue(androidns,"defaultValue", 0);
-    mMax = attrs.getAttributeIntValue(androidns,"max", 100);
-    
-    TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.SeekBarPreference);
-    mMin = a.getInt(R.styleable.SeekBarPreference_min, 0);
-    mMax = mMax - mMin;
-  }
-  
-  @Override 
-  protected View onCreateDialogView() {
-    TableLayout.LayoutParams params;
-    //LinearLayout layout = new LinearLayout(mContext);
-    TableLayout layout = new TableLayout(mContext);
-    //layout.setOrientation(LinearLayout.VERTICAL);
-    layout.setPadding(6,6,6,6);
+		mDialogMessage = attrs.getAttributeValue(androidns, "dialogMessage");
+		mSuffix = attrs.getAttributeValue(androidns, "text");
+		mDefault = attrs.getAttributeIntValue(androidns, "defaultValue", 0);
+		mMax = attrs.getAttributeIntValue(androidns, "max", 100);
 
-    mSplashText = new TextView(mContext);
-    if (mDialogMessage != null)
-      mSplashText.setText(mDialogMessage);
-    
-    TableRow row_header = new TableRow(mContext);
-    row_header.addView(mSplashText);
-    
-    mPickInteger = new NumberPicker(mContext);
-    mPickDecimal = new NumberPicker(mContext);
-    mPickDecimal.setFormatter(NumberPicker.TWO_DIGIT_FORMATTER);
-    
-    //mEditInteger = new EditText(mContext);
-    
-    //mEditDecimal = new EditText(mContext);
-    
-    TextView dot = new TextView(mContext);
-    dot.setText(".");
-    
-    TextView percent = new TextView(mContext);
-    percent.setText("%");
-    
-    TableRow row_one = new TableRow(mContext);
-    //row_one.addView(mEditInteger);
-    row_one.addView(mPickInteger);
-    row_one.addView(dot);
-    row_one.addView(mPickDecimal);
-    //row_one.addView(mEditDecimal);
-    row_one.addView(percent);
-    
-    layout.addView(row_header);
-    
-    TableLayout table_main = new TableLayout(mContext);
-    table_main.addView(row_one);
-    
-    TableRow row_main = new TableRow(mContext);
-    row_main.addView(table_main);
-    
-    layout.addView(row_main);
+		TypedArray a = context.obtainStyledAttributes(attrs,
+				R.styleable.SeekBarPreference);
+		mMin = a.getInt(R.styleable.SeekBarPreference_min, 0);
+		mMax = mMax - mMin;
+	}
 
-    if (shouldPersist())
-      mValue = getPersistedFloat(mDefault);
+	@Override
+	protected View onCreateDialogView()
+	{
+		TableLayout.LayoutParams params;
+		// LinearLayout layout = new LinearLayout(mContext);
+		TableLayout layout = new TableLayout(mContext);
+		// layout.setOrientation(LinearLayout.VERTICAL);
+		layout.setPadding(6, 6, 6, 6);
 
-      BindData();
-    
-    return layout;
-  }
-  
-  private void BindData()
-  {
-	  mInteger = (int)Math.floor((double)mValue);
-	  mDecimal = (int)((mValue - mInteger) * 100);
-	  try
-	  {
-		  mPickInteger.setCurrent(mInteger);
-		  mPickDecimal.setCurrent(mDecimal);
-		  //mEditInteger.setText(Integer.toString(mInteger));
-		  //mEditDecimal.setText(Integer.toString(mDecimal));
-	  }
-	  catch(Exception ex)
-	  {
-		  int test = 0;
-		  test++;
-	  }
-  }
-  @Override 
-  protected void onBindDialogView(View v) {
-    super.onBindDialogView(v);
-    BindData();
-  }
-  
-  @Override
-  protected void onSetInitialValue(boolean restore, Object defaultValue)  
-  {
-    super.onSetInitialValue(restore, defaultValue);
-    if (restore) 
-    {
-      try
-      {
-    	  mValue = shouldPersist() ? getPersistedFloat(mDefault) : 0;
-    	  BindData();
-      }
-      catch(Exception ex)
-      {
-    	  mValue = mDefault;
-      }
-    }
-    else 
-      mValue = (Float)defaultValue;
-  }
-  
-  @Override
-  protected void onDialogClosed(boolean positiveResult) 
-  {
-	  if(positiveResult == true)
-	  {
-		  super.onDialogClosed(positiveResult);
-		  String value = mPickInteger.getCurrent() + "." + mPickDecimal.getCurrent();//mInteger + "." + mDecimal;
-		  mValue = Float.valueOf(value);
-		  if (shouldPersist())
-			  persistFloat(mValue);
-	  }
-  }
+		mSplashText = new TextView(mContext);
+		if (mDialogMessage != null)
+			mSplashText.setText(mDialogMessage);
 
-  public void setMax(int max) { mMax = max; }
-  public float getMax() { return mMax; }
-  
-  public void setMin(int min) {mMin = min;}
-  public float getMin() { return mMin;}
+		TableRow row_header = new TableRow(mContext);
+		row_header.addView(mSplashText);
+
+		mPickInteger = new NumberPicker(mContext);
+		mPickDecimal = new NumberPicker(mContext);
+		mPickDecimal.setFormatter(NumberPicker.TWO_DIGIT_FORMATTER);
+
+		TextView dot = new TextView(mContext);
+		dot.setText(".");
+		dot.setTextSize(32);
+
+		TextView percent = new TextView(mContext);
+		percent.setText("%");
+		percent.setTextSize(32);
+
+		TableRow row_one = new TableRow(mContext);
+		row_one.setGravity(Gravity.CENTER);
+		row_one.addView(mPickInteger);
+		row_one.addView(dot);
+		row_one.addView(mPickDecimal);
+		row_one.addView(percent);
+
+		layout.addView(row_header);
+
+		TableLayout table_main = new TableLayout(mContext);
+		table_main.addView(row_one);
+
+		TableRow row_main = new TableRow(mContext);
+		row_main.setGravity(Gravity.CENTER_HORIZONTAL);
+		row_main.addView(table_main);
+
+		layout.addView(row_main);
+
+		if (shouldPersist())
+			mValue = getPersistedFloat(mDefault);
+
+		BindData();
+
+		return layout;
+	}
+
+	private void BindData()
+	{
+		mInteger = (int) Math.floor((double) mValue);
+		float decimal = (mValue * 100) - (mInteger * 100);
+		mDecimal = (int) decimal;
+		try
+		{
+			mPickInteger.setCurrent(mInteger);
+			mPickDecimal.setCurrent(mDecimal);
+		}
+		catch (Exception ex)
+		{
+			int test = 0;
+			test++;
+		}
+	}
+
+	@Override
+	protected void onBindDialogView(View v)
+	{
+		super.onBindDialogView(v);
+		BindData();
+	}
+
+	@Override
+	protected void onSetInitialValue(boolean restore, Object defaultValue)
+	{
+		super.onSetInitialValue(restore, defaultValue);
+		if (restore)
+		{
+			try
+			{
+				mValue = shouldPersist() ? getPersistedFloat(mDefault) : 0;
+			}
+			catch (Exception ex)
+			{
+				mValue = mDefault;
+			}
+		}
+		else
+			mValue = (Float) defaultValue;
+	}
+
+	@Override
+	protected void onDialogClosed(boolean positiveResult)
+	{
+		if (positiveResult == true)
+		{
+			super.onDialogClosed(positiveResult);
+			// HACK: "click" both picker inputs to validate inputs before closing the dialog
+			// this is to fix a problem of closing the dialog not causing the onFocusChange of the picker
+			// to be called
+			mPickInteger.onClick(null);
+			mPickDecimal.onClick(null);
+			String value = mPickInteger.getCurrent() + "." + mPickDecimal.getCurrent();
+			mValue = Float.valueOf(value);
+			if (shouldPersist())
+				persistFloat(mValue);
+		}
+	}
+
+	public void setMax(int max)
+	{
+		mMax = max;
+	}
+
+	public float getMax()
+	{
+		return mMax;
+	}
+
+	public void setMin(int min)
+	{
+		mMin = min;
+	}
+
+	public float getMin()
+	{
+		return mMin;
+	}
 }

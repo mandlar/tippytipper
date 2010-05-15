@@ -207,11 +207,14 @@ public class NumberPicker extends LinearLayout implements OnClickListener,
         validateInput(mText);
         if (!mText.hasFocus()) mText.requestFocus();
 
-        // now perform the increment/decrement
-        if (R.id.increment == v.getId()) {
-            changeCurrent(mCurrent + 1);
-        } else if (R.id.decrement == v.getId()) {
-            changeCurrent(mCurrent - 1);
+        if(v != null)
+        {
+	        // now perform the increment/decrement
+	        if (R.id.increment == v.getId()) {
+	            changeCurrent(mCurrent + 1);
+	        } else if (R.id.decrement == v.getId()) {
+	            changeCurrent(mCurrent - 1);
+	        }
         }
     }
 
