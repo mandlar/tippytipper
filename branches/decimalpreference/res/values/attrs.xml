@@ -5,4 +5,5 @@
      <declare-styleable name="SeekBarPreference">
         <attr name="min" format="string" />
     </declare-styleable>
+    
 </resources>
