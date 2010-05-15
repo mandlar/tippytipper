@@ -1,12 +1,7 @@
 package net.mandaria.preferences;
 
-/* The following code was written by Matthew Wiggins 
- * and is released under the APACHE 2.0 license 
- * 
- * http://www.apache.org/licenses/LICENSE-2.0
- */
-
 import net.mandaria.*;
+import net.mandaria.widgets.*;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.Gravity;
@@ -27,13 +22,15 @@ public class DecimalPreference extends DialogPreference
   private static final String androidns="http://schemas.android.com/apk/res/android";
   private static final String appns="http://schemas.android.com/apk/res/net.mandaria";
 
+  private NumberPicker mPickInteger, mPickDecimal;
   private TextView mSplashText,mValueText;
-  private EditText mEditInteger, mEditDecimal;
+  //private EditText mEditInteger, mEditDecimal;
   private Context mContext;
 
   private String mDialogMessage, mSuffix;
   private float mDefault, mMax, mMin, mValue = 0;
   private int mInteger, mDecimal = 0;
+  
 
   public DecimalPreference(Context context, AttributeSet attrs) { 
     super(context,attrs); 
@@ -64,9 +61,13 @@ public class DecimalPreference extends DialogPreference
     TableRow row_header = new TableRow(mContext);
     row_header.addView(mSplashText);
     
-    mEditInteger = new EditText(mContext);
+    mPickInteger = new NumberPicker(mContext);
+    mPickDecimal = new NumberPicker(mContext);
+    mPickDecimal.setFormatter(NumberPicker.TWO_DIGIT_FORMATTER);
     
-    mEditDecimal = new EditText(mContext);
+    //mEditInteger = new EditText(mContext);
+    
+    //mEditDecimal = new EditText(mContext);
     
     TextView dot = new TextView(mContext);
     dot.setText(".");
@@ -75,9 +76,11 @@ public class DecimalPreference extends DialogPreference
     percent.setText("%");
     
     TableRow row_one = new TableRow(mContext);
-    row_one.addView(mEditInteger);
+    //row_one.addView(mEditInteger);
+    row_one.addView(mPickInteger);
     row_one.addView(dot);
-    row_one.addView(mEditDecimal);
+    row_one.addView(mPickDecimal);
+    //row_one.addView(mEditDecimal);
     row_one.addView(percent);
     
     layout.addView(row_header);
@@ -104,8 +107,10 @@ public class DecimalPreference extends DialogPreference
 	  mDecimal = (int)((mValue - mInteger) * 100);
 	  try
 	  {
-		  mEditInteger.setText(Integer.toString(mInteger));
-		  mEditDecimal.setText(Integer.toString(mDecimal));
+		  mPickInteger.setCurrent(mInteger);
+		  mPickDecimal.setCurrent(mDecimal);
+		  //mEditInteger.setText(Integer.toString(mInteger));
+		  //mEditDecimal.setText(Integer.toString(mDecimal));
 	  }
 	  catch(Exception ex)
 	  {
@@ -145,7 +150,7 @@ public class DecimalPreference extends DialogPreference
 	  if(positiveResult == true)
 	  {
 		  super.onDialogClosed(positiveResult);
-		  String value = mEditInteger.getText() + "." + mEditDecimal.getText();//mInteger + "." + mDecimal;
+		  String value = mPickInteger.getCurrent() + "." + mPickDecimal.getCurrent();//mInteger + "." + mDecimal;
 		  mValue = Float.valueOf(value);
 		  if (shouldPersist())
 			  persistFloat(mValue);
