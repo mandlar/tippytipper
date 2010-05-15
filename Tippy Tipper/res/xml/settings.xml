@@ -45,25 +45,12 @@
 	        />
 	</PreferenceCategory>
 	<PreferenceCategory android:title="Tax Options">
-	    <net.mandaria.preferences.SeekBarPreference
+	    <net.mandaria.preferences.DecimalPreference
 			android:key="exclude_tax"
 	        android:title="Tax Rate to Exclude"
 	        android:summary="The tax rate to exclude when calculating tip"
 	        android:dialogMessage="Tax Rate"
 	        android:defaultValue="0"
-	        android:text="%"
-	        android:max="100"
-	        app:min="0"
-	        />
-	    <net.mandaria.preferences.DecimalPreference
-			android:key="test"
-	        android:title="Tax Rate to Exclude"
-	        android:summary="The tax rate to exclude when calculating tip"
-	        android:dialogMessage="Tax Rate"
-	        android:defaultValue="0"
-	        android:text="%"
-	        android:max="100"
-	        app:min="0"
 	        />
 	</PreferenceCategory>
 	<PreferenceCategory android:title="Rounding Options">
@@ -76,7 +63,7 @@
 			android:entryValues="@array/listRoundValues" />
 	</PreferenceCategory>
 	<PreferenceCategory android:title="Splitting Options">
-		<net.mandaria.preferences.SeekBarPreference
+	   <net.mandaria.preferences.NumberPickerPreference
 			android:key="default_number_of_people"
 	        android:title="Default Number People"
 	        android:summary="The number of people to split bill by"

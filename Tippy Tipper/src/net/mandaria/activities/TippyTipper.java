@@ -150,7 +150,7 @@ public class TippyTipper extends Activity  {
   	{
   		TippyTipperApplication appState = ((TippyTipperApplication)this.getApplication());
 		double defaultTipPercentage = (double)Settings.getDefaultTipPercentage(getBaseContext());
-		int excludeTaxRate = (int)Settings.getExcludeTaxRate(getBaseContext());
+		float excludeTaxRate = (float)Settings.getExcludeTaxRate(getBaseContext());
 		
 		appState.service.CalculateTip(defaultTipPercentage/100.0, excludeTaxRate/100.0);
   	}

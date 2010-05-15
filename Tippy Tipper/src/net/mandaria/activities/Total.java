@@ -162,7 +162,7 @@ public class Total extends Activity {
     private void CalculateTip(Double percent)
     {
 		TippyTipperApplication appState = ((TippyTipperApplication)this.getApplication());
-		int excludeTaxRate = (int)Settings.getExcludeTaxRate(getBaseContext());
+		float excludeTaxRate = (float)Settings.getExcludeTaxRate(getBaseContext());
 		
 		//appState.service.CalculateTip(percent/100.0);
 		appState.service.CalculateTip(percent/100.0, excludeTaxRate/100.0);
@@ -192,7 +192,7 @@ public class Total extends Activity {
     {
     	TippyTipperApplication appState = ((TippyTipperApplication)this.getApplication());
 		double tipPercent = appState.service.GetTipPercentageAsDouble();
-		int excludeTaxRate = (int)Settings.getExcludeTaxRate(getBaseContext());
+		float excludeTaxRate = (float)Settings.getExcludeTaxRate(getBaseContext());
 		
 		if(excludeTaxRate == 0)
 		{
@@ -214,7 +214,7 @@ public class Total extends Activity {
 		SeekBar seek_tip_percentage = (SeekBar)findViewById(R.id.seek_tip_percentage);
 		View inflated_excludetax = findViewById(R.id.inflated_excludeTax);
 		
-		int excludeTaxRate = (int)Settings.getExcludeTaxRate(getBaseContext());
+		float excludeTaxRate = (float)Settings.getExcludeTaxRate(getBaseContext());
 		if(excludeTaxRate != 0)
 		{
 			ViewStub stub_excludeTax = (ViewStub)findViewById(R.id.stub_excludeTax);

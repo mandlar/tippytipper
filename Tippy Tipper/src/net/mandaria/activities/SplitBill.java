@@ -102,7 +102,7 @@ public class SplitBill extends Activity {
 		
 		View inflated_splitTax = findViewById(R.id.inflated_splitTax);
 		
-		int excludeTaxRate = (int)Settings.getExcludeTaxRate(getBaseContext());
+		float excludeTaxRate = (float)Settings.getExcludeTaxRate(getBaseContext());
 		if(excludeTaxRate != 0)
 		{
 			ViewStub stub_splitTax = (ViewStub)findViewById(R.id.stub_splitTax);
