@@ -6,6 +6,7 @@
 		android:stretchColumns="*">
 	<TableRow>
 		<TextView 
+			android:id="@+id/lbl_tax_text"
 			android:textSize="@dimen/enter_bill_amount"
 			android:textStyle="bold"
 			android:layout_width="fill_parent"
@@ -14,7 +15,7 @@
 	</TableRow>
 	<TableRow>
 		<TextView 
-			android:id="@+id/lbl_tax"
+			android:id="@+id/lbl_tax_amount"
 			android:textSize="@dimen/enter_bill_amount"
 			android:gravity="right"
 			android:layout_width="fill_parent"
