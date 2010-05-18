@@ -1,0 +1,68 @@
+<resources>
+	<style name="CalculatorButton">
+		<item name="android:textSize">24.5sp</item>
+	<item name="android:layout_width">wrap_content</item>
+<item name="android:layout_height">fill_parent</item>
+</style>
+<style name="BillAmountEditText"><item name="android:textSize">24.5sp</item>
+<item name="android:layout_width">fill_parent</item>
+<item name="android:layout_height">wrap_content</item>
+<item name="android:editable">false</item>
+<item name="android:cursorVisible">false</item>
+<item name="android:gravity">right</item>
+</style>
+<style name="TextView"><item name="android:textSize">24.5sp</item>
+<item name="android:layout_width">fill_parent</item>
+<item name="android:layout_height">wrap_content</item>
+</style>
+<style name="TextView.Right"><item name="android:gravity">right</item>
+</style><style name="TextView.Bold">
+<item name="android:textStyle">bold</item>
+
+</style>
+<style name="LinearLayout"><item name="android:orientation">vertical</item>
+<item name="android:layout_width">fill_parent</item>
+<item name="android:layout_height">fill_parent</item>
+</style>
+<style name="ScrollView"><item name="android:layout_width">fill_parent</item>
+<item name="android:layout_height">fill_parent</item>
+</style>
+<style name="TableLayout"><item name="android:layout_height">wrap_content</item>
+<item name="android:layout_width">wrap_content</item>
+<item name="android:layout_gravity">center</item>
+<item name="android:stretchColumns">*</item>
+</style>
+
+<style name="TableRow_Bar"><item name="android:background">#FFFFFF</item>
+<item name="android:layout_marginLeft">10sp</item>
+<item name="android:layout_marginRight">10sp</item>
+<item name="android:layout_marginTop">10sp</item>
+<item name="android:layout_marginBottom">10sp</item>
+<item name="android:minHeight">3sp</item>
+</style>
+<style name="TableRow_Bar.Dark"><item name="android:background">#777777</item>
+</style>
+<style name="SeekBar"><item name="android:paddingLeft">30sp</item>
+<item name="android:paddingRight">30sp</item>
+<item name="android:layout_width">fill_parent</item>
+<item name="android:layout_height">wrap_content</item>
+<item name="android:layout_marginTop">10sp</item>
+<item name="android:layout_marginBottom">10sp</item>
+<item name="android:max">40</item>
+<item name="android:progress">15</item>
+</style>
+<style name="TextView_Small"><item name="android:textSize">10sp</item>
+<item name="android:textStyle">bold</item>
+
+</style>
+<style name="TippingButton"><item name="android:textSize">24.5sp</item>
+<item name="android:layout_width">wrap_content</item>
+<item name="android:layout_height">fill_parent</item>
+</style>
+<style name="TextView.Center"><item name="android:gravity">center_horizontal</item>
+</style>
+<style name="SplitBillButton"><item name="android:textSize">24.5sp</item>
+<item name="android:layout_width">wrap_content</item>
+<item name="android:layout_height">wrap_content</item>
+</style>
+</resources>
