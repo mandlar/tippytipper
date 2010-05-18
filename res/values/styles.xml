@@ -23,6 +23,8 @@
 <style name="LinearLayout"><item name="android:orientation">vertical</item>
 <item name="android:layout_width">fill_parent</item>
 <item name="android:layout_height">fill_parent</item>
+<item name="android:paddingLeft">10dp</item>
+<item name="android:paddingRight">10dp</item>
 </style>
 <style name="ScrollView"><item name="android:layout_width">fill_parent</item>
 <item name="android:layout_height">fill_parent</item>
