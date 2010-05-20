@@ -7,44 +7,47 @@
 		<TableLayout 
 			style="@style/TableLayout">
 			<TableRow>
-				<TextView 
-					style="@style/TextView.Label"
-					android:text="@string/split_bill_amount" />
-			</TableRow>
-			<TableRow>
-				<TextView 
-					android:id="@+id/lbl_split_amount"
-					style="@style/TextView.Amount"/>
+				<LinearLayout
+					style="@style/LinearLayoutRow">
+					<TextView 
+						style="@style/TextView.Label"
+						android:text="@string/split_bill_amount" />
+					<TextView 
+						android:id="@+id/lbl_split_amount"
+						style="@style/TextView.Amount"/>
+				</LinearLayout>
 			</TableRow>
 			<TableRow>		
-			<ViewStub android:id="@+id/stub_splitTax"
-				android:inflatedId="@+id/inflated_splitTax"
-				android:layout="@layout/stub_split_tax"
-				/>
+				<ViewStub android:id="@+id/stub_splitTax"
+					android:inflatedId="@+id/inflated_splitTax"
+					android:layout="@layout/stub_split_tax"
+					/>
 			</TableRow>
 			<TableRow>
-				<TextView 
-					style="@style/TextView.Label"
-					android:text="@string/split_tip" />
-			</TableRow>
-			<TableRow>
-				<TextView 
-					android:id="@+id/lbl_split_tip"
-					style="@style/TextView.Amount"/>
+				<LinearLayout
+					style="@style/LinearLayoutRow">
+					<TextView 
+						style="@style/TextView.Label"
+						android:text="@string/split_tip" />
+					<TextView 
+						android:id="@+id/lbl_split_tip"
+						style="@style/TextView.Amount"/>
+				</LinearLayout>
 			</TableRow>
 			<TableRow 
 				style="@style/TableRow_Bar">
 				
 			</TableRow>
 			<TableRow>
-				<TextView 
-					style="@style/TextView.Label"
-					android:text="@string/split_total" />
-			</TableRow>
-			<TableRow>
-				<TextView 
-					android:id="@+id/lbl_split_total"
-					style="@style/TextView.Amount"/>
+				<LinearLayout
+					style="@style/LinearLayoutRow">
+					<TextView 
+						style="@style/TextView.Label.Large"
+						android:text="@string/split_total" />
+					<TextView 
+						android:id="@+id/lbl_split_total"
+						style="@style/TextView.Amount.Large"/>
+				</LinearLayout>
 			</TableRow>
 			<TableRow 
 				style="@style/TableRow_Bar.Dark">
