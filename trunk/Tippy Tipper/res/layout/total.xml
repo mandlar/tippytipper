@@ -1,193 +1,129 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-	android:layout_width="fill_parent"
-	android:layout_height="fill_parent">
+	style="@style/ScrollView">
 	<LinearLayout
-		android:orientation="vertical" 
-		android:layout_width="fill_parent"
-		android:layout_height="fill_parent">
-		
+		style="@style/LinearLayout">
 		<TableLayout 
-			android:layout_height="wrap_content"
-			android:layout_width="wrap_content" 
-			android:layout_gravity="center"
-			android:stretchColumns="*">
+			style="@style/TableLayout">
 			<TableRow>
-				<TextView 
-					android:textSize="@dimen/enter_bill_amount"
-					android:textStyle="bold"
-					android:layout_width="fill_parent"
-					android:layout_height="wrap_content" 
-					android:text="@string/bill_amount" />
-			</TableRow>
-			<TableRow>
-				<TextView  
-					android:id="@+id/lbl_amount"
-					android:textSize="@dimen/enter_bill_amount"
-					android:gravity="right"
-					android:layout_width="fill_parent"
-					android:layout_height="wrap_content"/>
+				<LinearLayout
+					style="@style/LinearLayoutRow">
+						<TextView 
+							style="@style/TextView.Label"
+							
+							android:text="@string/bill_amount" />
+						<TextView  
+							android:id="@+id/lbl_bill_amount"
+						style="@style/TextView.Amount"/>
+				</LinearLayout>
 			</TableRow>
 			<TableRow>		
-			<ViewStub android:id="@+id/stub_excludeTax"
-				android:inflatedId="@+id/inflated_excludeTax"
-				android:layout="@layout/stub_exclude_tax"
-				/>
+				<ViewStub android:id="@+id/stub_excludeTax"
+					android:inflatedId="@+id/inflated_excludeTax"
+					android:layout="@layout/stub_exclude_tax"
+					/>
 			</TableRow>
 			<TableRow>
-				<TextView 
-					android:textSize="@dimen/enter_bill_amount"
-					android:textStyle="bold"
-					android:layout_width="fill_parent"
-					android:layout_height="wrap_content" 
-					android:text="@string/tip" />
-			</TableRow>
-			<TableRow>
-				<TextView 
-					android:id="@+id/lbl_tip"
-					android:textSize="@dimen/enter_bill_amount"
-					android:gravity="right"
-					android:layout_width="fill_parent"
-					android:layout_height="wrap_content"/>
+				<LinearLayout
+					style="@style/LinearLayoutRow">
+						<TextView 
+							android:id="@+id/lbl_tip_text"
+							style="@style/TextView.Label"
+							android:text="@string/tip" />
+						<TextView 
+							android:id="@+id/lbl_tip_amount"
+							style="@style/TextView.Amount"/>
+				</LinearLayout>
 			</TableRow>
 			<TableRow 
-				android:background="#FFFFFF"
-				android:layout_marginLeft="10sp"
-				android:layout_marginRight="10sp"
-				android:layout_marginTop="10sp"
-				android:layout_marginBottom="10sp"
-				android:minHeight="3sp">
-				
+				style="@style/TableRow_Bar">
 			</TableRow>
 			<TableRow>
-				<TextView 
-					android:textSize="@dimen/enter_bill_amount"
-					android:textStyle="bold"
-					android:layout_width="fill_parent"
-					android:layout_height="wrap_content" 
-					android:text="@string/total" />
-			</TableRow>
-			<TableRow>
-				<TextView 
-					android:id="@+id/lbl_total"
-					android:textSize="@dimen/enter_bill_amount"
-					android:gravity="right"
-					android:layout_width="fill_parent"
-					android:layout_height="wrap_content"/>
+				<LinearLayout
+					style="@style/LinearLayoutRow">
+						<TextView 
+							style="@style/TextView.Label.Large"
+							android:text="@string/total" />
+						<TextView 
+							android:id="@+id/lbl_total_amount"
+							style="@style/TextView.Amount.Large"/>
+				</LinearLayout>
 			</TableRow>
 			<TableRow 
-				android:background="#777777"
-				android:layout_marginLeft="10sp"
-				android:layout_marginRight="10sp"
-				android:layout_marginTop="10sp"
-				android:layout_marginBottom="10sp"
-				android:minHeight="3sp">
-				
+				style="@style/TableRow_Bar.Dark">			
 			</TableRow>
 			<TableRow>
 				<TableLayout
-					android:layout_height="wrap_content"
-					android:layout_width="wrap_content" 
-					android:stretchColumns="*">
+					style="@style/TableLayout">
 					<TableRow>
 					<TextView 
-						android:textSize="@dimen/enter_bill_amount"
-						android:textStyle="bold"
-						android:layout_width="fill_parent"
-						android:layout_height="wrap_content" 
+						style="@style/TextView"
+						android:textSize="14sp"
+						android:paddingTop="0sp"
+						android:paddingBottom="0sp"
 						android:text="@string/tip_percentage" />
 					
 					<TextView
+						android:visibility="invisible"
 						android:id="@+id/lbl_tip_percentage"
-						android:textSize="@dimen/enter_bill_amount"
-						android:layout_width="fill_parent"
-						android:layout_height="wrap_content" 
+						style="@style/TextView"
 						android:text="0%"
 					/>
 					</TableRow>
 				</TableLayout>
-				
 			</TableRow>
 			<TableRow>
 				<SeekBar android:id="@+id/seek_tip_percentage"
-					android:paddingLeft="30sp"
-					android:paddingRight="30sp"
-			        android:layout_width="fill_parent"
-			        android:layout_height="wrap_content"
-			        android:layout_marginTop="10sp"
-			        android:layout_marginBottom="10sp"
-			        android:max="40"
-			        android:progress="15"
+					style="@style/SeekBar"
 			       /> 
 			</TableRow>
-			<TableRow></TableRow>
 			<TableRow>
 				<TableLayout
-					android:layout_height="wrap_content"
-					android:layout_width="wrap_content" 
-					android:layout_gravity="center"
-					android:stretchColumns="*">
+					style="@style/TableLayout"
+					android:paddingBottom="10dp">
 					<TableRow>
 						<TextView 
-							android:textSize="@dimen/small_text"
-							android:textStyle="bold"
-							android:layout_marginLeft="35sp"
+							style="@style/TextView_Small"
+							android:layout_marginLeft="30dp"
 							android:text="0%" />
 						<TextView 
-							android:textSize="@dimen/small_text"
-							android:textStyle="bold"
+							style="@style/TextView_Small"
 							android:gravity="right"
-							android:layout_marginRight="35sp"
+							android:layout_marginRight="30dp"
 							android:text="40%" />
 					</TableRow>
 				</TableLayout>
 			</TableRow>
 			<TableRow>
 				<TableLayout
-					android:layout_height="wrap_content"
-					android:layout_width="wrap_content" 
-					android:layout_gravity="center"
-					android:stretchColumns="*">
+					style="@style/TableLayout">
 					<TableRow>
 						<Button
 							android:id="@+id/btn_TipAmount1" 
-							android:textSize="@dimen/calc_button"
-							android:layout_width="wrap_content" 
-							android:layout_height="fill_parent"
+							style="@style/TippingButton"
 							android:text="10%" />
 						<Button
 							android:id="@+id/btn_TipAmount2" 
-							android:textSize="@dimen/calc_button"
-							android:layout_width="wrap_content" 
-							android:layout_height="fill_parent"
+							style="@style/TippingButton"
 							android:text="15%" />
 						<Button
 							android:id="@+id/btn_TipAmount3" 
-							android:textSize="@dimen/calc_button"
-							android:layout_width="wrap_content" 
-							android:layout_height="fill_parent"
+							style="@style/TippingButton"
 							android:text="20%" />
 					</TableRow>
 				</TableLayout>
 			</TableRow>
 			<TableRow>
 				<TableLayout
-					android:layout_height="wrap_content"
-					android:layout_width="wrap_content" 
-					android:layout_gravity="center"
-					android:stretchColumns="*">
+					style="@style/TableLayout">
 					<TableRow>
 					<Button 
 						android:id="@+id/btn_round_down"
-						android:textSize="@dimen/calc_button"
-						android:layout_width="wrap_content" 
-						android:layout_height="fill_parent"
+						style="@style/TippingButton"
 						android:text="@string/round_down" />
 					<Button 
 						android:id="@+id/btn_round_up"
-						android:textSize="@dimen/calc_button"
-						android:layout_width="wrap_content" 
-						android:layout_height="fill_parent"
+						style="@style/TippingButton"
 						android:text="@string/round_up" />
 					</TableRow>
 				</TableLayout>				
@@ -195,9 +131,7 @@
 			<TableRow>
 				<Button
 					android:id="@+id/btn_SplitBill" 
-					android:textSize="@dimen/calc_button"
-					android:layout_width="wrap_content" 
-					android:layout_height="fill_parent"
+					style="@style/TippingButton"
 					android:text="@string/split_bill" />
 			</TableRow>
 		</TableLayout>

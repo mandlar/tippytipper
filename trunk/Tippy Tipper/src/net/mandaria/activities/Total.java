@@ -207,12 +207,13 @@ public class Total extends Activity {
     {
     	TippyTipperApplication appState = ((TippyTipperApplication)this.getApplication());
     	
-    	TextView lbl_amount = (TextView)findViewById(R.id.lbl_amount);
-		TextView lbl_tip = (TextView)findViewById(R.id.lbl_tip);
-		TextView lbl_total = (TextView)findViewById(R.id.lbl_total);
-		TextView lbl_tip_percentage = (TextView)findViewById(R.id.lbl_tip_percentage);
+    	TextView lbl_bill_amount = (TextView)findViewById(R.id.lbl_bill_amount);
+		TextView lbl_tip_amount = (TextView)findViewById(R.id.lbl_tip_amount);
+		TextView lbl_total_amount = (TextView)findViewById(R.id.lbl_total_amount);
+		//TextView lbl_tip_percentage = (TextView)findViewById(R.id.lbl_tip_percentage);
 		SeekBar seek_tip_percentage = (SeekBar)findViewById(R.id.seek_tip_percentage);
 		View inflated_excludetax = findViewById(R.id.inflated_excludeTax);
+		TextView lbl_tip_text = (TextView)findViewById(R.id.lbl_tip_text);
 		
 		float excludeTaxRate = (float)Settings.getExcludeTaxRate(getBaseContext());
 		if(excludeTaxRate != 0)
@@ -222,8 +223,14 @@ public class Total extends Activity {
 				stub_excludeTax.setVisibility((int)View.VISIBLE);
 			else if(inflated_excludetax != null)
 				inflated_excludetax.setVisibility((int)View.VISIBLE);
-			TextView lbl_tax = (TextView)findViewById(R.id.lbl_tax);
-			lbl_tax.setText(appState.service.GetTaxAmount());
+			TextView lbl_tax_amount = (TextView)findViewById(R.id.lbl_tax_amount);
+			lbl_tax_amount.setText(appState.service.GetTaxAmount());
+			
+			// Add (tax%): to label
+			TextView lbl_tax_text = (TextView)findViewById(R.id.lbl_tax_text);
+			String tax_text = lbl_tax_text.getText().toString();
+			if(!tax_text.contains(appState.service.GetTaxPercentage()))
+				lbl_tax_text.setText(this.getString(R.string.tax).replace(":", " (" + appState.service.GetTaxPercentage() + "):"));
 		}
 		else
 		{
@@ -231,10 +238,15 @@ public class Total extends Activity {
 				inflated_excludetax.setVisibility((int)View.GONE);
 		}
 
-		lbl_tip_percentage.setText(appState.service.GetTipPercentage());
-		lbl_amount.setText(appState.service.GetBillAmount());
-		lbl_tip.setText(appState.service.GetTipAmount());
-		lbl_total.setText(appState.service.GetTotalAmount());
+		// Add (tip%): to label
+		String tip_text = lbl_tip_text.getText().toString();
+		if(!tip_text.contains(appState.service.GetTipPercentage()))
+			lbl_tip_text.setText(this.getString(R.string.tip).replace(":", " (" + appState.service.GetTipPercentage() + "):"));
+		
+		//lbl_tip_percentage.setText(appState.service.GetTipPercentage());
+		lbl_bill_amount.setText(appState.service.GetBillAmount());
+		lbl_tip_amount.setText(appState.service.GetTipAmount());
+		lbl_total_amount.setText(appState.service.GetTotalAmount());
 		seek_tip_percentage.setProgress(appState.service.GetTipPercentageRounded());
     }
 }
