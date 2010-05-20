@@ -10,7 +10,7 @@
 <string name="round_up">Round Up</string>
 <string name="round_down">Round Down</string>
 <string name="split_bill">Split Bill</string>
-<string name="split_bill_amount">Split Bill Amount:</string>
+<string name="split_bill_amount">Split Subtotal:</string>
 <string name="split_tax">Split Tax:</string>
 <string name="split_tip">Split Tip:</string>
 <string name="split_total">Split Total:</string>
