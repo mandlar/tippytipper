@@ -8,13 +8,13 @@
 			style="@style/TableLayout">
 			<TableRow>
 				<TextView 
-					style="@style/TextView.Bold"
+					style="@style/TextView.Label"
 					android:text="@string/split_bill_amount" />
 			</TableRow>
 			<TableRow>
 				<TextView 
 					android:id="@+id/lbl_split_amount"
-					style="@style/TextView.Right"/>
+					style="@style/TextView.Amount"/>
 			</TableRow>
 			<TableRow>		
 			<ViewStub android:id="@+id/stub_splitTax"
@@ -24,13 +24,13 @@
 			</TableRow>
 			<TableRow>
 				<TextView 
-					style="@style/TextView.Bold"
+					style="@style/TextView.Label"
 					android:text="@string/split_tip" />
 			</TableRow>
 			<TableRow>
 				<TextView 
 					android:id="@+id/lbl_split_tip"
-					style="@style/TextView.Right"/>
+					style="@style/TextView.Amount"/>
 			</TableRow>
 			<TableRow 
 				style="@style/TableRow_Bar">
@@ -38,20 +38,20 @@
 			</TableRow>
 			<TableRow>
 				<TextView 
-					style="@style/TextView.Bold"
+					style="@style/TextView.Label"
 					android:text="@string/split_total" />
 			</TableRow>
 			<TableRow>
 				<TextView 
 					android:id="@+id/lbl_split_total"
-					style="@style/TextView.Right"/>
+					style="@style/TextView.Amount"/>
 			</TableRow>
 			<TableRow 
 				style="@style/TableRow_Bar.Dark">
 			</TableRow>
 			<TableRow>
 				<TextView 
-					style="@style/TextView.Bold"
+					style="@style/TextView"
 					android:text="Number of people:" />
 			</TableRow>
 			<TableRow>
