@@ -1,24 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
-		android:layout_height="wrap_content"
-		android:layout_width="wrap_content" 
-		android:layout_gravity="center"
-		android:stretchColumns="*">
+		style="@style/TableLayout">
 	<TableRow>
-		<TextView 
-			android:id="@+id/lbl_tax_text"
-			android:textSize="@dimen/enter_bill_amount"
-			android:textStyle="bold"
-			android:layout_width="fill_parent"
-			android:layout_height="wrap_content" 
-			android:text="@string/tax" />
+		<LinearLayout
+			style="@style/LinearLayoutRow">
+				<TextView 
+					android:id="@+id/lbl_tax_text"
+					style="@style/TextView.Label.Small"
+					android:text="@string/tax" />
+				<TextView 
+					android:id="@+id/lbl_tax_amount"
+					style="@style/TextView.Amount.Small"
+					android:layout_height="wrap_content"/>
+		</LinearLayout>
 	</TableRow>
-	<TableRow>
-		<TextView 
-			android:id="@+id/lbl_tax_amount"
-			android:textSize="@dimen/enter_bill_amount"
-			android:gravity="right"
-			android:layout_width="fill_parent"
-			android:layout_height="wrap_content"/>
-	</TableRow>
-</TableLayout> 
+</TableLayout>
