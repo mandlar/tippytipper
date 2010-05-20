@@ -58,9 +58,13 @@
 					<TableRow>
 					<TextView 
 						style="@style/TextView"
+						android:textSize="14sp"
+						android:paddingTop="0sp"
+						android:paddingBottom="0sp"
 						android:text="@string/tip_percentage" />
 					
 					<TextView
+						android:visibility="invisible"
 						android:id="@+id/lbl_tip_percentage"
 						style="@style/TextView"
 						android:text="0%"
@@ -75,16 +79,17 @@
 			</TableRow>
 			<TableRow>
 				<TableLayout
-					style="@style/TableLayout">
+					style="@style/TableLayout"
+					android:paddingBottom="10dp">
 					<TableRow>
 						<TextView 
 							style="@style/TextView_Small"
-							android:layout_marginLeft="35sp"
+							android:layout_marginLeft="30dp"
 							android:text="0%" />
 						<TextView 
 							style="@style/TextView_Small"
 							android:gravity="right"
-							android:layout_marginRight="35sp"
+							android:layout_marginRight="30dp"
 							android:text="40%" />
 					</TableRow>
 				</TableLayout>

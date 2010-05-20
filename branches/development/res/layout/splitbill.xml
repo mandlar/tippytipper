@@ -59,7 +59,8 @@
 			</TableRow>
 			<TableRow>
 				<TableLayout 
-					style="@style/TableLayout">
+					style="@style/TableLayout"
+					android:paddingTop="10dp">
 					<TableRow>
 						<Button 
 							android:id="@+id/btn_remove_person"
