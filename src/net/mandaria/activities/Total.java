@@ -210,7 +210,7 @@ public class Total extends Activity {
     	TextView lbl_bill_amount = (TextView)findViewById(R.id.lbl_bill_amount);
 		TextView lbl_tip_amount = (TextView)findViewById(R.id.lbl_tip_amount);
 		TextView lbl_total_amount = (TextView)findViewById(R.id.lbl_total_amount);
-		TextView lbl_tip_percentage = (TextView)findViewById(R.id.lbl_tip_percentage);
+		//TextView lbl_tip_percentage = (TextView)findViewById(R.id.lbl_tip_percentage);
 		SeekBar seek_tip_percentage = (SeekBar)findViewById(R.id.seek_tip_percentage);
 		View inflated_excludetax = findViewById(R.id.inflated_excludeTax);
 		TextView lbl_tip_text = (TextView)findViewById(R.id.lbl_tip_text);
@@ -243,7 +243,7 @@ public class Total extends Activity {
 		if(!tip_text.contains(appState.service.GetTipPercentage()))
 			lbl_tip_text.setText(this.getString(R.string.tip).replace(":", " (" + appState.service.GetTipPercentage() + "):"));
 		
-		lbl_tip_percentage.setText(appState.service.GetTipPercentage());
+		//lbl_tip_percentage.setText(appState.service.GetTipPercentage());
 		lbl_bill_amount.setText(appState.service.GetBillAmount());
 		lbl_tip_amount.setText(appState.service.GetTipAmount());
 		lbl_total_amount.setText(appState.service.GetTotalAmount());
