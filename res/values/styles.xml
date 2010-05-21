@@ -1,7 +1,8 @@
 <resources>
 	<style name="CalculatorButton">
-		<item name="android:textSize">24.5sp</item>
-		<item name="android:layout_width">wrap_content</item>
+		<item name="android:layout_weight">1</item>
+		<item name="android:textSize">20sp</item>
+		<item name="android:layout_width">fill_parent</item>
 		<item name="android:layout_height">fill_parent</item>
 	</style>
 	<style name="BillAmountEditText">
@@ -61,6 +62,12 @@
 	<style name="TableLayout">
 		<item name="android:layout_height">wrap_content</item>
 		<item name="android:layout_width">wrap_content</item>
+		<item name="android:layout_gravity">center</item>
+		<item name="android:stretchColumns">*</item>
+	</style>
+	<style name="TableLayout.Main">
+		<item name="android:layout_height">fill_parent</item>
+		<item name="android:layout_width">fill_parent</item>
 		<item name="android:layout_gravity">center</item>
 		<item name="android:stretchColumns">*</item>
 	</style>
