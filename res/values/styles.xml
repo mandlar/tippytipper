@@ -6,6 +6,13 @@
 		<item name="android:layout_width">fill_parent</item>
 		<item name="android:layout_height">fill_parent</item>
 	</style>
+	<style name="CalculatorButton.Horizontal">
+		<item name="android:layout_margin">3dp</item>
+		<item name="android:layout_weight">1</item>
+		<item name="android:textSize">20sp</item>
+		<item name="android:layout_width">fill_parent</item>
+		<item name="android:layout_height">fill_parent</item>
+	</style>
 	<style name="BillAmountEditText">
 		<item name="android:textSize">24.5sp</item>
 		<item name="android:layout_width">fill_parent</item>
