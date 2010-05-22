@@ -30,6 +30,7 @@
 	</style>
 	<style name="TextView.Label">
 		<item name="android:gravity">right</item>
+		<item name="android:width">105dp</item>
 		
 	</style>
 	<style name="TextView.Label.Small">
@@ -42,7 +43,17 @@
 		<item name="android:gravity">right</item>
 		<item name="android:textStyle">bold</item>
 		<item name="android:paddingRight">15dp</item>
+		<item name="android:layout_width">fill_parent</item>
 		<item name="android:width">150dp</item>
+	</style>
+	<style name="TextView.Amount.Horizontal">
+		<item name="android:width">115dp</item>
+	</style>
+	<style name="TextView.Amount.Horizontal.Small">
+		<item name="android:textSize">14sp</item>
+	</style>
+	<style name="TextView.Amount.Horizontal.Large">
+		<item name="android:textSize">24sp</item>
 	</style>
 	<style name="TextView.Amount.Small">
 		<item name="android:textSize">14sp</item>
