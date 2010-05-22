@@ -7,6 +7,10 @@ import net.mandaria.R.layout;
 import net.mandaria.R.menu;
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.*;
 import android.view.View.OnClickListener;
@@ -36,6 +40,10 @@ public class Total extends Activity {
             		startActivity(i);
             	}
             });
+//        Drawable d_SplitBill = findViewById(R.id.btn_SplitBill).getBackground();
+//        int green = Color.parseColor("#216C2A");
+//        PorterDuffColorFilter filter_green = new PorterDuffColorFilter(green, PorterDuff.Mode.SRC_ATOP);
+//        d_SplitBill.setColorFilter(filter_green);
 		
         View btn_round_down = findViewById(R.id.btn_round_down);
         btn_round_down.setOnClickListener(new OnClickListener() 

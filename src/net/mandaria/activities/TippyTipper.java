@@ -116,9 +116,10 @@ public class TippyTipper extends Activity  {
             		RemoveBillAmount();
             	}
             });
-        //Drawable d_delete = findViewById(R.id.btn_delete).getBackground();
-        //PorterDuffColorFilter filter_red = new PorterDuffColorFilter(Color.RED, PorterDuff.Mode.SRC_ATOP);
-        //d_delete.setColorFilter(filter_red);
+//        Drawable d_delete = findViewById(R.id.btn_delete).getBackground();
+//        int red = Color.parseColor("#8E1609");
+//        PorterDuffColorFilter filter_red = new PorterDuffColorFilter(red, PorterDuff.Mode.SRC_ATOP);
+//        d_delete.setColorFilter(filter_red);
 
         View btn_ok = findViewById(R.id.btn_ok);
         btn_ok.setOnClickListener(new OnClickListener() 
@@ -131,9 +132,10 @@ public class TippyTipper extends Activity  {
             		startActivity(i);
             	}
             });
-        //Drawable d_ok = findViewById(R.id.btn_ok).getBackground();
-        //PorterDuffColorFilter filter_green = new PorterDuffColorFilter(Color.GREEN, PorterDuff.Mode.SRC_ATOP);
-        //d_ok.setColorFilter(filter_green);
+//        Drawable d_ok = findViewById(R.id.btn_ok).getBackground();
+//        int green = Color.parseColor("#216C2A");
+//        PorterDuffColorFilter filter_green = new PorterDuffColorFilter(green, PorterDuff.Mode.SRC_ATOP);
+//        d_ok.setColorFilter(filter_green);
     }
     
     @Override
