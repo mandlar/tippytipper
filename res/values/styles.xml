@@ -30,7 +30,7 @@
 	</style>
 	<style name="TextView.Label">
 		<item name="android:gravity">right</item>
-		<item name="android:width">105dp</item>
+		<item name="android:width">110dp</item>
 		
 	</style>
 	<style name="TextView.Label.Small">
@@ -47,7 +47,7 @@
 		<item name="android:width">150dp</item>
 	</style>
 	<style name="TextView.Amount.Horizontal">
-		<item name="android:width">115dp</item>
+		<item name="android:width">110dp</item>
 	</style>
 	<style name="TextView.Amount.Horizontal.Small">
 		<item name="android:textSize">14sp</item>
