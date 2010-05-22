@@ -22,7 +22,7 @@
 										android:text="@string/bill_amount" />
 									<TextView  
 										android:id="@+id/lbl_bill_amount"
-									style="@style/TextView.Amount"/>
+										style="@style/TextView.Amount.Horizontal"/>
 							</LinearLayout>
 						</TableRow>
 						<TableRow>		
@@ -40,7 +40,7 @@
 										android:text="@string/tip" />
 									<TextView 
 										android:id="@+id/lbl_tip_amount"
-										style="@style/TextView.Amount"/>
+										style="@style/TextView.Amount.Horizontal"/>
 							</LinearLayout>
 						</TableRow>
 						<TableRow 
@@ -54,7 +54,7 @@
 										android:text="@string/total" />
 									<TextView 
 										android:id="@+id/lbl_total_amount"
-										style="@style/TextView.Amount.Large"/>
+										style="@style/TextView.Amount.Horizontal.Large"/>
 							</LinearLayout>
 						</TableRow>
 					</TableLayout>
@@ -148,7 +148,7 @@
 								<TableRow>
 								<TextView 
 									android:layout_weight="1"
-									style="@style/TextView.Label"
+									style="@style/TextView"
 									android:gravity="left"
 									android:text="Round:" />
 								<Button 
