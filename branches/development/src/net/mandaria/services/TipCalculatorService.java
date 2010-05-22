@@ -163,10 +163,10 @@ public class TipCalculatorService
     	{
     		BillAmount = BillAmountBeforeTax;
     		double bill_amount = BillAmount / (1 + TaxPercentage);
-    		bill_amount = Math.round(bill_amount * 100) / 100.0; // round bill to nearest penny
-    		BillAmount = bill_amount;
+    		double bill_amount_rounded = Math.round(bill_amount * 100) / 100.0; // round bill to nearest penny
+    		BillAmount = bill_amount_rounded;
     		
-    		double tax_amount = BillAmount * TaxPercentage;;
+    		double tax_amount = bill_amount * TaxPercentage; // Note: must calculate tax off of non-rounded bill amount to avoid off by 1 cent errors
     		tax_amount = Math.round(tax_amount * 100) / 100.0; // round tax to nearest penny
     		TaxAmount = tax_amount;
     	}
