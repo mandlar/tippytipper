@@ -1,6 +1,6 @@
-package net.mandaria;
+package net.mandaria.tippytipper;
 
-import net.mandaria.services.TipCalculatorService;
+import net.mandaria.tippytipper.services.TipCalculatorService;
 import android.app.*;
 
 public class TippyTipperApplication extends Application {
