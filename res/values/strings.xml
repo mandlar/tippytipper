@@ -13,6 +13,7 @@
 <string name="split_bill_amount">Subtotal:</string>
 <string name="split_tax">Tax:</string>
 <string name="split_tip">Tip:</string>
+<string name="split_adjustment">Adjustment:</string>
 <string name="split_total">Total:</string>
 <string name="tax">Tax:</string>
 
