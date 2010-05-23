@@ -24,6 +24,7 @@ public class TipCalculatorService
 	private double SplitTaxAmount = 0;
 	private double SplitTipAmount = 0;
 	private double SplitTotalAmount = 0;
+	private double SplitAdjustment = 0;
 	private int NumberOfPeople = 2;
 	NumberFormat nf = NumberFormat.getCurrencyInstance();
 	
@@ -65,6 +66,11 @@ public class TipCalculatorService
 	public String GetSplitTipAmount()
 	{
 		return nf.format(SplitTipAmount);
+	}
+	
+	public String GetSplitAdjustment()
+	{
+		return nf.format(SplitAdjustment);
 	}
 	
 	public String GetSplitTotalAmount()
@@ -163,10 +169,10 @@ public class TipCalculatorService
     	{
     		BillAmount = BillAmountBeforeTax;
     		double bill_amount = BillAmount / (1 + TaxPercentage);
-    		bill_amount = Math.round(bill_amount * 100) / 100.0; // round bill to nearest penny
-    		BillAmount = bill_amount;
+    		double bill_amount_rounded = Math.round(bill_amount * 100) / 100.0; // round bill to nearest penny
+    		BillAmount = bill_amount_rounded;
     		
-    		double tax_amount = BillAmount * TaxPercentage;;
+    		double tax_amount = bill_amount * TaxPercentage; // Note: must calculate tax off of non-rounded bill amount to avoid off by 1 cent errors
     		tax_amount = Math.round(tax_amount * 100) / 100.0; // round tax to nearest penny
     		TaxAmount = tax_amount;
     	}
@@ -240,31 +246,56 @@ public class TipCalculatorService
     	if(people < 1)
     		throw new IllegalArgumentException("Number of people cannot be below one.");
     	NumberOfPeople = people;
-    	int SplitBillInteger = (int)(BillAmount * 100.0);
-    	int SplitBillRemainder = (int)SplitBillInteger % NumberOfPeople;
-    	if(SplitBillRemainder != 0)
-    		SplitBillAmount = (double)SplitBillInteger - (double)SplitBillRemainder + (double)NumberOfPeople;
-    	else
-    		SplitBillAmount = (double)SplitBillInteger;
-    	SplitBillAmount = SplitBillAmount / 100.0;
-    	SplitBillAmount = SplitBillAmount / NumberOfPeople;
+    	
+//    	int SplitTotalInteger = (int)(TotalAmount *100.0);
+//    	int SplitTotalRemainder = (int)SplitTotalInteger % NumberOfPeople;
+//    	double Adjustment = 0;
+//    	if(SplitTotalRemainder != 0)
+//    		Adjustment = -(double)SplitTotalRemainder + (double)NumberOfPeople;
+//    	Adjustment = (Math.round(Adjustment/NumberOfPeople)/100.0);
+    	
+    	
+//    	int SplitBillInteger = (int)(BillAmount * 100.0);
+//    	int SplitBillRemainder = (int)SplitBillInteger % NumberOfPeople;
+//    	if(SplitBillRemainder != 0)
+//    		SplitBillAmount = (double)SplitBillInteger - (double)SplitBillRemainder + (double)NumberOfPeople;
+//    	else
+//    		SplitBillAmount = (double)SplitBillInteger;
+    	//SplitBillAmount = SplitBillAmount / 100.0;
+    	//SplitBillAmount = SplitBillAmount / NumberOfPeople;
+    	
+    	SplitBillAmount = Math.floor((BillAmount / NumberOfPeople) * 100.0)/100.0;
+    	
     	
     	// calculate tip TODO: Can be refactored with CalculateTip() function into a generic function for both places
     	double tax_amount = 0;
     	if(TaxPercentage > 0)
     	{
-    		tax_amount = SplitBillAmount * TaxPercentage;
-    		tax_amount = Math.round(tax_amount * 100) / 100.0; // round tax to nearest penny
+    		//tax_amount = SplitBillAmount * TaxPercentage;
+    		//tax_amount = Math.floor(tax_amount * 100) / 100.0; // round tax to nearest penny
+    		//tax_amount = tax_amount + Adjustment;
+    		
+    		tax_amount = Math.floor((TaxAmount / NumberOfPeople) * 100.0) / 100.0; 
     	}
     	else
     	{
     		tax_amount = 0;
     	}
     	
-    	double tip_amount = SplitBillAmount * TipPercentage;
-  		tip_amount = Math.round(tip_amount * 100) / 100.0; // round tip to nearest penny
+    	//double tip_amount = SplitBillAmount * TipPercentage;
+  		double tip_amount = Math.floor((TipAmount / NumberOfPeople) * 100.0) / 100.0; // round tip to nearest penny
   		double total_amount = SplitBillAmount + tax_amount + tip_amount; 
   		
+  		// if off by one penny, adjust the amount to reflect this correctly by increasing the tax_amount
+  		double adjustment = 0;
+  		if(total_amount < Math.ceil((TotalAmount/NumberOfPeople)*100.0)/100.0)
+  		{
+  			adjustment =  Math.round((Math.ceil((TotalAmount/NumberOfPeople)*100.0)/100.0 - total_amount)*100.0)/100.0;//Math.round((TotalAmount - (total_amount * NumberOfPeople))*100.0)/100.0;
+  			total_amount = total_amount + adjustment;
+  			
+  		}
+  		
+  		SplitAdjustment = adjustment;
   		SplitTaxAmount = tax_amount;
   		SplitTipAmount = tip_amount;
   		SplitTotalAmount = total_amount;

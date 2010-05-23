@@ -34,6 +34,17 @@
 						style="@style/TextView.Amount"/>
 				</LinearLayout>
 			</TableRow>
+			<TableRow>
+				<LinearLayout
+					style="@style/LinearLayoutRow">
+					<TextView 
+						style="@style/TextView.Label"
+						android:text="@string/split_adjustment" />
+					<TextView 
+						android:id="@+id/lbl_split_adjustment"
+						style="@style/TextView.Amount"/>
+				</LinearLayout>
+			</TableRow>
 			<TableRow 
 				style="@style/TableRow_Bar">
 				
