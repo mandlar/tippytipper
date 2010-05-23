@@ -63,7 +63,7 @@
 			android:entryValues="@array/listRoundValues" />
 	</PreferenceCategory>
 	<PreferenceCategory android:title="Splitting Options">
-	   <net.mandaria.preferences.NumberPickerPreference
+	   <net.mandaria.tippytipper.preferences.NumberPickerPreference
 			android:key="default_number_of_people"
 	        android:title="Default Number People"
 	        android:summary="The number of people to split bill by"

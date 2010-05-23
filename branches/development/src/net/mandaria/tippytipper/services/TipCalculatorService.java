@@ -121,7 +121,15 @@ public class TipCalculatorService
 	
 	public void RefreshBillAmount()
 	{
-		double amount = Double.valueOf(BillEntry);
+		double amount;
+		try
+		{
+			amount = Double.valueOf(BillEntry);
+		}
+		catch(Exception ex)
+		{
+			amount = 0;
+		}
     	amount = amount / 100;
     	BillAmount = amount; 
     	BillAmountBeforeTax = BillAmount;
