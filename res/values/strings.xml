@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="hello">Hello World, TippyTipper!</string>
-    <string name="app_name">Tippy Tipper</string> 
+    <string name="app_name">Tippy Tipper (Donate)</string> 
 <string name="enter_bill_amount">Enter bill amount:</string>
 <string name="bill_amount">Subtotal:</string>
 <string name="tip">Tip:</string>

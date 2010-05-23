@@ -1,6 +1,6 @@
-package net.mandaria.tippytipper.activities;
+package net.mandaria.tippytipperdonate.activities;
 
-import net.mandaria.tippytipper.R;
+import net.mandaria.tippytipperdonate.R;
 import android.os.Bundle;
 import android.preference.*;
 import android.content.Context;
