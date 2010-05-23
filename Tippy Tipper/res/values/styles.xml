@@ -34,7 +34,7 @@
 		
 	</style>
 	<style name="TextView.Label.Small">
-		<item name="android:textSize">14sp</item>
+		<item name="android:textSize">16sp</item>
 	</style>
 	<style name="TextView.Label.Large">
 		<item name="android:textSize">24sp</item>
@@ -50,13 +50,13 @@
 		<item name="android:width">110dp</item>
 	</style>
 	<style name="TextView.Amount.Horizontal.Small">
-		<item name="android:textSize">14sp</item>
+		<item name="android:textSize">16sp</item>
 	</style>
 	<style name="TextView.Amount.Horizontal.Large">
 		<item name="android:textSize">24sp</item>
 	</style>
 	<style name="TextView.Amount.Small">
-		<item name="android:textSize">14sp</item>
+		<item name="android:textSize">16sp</item>
 	</style>
 	<style name="TextView.Amount.Large">
 		<item name="android:textSize">24sp</item>
