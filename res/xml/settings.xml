@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen
 	xmlns:android="http://schemas.android.com/apk/res/android"
-	xmlns:app="http://schemas.android.com/apk/res/net.mandaria">
+	xmlns:app="http://schemas.android.com/apk/res/net.mandaria.tippytipper">
 	<PreferenceCategory android:title="Tipping Options">
-		<net.mandaria.preferences.SeekBarPreference
+		<net.mandaria.tippytipper.preferences.SeekBarPreference
 			android:key="default_tip_percentage"
 	        android:title="Default Tip Percentage"
 	        android:summary="Percentage to tip by default"
@@ -13,7 +13,7 @@
 	        android:max="40"
 	        app:min="0"
 	        />
-	    <net.mandaria.preferences.SeekBarPreference
+	    <net.mandaria.tippytipper.preferences.SeekBarPreference
 			android:key="tip_percentage_one"
 	        android:title="First Tip Percentage"
 	        android:summary="Custom value for first tip percentage preset button"
@@ -23,7 +23,7 @@
 	        android:max="40"
 	        app:min="0"
 	        />
-	    <net.mandaria.preferences.SeekBarPreference
+	    <net.mandaria.tippytipper.preferences.SeekBarPreference
 			android:key="tip_percentage_two"
 	        android:title="Second Tip Percentage"
 	        android:summary="Custom value for second tip percentage preset button"
@@ -33,7 +33,7 @@
 	        android:max="40"
 	        app:min="0"
 	        />
-	    <net.mandaria.preferences.SeekBarPreference
+	    <net.mandaria.tippytipper.preferences.SeekBarPreference
 			android:key="tip_percentage_three"
 	        android:title="Third Tip Percentage"
 	        android:summary="Custom value for third tip percentage preset button"
@@ -45,7 +45,7 @@
 	        />
 	</PreferenceCategory>
 	<PreferenceCategory android:title="Tax Options">
-	    <net.mandaria.preferences.DecimalPreference
+	    <net.mandaria.tippytipper.preferences.DecimalPreference
 			android:key="exclude_tax"
 	        android:title="Tax Rate to Exclude"
 	        android:summary="The tax rate to exclude when calculating tip"

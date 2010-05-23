@@ -1,7 +1,7 @@
-package net.mandaria.activities;
+package net.mandaria.tippytipper.activities;
 
-import net.mandaria.R;
-import net.mandaria.R.xml;
+import net.mandaria.tippytipper.R;
+import net.mandaria.tippytipper.R.xml;
 import android.os.Bundle;
 import android.preference.*;
 import android.content.Context;
