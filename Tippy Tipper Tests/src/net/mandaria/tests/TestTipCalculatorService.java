@@ -1,7 +1,7 @@
 package net.mandaria.tests;
 
 import static org.junit.Assert.*;
-import net.mandaria.services.*;
+import net.mandaria.tippytipper.services.*;
 
 import org.junit.Test;
 import org.junit.Assert.*;
