@@ -1,4 +1,4 @@
-package net.mandaria.preferences;
+package net.mandaria.tippytipper.preferences;
 
 /* The following code was written by Matthew Wiggins 
  * and is released under the APACHE 2.0 license 
@@ -6,7 +6,8 @@ package net.mandaria.preferences;
  * http://www.apache.org/licenses/LICENSE-2.0
  */
 
-import net.mandaria.*;
+import net.mandaria.tippytipper.R;
+import net.mandaria.tippytipper.*;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.Gravity;

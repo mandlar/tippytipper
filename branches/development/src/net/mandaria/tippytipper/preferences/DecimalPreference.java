@@ -1,7 +1,7 @@
-package net.mandaria.preferences;
+package net.mandaria.tippytipper.preferences;
 
-import net.mandaria.*;
-import net.mandaria.widgets.*;
+import net.mandaria.tippytipper.*;
+import net.mandaria.tippytipper.widgets.*;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.Gravity;
@@ -17,19 +17,20 @@ import android.widget.TextView;
 import android.widget.LinearLayout;
 import android.content.res.*;
 
-public class NumberPickerPreference extends DialogPreference
+public class DecimalPreference extends DialogPreference
 {
 	private static final String androidns = "http://schemas.android.com/apk/res/android";
 	private static final String appns = "http://schemas.android.com/apk/res/net.mandaria";
 
-	private NumberPicker mPickInteger;
+	private NumberPicker mPickInteger, mPickDecimal;
 	private TextView mSplashText, mValueText;
 	private Context mContext;
 
 	private String mDialogMessage, mSuffix;
-	private int mDefault, mMin, mMax, mValue = 0;
+	private float mDefault, mValue = 0;
+	private int mInteger, mDecimal = 0;
 
-	public NumberPickerPreference(Context context, AttributeSet attrs)
+	public DecimalPreference(Context context, AttributeSet attrs)
 	{
 		super(context, attrs);
 		mContext = context;
@@ -37,17 +38,15 @@ public class NumberPickerPreference extends DialogPreference
 		mDialogMessage = attrs.getAttributeValue(androidns, "dialogMessage");
 		mSuffix = attrs.getAttributeValue(androidns, "text");
 		mDefault = attrs.getAttributeIntValue(androidns, "defaultValue", 0);
-		mMax = attrs.getAttributeIntValue(androidns,"max", 100);
-	    
-	    TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.SeekBarPreference);
-	    mMin = a.getInt(R.styleable.SeekBarPreference_min, 0);
 	}
 
 	@Override
 	protected View onCreateDialogView()
 	{
 		TableLayout.LayoutParams params;
+		// LinearLayout layout = new LinearLayout(mContext);
 		TableLayout layout = new TableLayout(mContext);
+		// layout.setOrientation(LinearLayout.VERTICAL);
 		layout.setPadding(6, 6, 6, 6);
 
 		mSplashText = new TextView(mContext);
@@ -58,16 +57,23 @@ public class NumberPickerPreference extends DialogPreference
 		row_header.addView(mSplashText);
 
 		mPickInteger = new NumberPicker(mContext);
-		mPickInteger.setRange(mMin, mMax);
+		mPickDecimal = new NumberPicker(mContext);
+		mPickDecimal.setFormatter(NumberPicker.TWO_DIGIT_FORMATTER);
 
-		TextView suffix = new TextView(mContext);
-		suffix.setText(mSuffix);
-		suffix.setTextSize(32);
+		TextView dot = new TextView(mContext);
+		dot.setText(".");
+		dot.setTextSize(32);
+
+		TextView percent = new TextView(mContext);
+		percent.setText("%");
+		percent.setTextSize(32);
 
 		TableRow row_one = new TableRow(mContext);
 		row_one.setGravity(Gravity.CENTER);
 		row_one.addView(mPickInteger);
-		row_one.addView(suffix);
+		row_one.addView(dot);
+		row_one.addView(mPickDecimal);
+		row_one.addView(percent);
 
 		layout.addView(row_header);
 
@@ -81,7 +87,7 @@ public class NumberPickerPreference extends DialogPreference
 		layout.addView(row_main);
 
 		if (shouldPersist())
-			mValue = getPersistedInt(mDefault);
+			mValue = getPersistedFloat(mDefault);
 
 		BindData();
 
@@ -90,13 +96,18 @@ public class NumberPickerPreference extends DialogPreference
 
 	private void BindData()
 	{
+		mInteger = (int) Math.floor((double) mValue);
+		float decimal = (mValue * 100) - (mInteger * 100);
+		mDecimal = (int) decimal;
 		try
 		{
-			mPickInteger.setCurrent(mValue);
+			mPickInteger.setCurrent(mInteger);
+			mPickDecimal.setCurrent(mDecimal);
 		}
 		catch (Exception ex)
 		{
-			
+			int test = 0;
+			test++;
 		}
 	}
 
@@ -115,7 +126,7 @@ public class NumberPickerPreference extends DialogPreference
 		{
 			try
 			{
-				mValue = shouldPersist() ? getPersistedInt(mDefault) : 0;
+				mValue = shouldPersist() ? getPersistedFloat(mDefault) : 0;
 			}
 			catch (Exception ex)
 			{
@@ -123,7 +134,7 @@ public class NumberPickerPreference extends DialogPreference
 			}
 		}
 		else
-			mValue = (Integer) defaultValue;
+			mValue = (Float) defaultValue;
 	}
 
 	@Override
@@ -136,9 +147,11 @@ public class NumberPickerPreference extends DialogPreference
 			// this is to fix a problem of closing the dialog not causing the onFocusChange of the picker
 			// to be called
 			mPickInteger.onClick(null);
-			mValue = mPickInteger.getCurrent();
+			mPickDecimal.onClick(null);
+			String value = mPickInteger.getCurrent() + "." + mPickDecimal.getCurrent();
+			mValue = Float.valueOf(value);
 			if (shouldPersist())
-				persistInt(mValue);
+				persistFloat(mValue);
 		}
 	}
 }

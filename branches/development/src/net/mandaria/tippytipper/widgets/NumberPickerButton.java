@@ -14,9 +14,9 @@
  * limitations under the License.
  */
 
-package net.mandaria.widgets;
+package net.mandaria.tippytipper.widgets;
 
-import net.mandaria.R;
+import net.mandaria.tippytipper.R;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.KeyEvent;
