@@ -14,9 +14,9 @@
  * limitations under the License.
  */
 
-package net.mandaria.tippytipper.widgets;
+package net.mandaria.tippytipperdonate.widgets;
 
-import net.mandaria.tippytipper.R;
+import net.mandaria.tippytipperdonate.R;
 import android.content.Context;
 import android.os.Handler;
 import android.text.InputFilter;

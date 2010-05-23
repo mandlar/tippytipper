@@ -1,10 +1,10 @@
-package net.mandaria.tippytipper.services;
+package net.mandaria.tippytipperdonate.services;
 
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 
-import net.mandaria.tippytipper.R;
-import net.mandaria.tippytipper.TippyTipperApplication;
+import net.mandaria.tippytipperdonate.R;
+import net.mandaria.tippytipperdonate.TippyTipperApplication;
 import android.widget.EditText;
 import android.widget.TextView;
 

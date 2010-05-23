@@ -1,10 +1,10 @@
-package net.mandaria.tippytipper.activities;
+package net.mandaria.tippytipperdonate.activities;
 
-import net.mandaria.tippytipper.R;
-import net.mandaria.tippytipper.R.id;
-import net.mandaria.tippytipper.R.layout;
-import net.mandaria.tippytipper.R.menu;
-import net.mandaria.tippytipper.TippyTipperApplication;
+import net.mandaria.tippytipperdonate.R;
+import net.mandaria.tippytipperdonate.R.id;
+import net.mandaria.tippytipperdonate.R.layout;
+import net.mandaria.tippytipperdonate.R.menu;
+import net.mandaria.tippytipperdonate.TippyTipperApplication;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;

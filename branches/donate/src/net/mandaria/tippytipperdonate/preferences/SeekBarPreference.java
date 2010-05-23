@@ -1,4 +1,4 @@
-package net.mandaria.tippytipper.preferences;
+package net.mandaria.tippytipperdonate.preferences;
 
 /* The following code was written by Matthew Wiggins 
  * and is released under the APACHE 2.0 license 
@@ -6,8 +6,8 @@ package net.mandaria.tippytipper.preferences;
  * http://www.apache.org/licenses/LICENSE-2.0
  */
 
-import net.mandaria.tippytipper.R;
-import net.mandaria.tippytipper.*;
+import net.mandaria.tippytipperdonate.R;
+import net.mandaria.tippytipperdonate.*;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.Gravity;
@@ -22,7 +22,7 @@ import android.content.res.*;
 public class SeekBarPreference extends DialogPreference implements SeekBar.OnSeekBarChangeListener
 {
   private static final String androidns="http://schemas.android.com/apk/res/android";
-  private static final String appns="http://schemas.android.com/apk/res/net.mandaria.tippytipper";
+  private static final String appns="http://schemas.android.com/apk/res/net.mandaria.tippytipperdonate";
 
   private SeekBar mSeekBar;
   private TextView mSplashText,mValueText;

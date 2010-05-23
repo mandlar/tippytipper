@@ -1,8 +1,8 @@
-package net.mandaria.tippytipper.preferences;
+package net.mandaria.tippytipperdonate.preferences;
 
-import net.mandaria.tippytipper.R;
-import net.mandaria.tippytipper.*;
-import net.mandaria.tippytipper.widgets.*;
+import net.mandaria.tippytipperdonate.R;
+import net.mandaria.tippytipperdonate.*;
+import net.mandaria.tippytipperdonate.widgets.*;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.Gravity;
@@ -21,7 +21,7 @@ import android.content.res.*;
 public class NumberPickerPreference extends DialogPreference
 {
 	private static final String androidns = "http://schemas.android.com/apk/res/android";
-	private static final String appns = "http://schemas.android.com/apk/res/net.mandaria.tippytipper";
+	private static final String appns = "http://schemas.android.com/apk/res/net.mandaria.tippytipperdonate";
 
 	private NumberPicker mPickInteger;
 	private TextView mSplashText, mValueText;
