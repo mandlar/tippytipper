@@ -155,6 +155,9 @@ public class TippyTipper extends Activity  {
   			case R.id.settings:
   				startActivity(new Intent(this, Settings.class));
   				return true;
+  			case R.id.about:
+  				startActivity(new Intent(this, About.class));
+				return true;
   		}
   		return false;
   	}
