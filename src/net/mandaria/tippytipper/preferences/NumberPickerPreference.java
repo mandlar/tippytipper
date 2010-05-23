@@ -21,7 +21,7 @@ import android.content.res.*;
 public class NumberPickerPreference extends DialogPreference
 {
 	private static final String androidns = "http://schemas.android.com/apk/res/android";
-	private static final String appns = "http://schemas.android.com/apk/res/net.mandaria";
+	private static final String appns = "http://schemas.android.com/apk/res/net.mandaria.tippytipper";
 
 	private NumberPicker mPickInteger;
 	private TextView mSplashText, mValueText;

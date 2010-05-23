@@ -22,7 +22,7 @@ import android.content.res.*;
 public class SeekBarPreference extends DialogPreference implements SeekBar.OnSeekBarChangeListener
 {
   private static final String androidns="http://schemas.android.com/apk/res/android";
-  private static final String appns="http://schemas.android.com/apk/res/net.mandaria";
+  private static final String appns="http://schemas.android.com/apk/res/net.mandaria.tippytipper";
 
   private SeekBar mSeekBar;
   private TextView mSplashText,mValueText;
