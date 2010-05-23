@@ -97,6 +97,7 @@ public class SplitBill extends Activity {
     	
     	TextView lbl_split_amount = (TextView)findViewById(R.id.lbl_split_amount);
 		TextView lbl_split_tip = (TextView)findViewById(R.id.lbl_split_tip);
+		TextView lbl_split_adjustment = (TextView)findViewById(R.id.lbl_split_adjustment);
 		TextView lbl_split_total = (TextView)findViewById(R.id.lbl_split_total);
 		TextView lbl_NumberOfPeople = (TextView)findViewById(R.id.lbl_NumberOfPeople);
 		
@@ -121,6 +122,7 @@ public class SplitBill extends Activity {
 		
 		lbl_split_amount.setText(appState.service.GetSplitBillAmount());
 		lbl_split_tip.setText(appState.service.GetSplitTipAmount());
+		lbl_split_adjustment.setText(appState.service.GetSplitAdjustment());
 		lbl_split_total.setText(appState.service.GetSplitTotalAmount());
 		lbl_NumberOfPeople.setText(Integer.toString(appState.service.GetNumberOfPeople()));
 		

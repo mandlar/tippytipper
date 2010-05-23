@@ -1,7 +1,16 @@
 <resources>
 	<style name="CalculatorButton">
-		<item name="android:textSize">24.5sp</item>
-		<item name="android:layout_width">wrap_content</item>
+		<item name="android:layout_margin">4dp</item>
+		<item name="android:layout_weight">1</item>
+		<item name="android:textSize">20sp</item>
+		<item name="android:layout_width">fill_parent</item>
+		<item name="android:layout_height">fill_parent</item>
+	</style>
+	<style name="CalculatorButton.Horizontal">
+		<item name="android:layout_margin">3dp</item>
+		<item name="android:layout_weight">1</item>
+		<item name="android:textSize">20sp</item>
+		<item name="android:layout_width">fill_parent</item>
 		<item name="android:layout_height">fill_parent</item>
 	</style>
 	<style name="BillAmountEditText">
@@ -16,11 +25,12 @@
 		<item name="android:textSize">20sp</item>
 		<item name="android:layout_width">wrap_content</item>
 		<item name="android:layout_height">wrap_content</item>
-		<item name="android:paddingTop">5dp</item>
-		<item name="android:paddingBottom">5dp</item>
+		<item name="android:paddingTop">10dp</item>
+		<item name="android:paddingBottom">10dp</item>
 	</style>
 	<style name="TextView.Label">
 		<item name="android:gravity">right</item>
+		<item name="android:width">110dp</item>
 		
 	</style>
 	<style name="TextView.Label.Small">
@@ -33,7 +43,17 @@
 		<item name="android:gravity">right</item>
 		<item name="android:textStyle">bold</item>
 		<item name="android:paddingRight">15dp</item>
+		<item name="android:layout_width">fill_parent</item>
 		<item name="android:width">150dp</item>
+	</style>
+	<style name="TextView.Amount.Horizontal">
+		<item name="android:width">110dp</item>
+	</style>
+	<style name="TextView.Amount.Horizontal.Small">
+		<item name="android:textSize">14sp</item>
+	</style>
+	<style name="TextView.Amount.Horizontal.Large">
+		<item name="android:textSize">24sp</item>
 	</style>
 	<style name="TextView.Amount.Small">
 		<item name="android:textSize">14sp</item>
@@ -61,6 +81,12 @@
 	<style name="TableLayout">
 		<item name="android:layout_height">wrap_content</item>
 		<item name="android:layout_width">wrap_content</item>
+		<item name="android:layout_gravity">center</item>
+		<item name="android:stretchColumns">*</item>
+	</style>
+	<style name="TableLayout.Main">
+		<item name="android:layout_height">fill_parent</item>
+		<item name="android:layout_width">fill_parent</item>
 		<item name="android:layout_gravity">center</item>
 		<item name="android:stretchColumns">*</item>
 	</style>
