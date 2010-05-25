@@ -176,8 +176,7 @@ public class TippyTipper extends Activity  {
     	TippyTipperApplication appState = ((TippyTipperApplication)this.getApplication());
     	appState.service.AppendNumberToBillAmount(number);
     	
-		EditText txt_amount = (EditText)findViewById(R.id.txt_amount);
-		txt_amount.setText(appState.service.GetBillAmount());
+		BindData();
     }
     
     private void RemoveBillAmount()
@@ -185,6 +184,13 @@ public class TippyTipper extends Activity  {
     	TippyTipperApplication appState = ((TippyTipperApplication)this.getApplication());
     	appState.service.RemoveEndNumberFromBillAmount();
     	
+    	BindData();
+    }
+    
+    private void BindData()
+    {
+    	TippyTipperApplication appState = ((TippyTipperApplication)this.getApplication());
+   
     	EditText txt_amount = (EditText)findViewById(R.id.txt_amount);
 		txt_amount.setText(appState.service.GetBillAmount());
     }
