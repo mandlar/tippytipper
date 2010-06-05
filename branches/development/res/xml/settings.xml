@@ -74,4 +74,12 @@
 	        app:min="2"
 	        />
 	</PreferenceCategory>
+	<PreferenceCategory android:title="Privacy Options">
+	   <CheckBoxPreference
+	   		android:key="enable_error_logging"
+	   		android:title="Enable Error Logging"
+	   		android:summary="Application reports anonymous error/event information to developer"
+	   		android:defaultValue="true"
+	   		/>
+	</PreferenceCategory>
 </PreferenceScreen>

@@ -55,8 +55,9 @@ public class SplitBill extends Activity {
     public void onStart()
     {
        super.onStart();
+       boolean enableErrorLogging = (boolean)Settings.getEnableErrorLogging(getBaseContext());
        String API = getString(R.string.flurrykey);
-       if(!API.equals(""))
+       if(!API.equals("") && enableErrorLogging == true)
        {
     	   FlurryAgent.setContinueSessionMillis(30000);
     	   FlurryAgent.onStartSession(this, API);
