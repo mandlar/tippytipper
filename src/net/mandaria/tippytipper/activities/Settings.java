@@ -20,8 +20,9 @@ public class Settings extends PreferenceActivity
 	public void onStart()
     {
        super.onStart();
+       boolean enableErrorLogging = (boolean)Settings.getEnableErrorLogging(getBaseContext());
        String API = getString(R.string.flurrykey);
-       if(!API.equals(""))
+       if(!API.equals("") && enableErrorLogging == true)
        {
     	   FlurryAgent.setContinueSessionMillis(30000);
     	   FlurryAgent.onStartSession(this, API);
@@ -57,6 +58,11 @@ public class Settings extends PreferenceActivity
 	public static int getDefaultNumberOfPeopleToSplitBill(Context context)
 	{
 		return PreferenceManager.getDefaultSharedPreferences(context).getInt("default_number_of_people", 2);
+	}
+	
+	public static boolean getEnableErrorLogging(Context context)
+	{
+		return PreferenceManager.getDefaultSharedPreferences(context).getBoolean("enable_error_logging", true);
 	}
 	
 	public static boolean isSetToRoundByTip(Context context)

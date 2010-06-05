@@ -102,8 +102,9 @@ public class Total extends Activity {
 	public void onStart()
 	{
 		super.onStart();
-		String API = getString(R.string.flurrykey);
-		if(!API.equals(""))
+		boolean enableErrorLogging = (boolean)Settings.getEnableErrorLogging(getBaseContext());
+        String API = getString(R.string.flurrykey);
+        if(!API.equals("") && enableErrorLogging == true)
 		{
 			FlurryAgent.setContinueSessionMillis(30000);
 			FlurryAgent.onStartSession(this, API);
