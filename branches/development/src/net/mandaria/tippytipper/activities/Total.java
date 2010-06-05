@@ -1,5 +1,10 @@
 package net.mandaria.tippytipper.activities;
 
+import java.util.HashMap;
+import java.util.Map;
+
+import com.flurry.android.FlurryAgent;
+
 import net.mandaria.tippytipper.R;
 import net.mandaria.tippytipper.R.id;
 import net.mandaria.tippytipper.R.layout;
@@ -86,8 +91,7 @@ public class Total extends Activity {
 				@Override
 				public void onStopTrackingTouch(SeekBar seekBar)
 				{
-					// TODO Auto-generated method stub
-					
+					TipPercentageSliderOnStopTouch();
 				}
 			});
 		
@@ -98,6 +102,12 @@ public class Total extends Activity {
 	public void onStart()
 	{
 		super.onStart();
+		String API = getString(R.string.flurrykey);
+		if(!API.equals(""))
+		{
+			FlurryAgent.setContinueSessionMillis(30000);
+			FlurryAgent.onStartSession(this, API);
+		}
 		
 		RefreshBillAmount();
 		
@@ -110,6 +120,10 @@ public class Total extends Activity {
         	{
         		double tipPercentagePresetOne = (double)Settings.getTipPercentagePresetOne(getBaseContext());
         		CalculateTip(tipPercentagePresetOne);
+        		
+        		Map<String, String> params = new HashMap<String, String>();
+        		params.put("Tip Percentage Preset", String.valueOf(tipPercentagePresetOne));
+        		FlurryAgent.onEvent("Tip Preset One Button", params);
         	}
         });
         
@@ -122,6 +136,10 @@ public class Total extends Activity {
         	{
         		double tipPercentagePresetTwo = (double)Settings.getTipPercentagePresetTwo(getBaseContext());
         		CalculateTip(tipPercentagePresetTwo);
+        		
+        		Map<String, String> params = new HashMap<String, String>();
+        		params.put("Tip Percentage Preset", String.valueOf(tipPercentagePresetTwo));
+        		FlurryAgent.onEvent("Tip Preset Two Button", params);
         	}
         });
         
@@ -134,9 +152,19 @@ public class Total extends Activity {
         	{
         		double tipPercentagePresetThree = (double)Settings.getTipPercentagePresetThree(getBaseContext());
         		CalculateTip(tipPercentagePresetThree);
+        		
+        		Map<String, String> params = new HashMap<String, String>();
+        		params.put("Tip Percentage Preset", String.valueOf(tipPercentagePresetThree));
+        		FlurryAgent.onEvent("Tip Preset Three Button", params);
         	}
         });
 	}
+	
+	 public void onStop()
+    {
+       super.onStop();
+       FlurryAgent.onEndSession(this);
+    }
     
     @Override
   	public boolean onCreateOptionsMenu(Menu menu)
@@ -144,6 +172,7 @@ public class Total extends Activity {
   		super.onCreateOptionsMenu(menu);
   		MenuInflater inflater = getMenuInflater();
   		inflater.inflate(R.menu.menu, menu);
+  		FlurryAgent.onEvent("Menu Button");
   		return true;
   	}
 
@@ -154,18 +183,43 @@ public class Total extends Activity {
   		{
   			case R.id.settings:
   				startActivity(new Intent(this, Settings.class));
+  				FlurryAgent.onEvent("Settings Button");
   				return true;
   			case R.id.about:
   				startActivity(new Intent(this, About.class));
+  				FlurryAgent.onEvent("About Button");
 				return true;
   		}
   		return false;
+  	}
+  	
+  	private void TipPercentageSliderOnStopTouch()
+  	{
+  		TippyTipperApplication appState = ((TippyTipperApplication)this.getApplication());
+		Map<String, String> params = new HashMap<String, String>();
+		params.put("Bill Amount", appState.service.GetBillAmount());
+		params.put("Tax Amount", appState.service.GetTaxAmount());
+		params.put("Tip Amount", appState.service.GetTipAmount());
+		params.put("Tip Percentage", appState.service.GetTipPercentage());
+		params.put("Tax Percentage", appState.service.GetTaxPercentage());
+		
+		FlurryAgent.onEvent("Tip Percentage Slider", params);
   	}
   	
   	private void SplitBillWithDefaultNumberOfPeople()
   	{
   		TippyTipperApplication appState = ((TippyTipperApplication)this.getApplication());
   		int numberOfPeople = (int)Settings.getDefaultNumberOfPeopleToSplitBill(getBaseContext());
+  		
+  		Map<String, String> params = new HashMap<String, String>();
+		params.put("Default Number Of People", String.valueOf(numberOfPeople));
+		params.put("Bill Amount", appState.service.GetBillAmount());
+		params.put("Tax Amount", appState.service.GetTaxAmount());
+		params.put("Tip Amount", appState.service.GetTipAmount());
+		params.put("Total Amount", appState.service.GetTotalAmount());
+		params.put("Tip Percentage", appState.service.GetTipPercentage());
+		params.put("Tax Percentage", appState.service.GetTaxPercentage());
+		FlurryAgent.onEvent("Split Bill Button", params);
 		
 		appState.service.SplitBill(numberOfPeople);
   	}
@@ -185,7 +239,21 @@ public class Total extends Activity {
     {
     	TippyTipperApplication appState = ((TippyTipperApplication)this.getApplication());
     	boolean roundTip = (boolean)Settings.isSetToRoundByTip(getBaseContext());
+    	
+    	String preRoundTipAmount = appState.service.GetTipAmount();
+    	String preRoundTotalAmount = appState.service.GetTotalAmount();
+    	
     	appState.service.RoundDown(roundTip);
+    	
+    	Map<String, String> params = new HashMap<String, String>();
+		params.put("Round Tip", String.valueOf(roundTip));
+		params.put("Pre Round Tip Amount", preRoundTipAmount);
+		params.put("Pre Round Total Amount", preRoundTotalAmount);
+		params.put("Bill Amount", appState.service.GetBillAmount());
+		params.put("Tax Amount", appState.service.GetTaxAmount());
+		params.put("Tip Amount", appState.service.GetTipAmount());
+		params.put("Total Amount", appState.service.GetTotalAmount());
+    	FlurryAgent.onEvent("Round Down Button", params);
     	
     	BindData();
     }
@@ -194,7 +262,21 @@ public class Total extends Activity {
     {
     	TippyTipperApplication appState = ((TippyTipperApplication)this.getApplication());
     	boolean roundTip = (boolean)Settings.isSetToRoundByTip(getBaseContext());
+    	
+    	String preRoundTipAmount = appState.service.GetTipAmount();
+    	String preRoundTotalAmount = appState.service.GetTotalAmount();
+    	
     	appState.service.RoundUp(roundTip);
+    	
+    	Map<String, String> params = new HashMap<String, String>();
+		params.put("Round Tip", String.valueOf(roundTip));
+		params.put("Pre Round Tip Amount", preRoundTipAmount);
+		params.put("Pre Round Total Amount", preRoundTotalAmount);
+		params.put("Bill Amount", appState.service.GetBillAmount());
+		params.put("Tax Amount", appState.service.GetTaxAmount());
+		params.put("Tip Amount", appState.service.GetTipAmount());
+		params.put("Total Amount", appState.service.GetTotalAmount());
+    	FlurryAgent.onEvent("Round Up Button", params);
     	
     	BindData();
     }

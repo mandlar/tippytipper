@@ -1,5 +1,10 @@
 package net.mandaria.tippytipper.activities;
 
+import java.util.HashMap;
+import java.util.Map;
+
+import com.flurry.android.FlurryAgent;
+
 import net.mandaria.tippytipper.R;
 import net.mandaria.tippytipper.R.id;
 import net.mandaria.tippytipper.R.layout;
@@ -34,6 +39,7 @@ public class TippyTipper extends Activity  {
             	public void onClick(View v) 
             	{
             		AddBillAmount("1");
+            		FlurryAgent.onEvent("1 Button");
             	}
             });
         View btn_two = findViewById(R.id.btn_two);
@@ -42,6 +48,7 @@ public class TippyTipper extends Activity  {
             	public void onClick(View v) 
             	{
             		AddBillAmount("2");
+            		FlurryAgent.onEvent("2 Button");
             	}
             });
         View btn_three = findViewById(R.id.btn_three);
@@ -50,6 +57,7 @@ public class TippyTipper extends Activity  {
             	public void onClick(View v) 
             	{
             		AddBillAmount("3");
+            		FlurryAgent.onEvent("3 Button");
             	}
             });
         View btn_four = findViewById(R.id.btn_four);
@@ -58,6 +66,7 @@ public class TippyTipper extends Activity  {
             	public void onClick(View v) 
             	{
             		AddBillAmount("4");
+            		FlurryAgent.onEvent("4 Button");
             	}
             });
         View btn_five = findViewById(R.id.btn_five);
@@ -66,6 +75,7 @@ public class TippyTipper extends Activity  {
             	public void onClick(View v) 
             	{
             		AddBillAmount("5");
+            		FlurryAgent.onEvent("5 Button");
             	}
             });
         View btn_six = findViewById(R.id.btn_six);
@@ -74,6 +84,7 @@ public class TippyTipper extends Activity  {
             	public void onClick(View v) 
             	{
             		AddBillAmount("6");
+            		FlurryAgent.onEvent("6 Button");
             	}
             });
         View btn_seven = findViewById(R.id.btn_seven);
@@ -82,6 +93,7 @@ public class TippyTipper extends Activity  {
             	public void onClick(View v) 
             	{
             		AddBillAmount("7");
+            		FlurryAgent.onEvent("7 Button");
             	}
             });
         View btn_eight = findViewById(R.id.btn_eight);
@@ -90,6 +102,7 @@ public class TippyTipper extends Activity  {
             	public void onClick(View v) 
             	{
             		AddBillAmount("8");
+            		FlurryAgent.onEvent("8 Button");
             	}
             });
         View btn_nine = findViewById(R.id.btn_nine);
@@ -98,6 +111,7 @@ public class TippyTipper extends Activity  {
             	public void onClick(View v) 
             	{
             		AddBillAmount("9");
+            		FlurryAgent.onEvent("9 Button");
             	}
             });
         View btn_zero = findViewById(R.id.btn_zero);
@@ -106,6 +120,7 @@ public class TippyTipper extends Activity  {
 	        	public void onClick(View v) 
 	        	{
 	        		AddBillAmount("0");
+	        		FlurryAgent.onEvent("0 Button");
 	        	}
 	        });
         View btn_delete = findViewById(R.id.btn_delete);
@@ -114,6 +129,7 @@ public class TippyTipper extends Activity  {
             	public void onClick(View v) 
             	{
             		RemoveBillAmount();
+            		FlurryAgent.onEvent("Delete Button");
             	}
             });
 //        Drawable d_delete = findViewById(R.id.btn_delete).getBackground();
@@ -138,12 +154,30 @@ public class TippyTipper extends Activity  {
 //        d_ok.setColorFilter(filter_green);
     }
     
+    public void onStart()
+    {
+       super.onStart();
+       String API = getString(R.string.flurrykey);
+       if(!API.equals(""))
+       {
+    	   FlurryAgent.setContinueSessionMillis(30000);
+    	   FlurryAgent.onStartSession(this, API);
+       }
+    }
+    
+    public void onStop()
+    {
+       super.onStop();
+       FlurryAgent.onEndSession(this);
+    }
+    
     @Override
   	public boolean onCreateOptionsMenu(Menu menu)
   	{
   		super.onCreateOptionsMenu(menu);
   		MenuInflater inflater = getMenuInflater();
   		inflater.inflate(R.menu.menu, menu);
+  		FlurryAgent.onEvent("Menu Button");
   		return true;
   	}
 
@@ -154,9 +188,11 @@ public class TippyTipper extends Activity  {
   		{
   			case R.id.settings:
   				startActivity(new Intent(this, Settings.class));
+  				FlurryAgent.onEvent("Settings Button");
   				return true;
   			case R.id.about:
   				startActivity(new Intent(this, About.class));
+  				FlurryAgent.onEvent("About Button");
 				return true;
   		}
   		return false;
@@ -167,6 +203,12 @@ public class TippyTipper extends Activity  {
   		TippyTipperApplication appState = ((TippyTipperApplication)this.getApplication());
 		double defaultTipPercentage = (double)Settings.getDefaultTipPercentage(getBaseContext());
 		float excludeTaxRate = (float)Settings.getExcludeTaxRate(getBaseContext());
+		
+		Map<String, String> params = new HashMap<String, String>();
+		params.put("Default Tip Percentage", String.valueOf(defaultTipPercentage));
+		params.put("Exclude Tax Rate", String.valueOf(excludeTaxRate));
+		params.put("Bill Amount", appState.service.GetBillAmount());
+		FlurryAgent.onEvent("OK Button", params);
 		
 		appState.service.CalculateTip(defaultTipPercentage/100.0, excludeTaxRate/100.0);
   	}

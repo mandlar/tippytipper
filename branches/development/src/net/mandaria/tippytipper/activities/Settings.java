@@ -1,5 +1,7 @@
 package net.mandaria.tippytipper.activities;
 
+import com.flurry.android.FlurryAgent;
+
 import net.mandaria.tippytipper.R;
 import android.os.Bundle;
 import android.preference.*;
@@ -14,6 +16,23 @@ public class Settings extends PreferenceActivity
 		super.onCreate(savedInstanceState);
 		addPreferencesFromResource(R.xml.settings);
 	}
+	
+	public void onStart()
+    {
+       super.onStart();
+       String API = getString(R.string.flurrykey);
+       if(!API.equals(""))
+       {
+    	   FlurryAgent.setContinueSessionMillis(30000);
+    	   FlurryAgent.onStartSession(this, API);
+       }
+    }
+    
+    public void onStop()
+    {
+       super.onStop();
+       FlurryAgent.onEndSession(this);
+    }
 	
 	public static int getDefaultTipPercentage(Context context)
 	{
