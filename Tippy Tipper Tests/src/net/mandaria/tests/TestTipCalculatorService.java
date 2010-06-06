@@ -468,7 +468,7 @@ public class TestTipCalculatorService
 		assertTrue(service.GetTipAmount(), service.GetTipAmount().equals("$0.00"));
 		assertTrue(service.GetTotalAmount(), service.GetTotalAmount().equals("$0.00"));
 		assertTrue(service.GetTaxAmount(), service.GetTaxAmount().equals("$0.00"));
-		assertTrue(service.GetTaxPercentage(), service.GetTaxPercentage().equals("7.00%"));
+		assertTrue(service.GetTaxPercentage(), service.GetTaxPercentage().equals("7.0%"));
 	}
 	
 	@Test public void GetTipAndTotalFromTenDollarBillAmountTenPercentTip()
@@ -588,6 +588,40 @@ public class TestTipCalculatorService
 		assertTrue(service.GetTaxAmount(), service.GetTaxAmount().equals("$0.65"));
 		assertTrue(service.GetTipAmount(), service.GetTipAmount().equals("$0.00"));
 		assertTrue(service.GetTotalAmount(), service.GetTotalAmount().equals("$10.00"));
+	}
+	
+	@Test public void GetTipAndTotalFromOneHundredDollarBillAmountZeroPercentTipExcludeTaxThreeDecimalPlaces8_875()
+	{
+		TipCalculatorService service = new TipCalculatorService();
+		assertTrue(service.GetBillAmount(), service.GetBillAmount().equals("$0.00"));
+		service.AppendNumberToBillAmount("1");
+		service.AppendNumberToBillAmount("0");
+		service.AppendNumberToBillAmount("0");
+		service.AppendNumberToBillAmount("0");
+		service.AppendNumberToBillAmount("0");
+		assertTrue(service.GetBillAmount(), service.GetBillAmount().equals("$100.00"));
+		service.CalculateTip(0, 0.08875);
+		assertTrue(service.GetBillAmount(), service.GetBillAmount().equals("$91.85"));
+		assertTrue(service.GetTaxAmount(), service.GetTaxAmount().equals("$8.15"));
+		assertTrue(service.GetTipAmount(), service.GetTipAmount().equals("$0.00"));
+		assertTrue(service.GetTotalAmount(), service.GetTotalAmount().equals("$100.00"));
+	}
+	
+	@Test public void GetTipAndTotalFromOneHundredDollarBillAmountZeroPercentTipExcludeTaxThreeDecimalPlaces8_675()
+	{
+		TipCalculatorService service = new TipCalculatorService();
+		assertTrue(service.GetBillAmount(), service.GetBillAmount().equals("$0.00"));
+		service.AppendNumberToBillAmount("1");
+		service.AppendNumberToBillAmount("0");
+		service.AppendNumberToBillAmount("0");
+		service.AppendNumberToBillAmount("0");
+		service.AppendNumberToBillAmount("0");
+		assertTrue(service.GetBillAmount(), service.GetBillAmount().equals("$100.00"));
+		service.CalculateTip(0, 0.08675);
+		assertTrue(service.GetBillAmount(), service.GetBillAmount().equals("$92.02"));
+		assertTrue(service.GetTaxAmount(), service.GetTaxAmount().equals("$7.98"));
+		assertTrue(service.GetTipAmount(), service.GetTipAmount().equals("$0.00"));
+		assertTrue(service.GetTotalAmount(), service.GetTotalAmount().equals("$100.00"));
 	}
 	
 	@Test public void RoundUpIntegerBillAmount()
