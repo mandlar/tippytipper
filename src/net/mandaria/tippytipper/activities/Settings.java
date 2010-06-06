@@ -65,6 +65,11 @@ public class Settings extends PreferenceActivity
 		return PreferenceManager.getDefaultSharedPreferences(context).getBoolean("enable_error_logging", true);
 	}
 	
+	public static boolean getEnableExcludeTaxRate(Context context)
+	{
+		return PreferenceManager.getDefaultSharedPreferences(context).getBoolean("enable_exclude_tax_rate", false);
+	}
+	
 	public static boolean isSetToRoundByTip(Context context)
 	{
 		String RoundType = PreferenceManager.getDefaultSharedPreferences(context).getString("round_type", "round_total");
