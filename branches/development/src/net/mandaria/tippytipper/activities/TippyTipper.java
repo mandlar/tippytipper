@@ -204,6 +204,9 @@ public class TippyTipper extends Activity  {
   		TippyTipperApplication appState = ((TippyTipperApplication)this.getApplication());
 		double defaultTipPercentage = (double)Settings.getDefaultTipPercentage(getBaseContext());
 		float excludeTaxRate = (float)Settings.getExcludeTaxRate(getBaseContext());
+		boolean enableExcludeTaxRate = (boolean)Settings.getEnableExcludeTaxRate(getBaseContext());
+		if(enableExcludeTaxRate == false)
+			excludeTaxRate = 0;
 		
 		Map<String, String> params = new HashMap<String, String>();
 		params.put("Default Tip Percentage", String.valueOf(defaultTipPercentage));

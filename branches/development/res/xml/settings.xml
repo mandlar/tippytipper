@@ -45,12 +45,20 @@
 	        />
 	</PreferenceCategory>
 	<PreferenceCategory android:title="Tax Options">
+		<CheckBoxPreference
+			android:key="enable_exclude_tax_rate"
+	   		android:title="Enable Exclude Tax Rate"
+	   		android:summary="Excludes tax rate from tip when enabled"
+	   		android:defaultValue="false"
+	   		android:disableDependentsState="false"
+			/>
 	    <net.mandaria.tippytipper.preferences.DecimalPreference
 			android:key="exclude_tax"
 	        android:title="Tax Rate to Exclude"
 	        android:summary="The tax rate to exclude when calculating tip"
 	        android:dialogMessage="Tax Rate"
 	        android:defaultValue="0"
+	        android:dependency="enable_exclude_tax_rate"
 	        />
 	</PreferenceCategory>
 	<PreferenceCategory android:title="Rounding Options">
