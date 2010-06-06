@@ -155,12 +155,12 @@
 									android:layout_weight="1"
 									android:id="@+id/btn_round_down"
 									style="@style/TippingButton"
-									android:text="Up" />
+									android:text="Down" />
 								<Button 
 									android:layout_weight="1"
 									android:id="@+id/btn_round_up"
 									style="@style/TippingButton"
-									android:text="Down" />
+									android:text="Up" />
 								</TableRow>
 							</TableLayout>				
 						</TableRow>
