@@ -46,7 +46,7 @@ public class NumberPicker extends LinearLayout implements OnClickListener,
         OnFocusChangeListener, OnLongClickListener {
 
     private static final String TAG = "NumberPicker";
-    private static final int DEFAULT_MAX = 99;
+    private static final int DEFAULT_MAX = 999;
     private static final int DEFAULT_MIN = 0;
 
     public interface OnChangedListener {
@@ -72,6 +72,19 @@ public class NumberPicker extends LinearLayout implements OnClickListener,
                     mArgs[0] = value;
                     mBuilder.delete(0, mBuilder.length());
                     mFmt.format("%02d", mArgs);
+                    return mFmt.toString();
+                }
+        };
+        
+    public static final NumberPicker.Formatter THREE_DIGIT_FORMATTER =
+            new NumberPicker.Formatter() {
+                final StringBuilder mBuilder = new StringBuilder();
+                final java.util.Formatter mFmt = new java.util.Formatter(mBuilder);
+                final Object[] mArgs = new Object[1];
+                public String toString(int value) {
+                    mArgs[0] = value;
+                    mBuilder.delete(0, mBuilder.length());
+                    mFmt.format("%03d", mArgs);
                     return mFmt.toString();
                 }
         };
