@@ -297,6 +297,7 @@ public class Total extends Activity {
 		if(excludeTaxRate == 0)
 		{
 			appState.service.RefreshBillAmount();
+			appState.service.CalculateTip(appState.service.GetTipPercentageAsDouble()/100.0, excludeTaxRate);
 			BindData();
 		}
 		else
