@@ -88,7 +88,7 @@ public class TipCalculatorService
 	public String GetTaxPercentage()
 	{
 		double percent = TaxPercentage * 100;
-		DecimalFormat dec = new DecimalFormat("0.00");
+		DecimalFormat dec = new DecimalFormat("0.0##");
 		return dec.format(percent) + "%";
 	}
 	

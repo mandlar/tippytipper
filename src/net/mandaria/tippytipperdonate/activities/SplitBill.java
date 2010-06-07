@@ -1,5 +1,10 @@
 package net.mandaria.tippytipperdonate.activities;
 
+import java.util.HashMap;
+import java.util.Map;
+
+import com.flurry.android.FlurryAgent;
+
 import net.mandaria.tippytipperdonate.R;
 import net.mandaria.tippytipperdonate.R.id;
 import net.mandaria.tippytipperdonate.R.layout;
@@ -32,6 +37,7 @@ public class SplitBill extends Activity {
             	public void onClick(View v) 
             	{
             		AddPerson();
+            		FlurryAgent.onEvent("Add Person Button");
             	}
             });
         
@@ -41,8 +47,27 @@ public class SplitBill extends Activity {
             	public void onClick(View v) 
             	{
             		RemovePerson();
+            		FlurryAgent.onEvent("Remove Person Button");
             	}
             });
+    }
+    
+    public void onStart()
+    {
+       super.onStart();
+       boolean enableErrorLogging = (boolean)Settings.getEnableErrorLogging(getBaseContext());
+       String API = getString(R.string.flurrykey);
+       if(!API.equals("") && enableErrorLogging == true)
+       {
+    	   FlurryAgent.setContinueSessionMillis(30000);
+    	   FlurryAgent.onStartSession(this, API);
+       }
+    }
+    
+    public void onStop()
+    {
+       super.onStop();
+       FlurryAgent.onEndSession(this);
     }
     
     @Override
@@ -51,6 +76,7 @@ public class SplitBill extends Activity {
   		super.onCreateOptionsMenu(menu);
   		MenuInflater inflater = getMenuInflater();
   		//inflater.inflate(R.menu.menu, menu);
+  		FlurryAgent.onEvent("Disabled Menu Button");
   		return true;
   	}
 
@@ -61,6 +87,7 @@ public class SplitBill extends Activity {
   		{
   			case R.id.settings:
   				startActivity(new Intent(this, Settings.class));
+  				FlurryAgent.onEvent("Settings Button");
   				return true;
   		}
   		return false;
@@ -125,6 +152,15 @@ public class SplitBill extends Activity {
 		lbl_split_adjustment.setText(appState.service.GetSplitAdjustment());
 		lbl_split_total.setText(appState.service.GetSplitTotalAmount());
 		lbl_NumberOfPeople.setText(Integer.toString(appState.service.GetNumberOfPeople()));
+		
+		Map<String, String> params = new HashMap<String, String>();
+		params.put("Number of People", String.valueOf(appState.service.GetNumberOfPeople()));
+		params.put("Split Bill Amount", appState.service.GetSplitBillAmount());
+		params.put("Split Tax Amount", appState.service.GetSplitTaxAmount());
+		params.put("Split Tip Amount", appState.service.GetSplitTipAmount());
+		params.put("Split Adjustment Amount", appState.service.GetSplitAdjustment());
+		params.put("Split Total Amount", appState.service.GetSplitTotalAmount());
+		FlurryAgent.onEvent("Split Bill Bind Data", params);
 		
     }
 }

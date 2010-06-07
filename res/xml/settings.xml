@@ -45,12 +45,20 @@
 	        />
 	</PreferenceCategory>
 	<PreferenceCategory android:title="Tax Options">
+		<CheckBoxPreference
+			android:key="enable_exclude_tax_rate"
+	   		android:title="Enable Exclude Tax Rate"
+	   		android:summary="Excludes tax rate from tip when enabled"
+	   		android:defaultValue="false"
+	   		android:disableDependentsState="false"
+			/>
 	    <net.mandaria.tippytipperdonate.preferences.DecimalPreference
 			android:key="exclude_tax"
 	        android:title="Tax Rate to Exclude"
 	        android:summary="The tax rate to exclude when calculating tip"
 	        android:dialogMessage="Tax Rate"
 	        android:defaultValue="0"
+	        android:dependency="enable_exclude_tax_rate"
 	        />
 	</PreferenceCategory>
 	<PreferenceCategory android:title="Rounding Options">
@@ -73,5 +81,13 @@
 	        android:max="20"
 	        app:min="2"
 	        />
+	</PreferenceCategory>
+	<PreferenceCategory android:title="Privacy Options">
+	   <CheckBoxPreference
+	   		android:key="enable_error_logging"
+	   		android:title="Enable Error Logging"
+	   		android:summary="Application reports anonymous error/event information to developer"
+	   		android:defaultValue="true"
+	   		/>
 	</PreferenceCategory>
 </PreferenceScreen>
