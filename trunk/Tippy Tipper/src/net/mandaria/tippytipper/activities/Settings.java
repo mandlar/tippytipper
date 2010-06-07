@@ -1,5 +1,7 @@
 package net.mandaria.tippytipper.activities;
 
+import com.flurry.android.FlurryAgent;
+
 import net.mandaria.tippytipper.R;
 import android.os.Bundle;
 import android.preference.*;
@@ -14,6 +16,24 @@ public class Settings extends PreferenceActivity
 		super.onCreate(savedInstanceState);
 		addPreferencesFromResource(R.xml.settings);
 	}
+	
+	public void onStart()
+    {
+       super.onStart();
+       boolean enableErrorLogging = (boolean)Settings.getEnableErrorLogging(getBaseContext());
+       String API = getString(R.string.flurrykey);
+       if(!API.equals("") && enableErrorLogging == true)
+       {
+    	   FlurryAgent.setContinueSessionMillis(30000);
+    	   FlurryAgent.onStartSession(this, API);
+       }
+    }
+    
+    public void onStop()
+    {
+       super.onStop();
+       FlurryAgent.onEndSession(this);
+    }
 	
 	public static int getDefaultTipPercentage(Context context)
 	{
@@ -38,6 +58,16 @@ public class Settings extends PreferenceActivity
 	public static int getDefaultNumberOfPeopleToSplitBill(Context context)
 	{
 		return PreferenceManager.getDefaultSharedPreferences(context).getInt("default_number_of_people", 2);
+	}
+	
+	public static boolean getEnableErrorLogging(Context context)
+	{
+		return PreferenceManager.getDefaultSharedPreferences(context).getBoolean("enable_error_logging", true);
+	}
+	
+	public static boolean getEnableExcludeTaxRate(Context context)
+	{
+		return PreferenceManager.getDefaultSharedPreferences(context).getBoolean("enable_exclude_tax_rate", false);
 	}
 	
 	public static boolean isSetToRoundByTip(Context context)
