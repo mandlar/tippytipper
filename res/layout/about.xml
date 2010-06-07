@@ -61,12 +61,23 @@
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:textStyle="bold"
+			android:text="Version 1.1.1: "
+			/>
+		<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text=" * Bug fix: Fixed force close with Android 1.5 when opening Tax Rate or Number of People preferences\n"
+			/>
+		<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:textStyle="bold"
 			android:text="Version 1.1: "
 			/>
 		<TextView
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:text=" * Error/event logging added (app now requires Internet permission)\n * Privacy preference added to enable/disable error/event logging\n * Tax rate preference added to enable/disable excluding tax rate (instead of setting tax rate to 0% to disable)\n * Bug fix: tip percentage wasn't re-calculating when switching from excluding tax rate to no longer excluding tax rate\n * Tax rate can now be up to three decimal places\n * Bug fix: Round Up and Down buttons were reversed in landscape mode "
+			android:text=" * Error/event logging added (app now requires Internet permission)\n * Privacy preference added to enable/disable error/event logging\n * Tax rate preference added to enable/disable excluding tax rate (instead of setting tax rate to 0% to disable)\n * Bug fix: tip percentage wasn't re-calculating when switching from excluding tax rate to no longer excluding tax rate\n * Tax rate can now be up to three decimal places\n * Bug fix: Round Up and Down buttons were reversed in landscape mode \n"
 			/>
 
 	</LinearLayout>
