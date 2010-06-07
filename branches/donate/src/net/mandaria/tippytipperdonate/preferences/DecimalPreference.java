@@ -148,7 +148,7 @@ public class DecimalPreference extends DialogPreference
 			// to be called
 			mPickInteger.onClick(null);
 			mPickDecimal.onClick(null);
-			String value = mPickInteger.getCurrent() + "." + mPickDecimal.getCurrent();
+			String value = mPickInteger.getCurrent() + "." + mPickDecimal.getCurrentFormatted();
 			mValue = Float.valueOf(value);
 			if (shouldPersist())
 				persistFloat(mValue);
