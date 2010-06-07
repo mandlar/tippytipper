@@ -58,7 +58,7 @@ public class DecimalPreference extends DialogPreference
 
 		mPickInteger = new NumberPicker(mContext);
 		mPickDecimal = new NumberPicker(mContext);
-		mPickDecimal.setFormatter(NumberPicker.TWO_DIGIT_FORMATTER);
+		mPickDecimal.setFormatter(NumberPicker.THREE_DIGIT_FORMATTER);
 
 		TextView dot = new TextView(mContext);
 		dot.setText(".");
@@ -97,7 +97,7 @@ public class DecimalPreference extends DialogPreference
 	private void BindData()
 	{
 		mInteger = (int) Math.floor((double) mValue);
-		float decimal = (mValue * 100) - (mInteger * 100);
+		float decimal = (mValue * 1000) - (mInteger * 1000);
 		mDecimal = (int) decimal;
 		try
 		{

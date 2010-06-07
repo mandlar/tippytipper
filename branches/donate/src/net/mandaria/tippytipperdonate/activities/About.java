@@ -1,5 +1,7 @@
 package net.mandaria.tippytipperdonate.activities;
 
+import com.flurry.android.FlurryAgent;
+
 import net.mandaria.tippytipperdonate.R;
 import net.mandaria.tippytipperdonate.R.id;
 import net.mandaria.tippytipperdonate.R.layout;
@@ -26,5 +28,23 @@ public class About extends Activity  {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.about);  
+    }
+    
+    public void onStart()
+    {
+       super.onStart();
+       boolean enableErrorLogging = (boolean)Settings.getEnableErrorLogging(getBaseContext());
+       String API = getString(R.string.flurrykey);
+       if(!API.equals("") && enableErrorLogging == true)
+       {
+    	   FlurryAgent.setContinueSessionMillis(30000);
+    	   FlurryAgent.onStartSession(this, API);
+       }
+    }
+    
+    public void onStop()
+    {
+       super.onStop();
+       FlurryAgent.onEndSession(this);
     }
 }
