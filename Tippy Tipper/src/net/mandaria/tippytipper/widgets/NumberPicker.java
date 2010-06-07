@@ -440,4 +440,8 @@ public class NumberPicker extends LinearLayout implements OnClickListener,
     public int getCurrent() {
         return mCurrent;
     }
+    
+    public String getCurrentFormatted() {
+    	return formatNumber(mCurrent);
+    }
 }
