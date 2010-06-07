@@ -66,7 +66,7 @@
 		<TextView
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:text=" * Bug fix: Fixed force close with Android 1.5 when opening Tax Rate or Number of People preferences\n"
+			android:text=" * Bug fix: Fixed force close with Android 1.5 when opening Tax Rate or Number of People preferences\n * Bug fix: Fixed tax rate from truncating leading zeroes after the decimal place\n"
 			/>
 		<TextView
 			android:layout_width="wrap_content"
