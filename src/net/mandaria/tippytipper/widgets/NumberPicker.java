@@ -296,6 +296,11 @@ public class NumberPicker extends LinearLayout implements OnClickListener,
 
     private void validateInput(View v) {
         String str = String.valueOf(((TextView) v).getText());
+        if(str.length() == 2 && mFormatter == THREE_DIGIT_FORMATTER)
+        	str = str + "0";
+        else if(str.length() == 1 && mFormatter == THREE_DIGIT_FORMATTER)
+        	str = str + "00";
+        
         if ("".equals(str)) {
 
             // Restore to the old value as we don't allow empty values
