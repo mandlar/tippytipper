@@ -61,6 +61,17 @@
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:textStyle="bold"
+			android:text="Version 1.1.2: "
+			/>
+		<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text=" * Bug fix: Entering tax rate as 8.75 used to save it as 8.075, now correctly saves it as 8.750 \n"
+			/>
+		<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:textStyle="bold"
 			android:text="Version 1.1.1: "
 			/>
 		<TextView
