@@ -31,6 +31,8 @@ public class TippyTipper extends Activity  {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);  
+     
+        BindData();
         
         // Setup click listeners for buttons
         View btn_one = findViewById(R.id.btn_one);
@@ -169,7 +171,18 @@ public class TippyTipper extends Activity  {
     public void onStop()
     {
        super.onStop();
+      
        FlurryAgent.onEndSession(this);
+    }
+    
+    @Override
+    public void onDestroy()
+    {
+    	super.onDestroy();
+    	
+    	// clear the bill amount for the next time the app is opened
+        //TippyTipperApplication appState = ((TippyTipperApplication)this.getApplication());
+        //appState.service.ClearBillAmount();
     }
     
     @Override
