@@ -12,8 +12,5 @@ public class TippyTipperApplication extends Application {
 	public void onCreate() 
 	{
 		super.onCreate();
-		
-		// Clear the bill amount when the app is loaded the first time
-	    service.ClearBillAmount();
 	}
 }
