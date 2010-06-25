@@ -61,6 +61,17 @@
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:textStyle="bold"
+			android:text="Version 1.1.3: "
+			/>
+		<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text=" * Bug fix: The bill amount will properly display when exiting and re-launching the app (instead of a blank text box) \n * Long press the DEL button to clear the bill amount \n"
+			/>
+		<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:textStyle="bold"
 			android:text="Version 1.1.2: "
 			/>
 		<TextView
