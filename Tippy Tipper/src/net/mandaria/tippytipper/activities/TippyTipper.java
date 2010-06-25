@@ -23,6 +23,7 @@ import android.widget.EditText;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View.OnLongClickListener;
 
 public class TippyTipper extends Activity  {
 	
@@ -31,6 +32,8 @@ public class TippyTipper extends Activity  {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);  
+     
+        BindData();
         
         // Setup click listeners for buttons
         View btn_one = findViewById(R.id.btn_one);
@@ -132,6 +135,15 @@ public class TippyTipper extends Activity  {
             		FlurryAgent.onEvent("Delete Button");
             	}
             });
+        
+        btn_delete.setOnLongClickListener(new OnLongClickListener()
+			{
+				public boolean onLongClick(View v)
+				{
+					ClearBillAmount();
+					return true;
+				}
+			});
 //        Drawable d_delete = findViewById(R.id.btn_delete).getBackground();
 //        int red = Color.parseColor("#8E1609");
 //        PorterDuffColorFilter filter_red = new PorterDuffColorFilter(red, PorterDuff.Mode.SRC_ATOP);
@@ -169,7 +181,14 @@ public class TippyTipper extends Activity  {
     public void onStop()
     {
        super.onStop();
+      
        FlurryAgent.onEndSession(this);
+    }
+    
+    @Override
+    public void onDestroy()
+    {
+    	super.onDestroy();
     }
     
     @Override
@@ -229,6 +248,14 @@ public class TippyTipper extends Activity  {
     {
     	TippyTipperApplication appState = ((TippyTipperApplication)this.getApplication());
     	appState.service.RemoveEndNumberFromBillAmount();
+    	
+    	BindData();
+    }
+    
+    private void ClearBillAmount()
+    {
+    	TippyTipperApplication appState = ((TippyTipperApplication)this.getApplication());
+    	appState.service.ClearBillAmount();
     	
     	BindData();
     }
