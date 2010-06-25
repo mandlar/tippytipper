@@ -179,10 +179,6 @@ public class TippyTipper extends Activity  {
     public void onDestroy()
     {
     	super.onDestroy();
-    	
-    	// clear the bill amount for the next time the app is opened
-        //TippyTipperApplication appState = ((TippyTipperApplication)this.getApplication());
-        //appState.service.ClearBillAmount();
     }
     
     @Override
