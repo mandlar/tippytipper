@@ -6,13 +6,12 @@ package net.mandaria.tippytipper.preferences;
  * http://www.apache.org/licenses/LICENSE-2.0
  */
 
-import net.mandaria.tippytipper.R;
 import net.mandaria.tippytipper.*;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.Gravity;
 import android.view.View;
-import android.view.ViewGroup;
+import android.view.ViewGroup.LayoutParams;
 import android.preference.DialogPreference;
 import android.widget.SeekBar;
 import android.widget.TextView;
@@ -61,13 +60,13 @@ public class SeekBarPreference extends DialogPreference implements SeekBar.OnSee
     mValueText.setGravity(Gravity.CENTER_HORIZONTAL);
     mValueText.setTextSize(32);
     params = new LinearLayout.LayoutParams(
-        LinearLayout.LayoutParams.FILL_PARENT, 
-        LinearLayout.LayoutParams.WRAP_CONTENT);
+        LayoutParams.FILL_PARENT, 
+        LayoutParams.WRAP_CONTENT);
     layout.addView(mValueText, params);
 
     mSeekBar = new SeekBar(mContext);
     mSeekBar.setOnSeekBarChangeListener(this);
-    layout.addView(mSeekBar, new LinearLayout.LayoutParams(LinearLayout.LayoutParams.FILL_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
+    layout.addView(mSeekBar, new LinearLayout.LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT));
 
     if (shouldPersist())
       mValue = getPersistedInt(mDefault);

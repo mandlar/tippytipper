@@ -6,16 +6,9 @@ import java.util.Map;
 import com.flurry.android.FlurryAgent;
 
 import net.mandaria.tippytipper.R;
-import net.mandaria.tippytipper.R.id;
-import net.mandaria.tippytipper.R.layout;
-import net.mandaria.tippytipper.R.menu;
 import net.mandaria.tippytipper.TippyTipperApplication;
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.PorterDuffColorFilter;
-import android.graphics.drawable.Drawable;
-import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -33,7 +26,7 @@ public class TippyTipper extends Activity  {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);  
      
-        BindData();
+        bindData();
         
         // Setup click listeners for buttons
         View btn_one = findViewById(R.id.btn_one);
@@ -41,7 +34,7 @@ public class TippyTipper extends Activity  {
         	{
             	public void onClick(View v) 
             	{
-            		AddBillAmount("1");
+            		addBillAmount("1");
             		FlurryAgent.onEvent("1 Button");
             	}
             });
@@ -50,7 +43,7 @@ public class TippyTipper extends Activity  {
         	{
             	public void onClick(View v) 
             	{
-            		AddBillAmount("2");
+            		addBillAmount("2");
             		FlurryAgent.onEvent("2 Button");
             	}
             });
@@ -59,7 +52,7 @@ public class TippyTipper extends Activity  {
         	{
             	public void onClick(View v) 
             	{
-            		AddBillAmount("3");
+            		addBillAmount("3");
             		FlurryAgent.onEvent("3 Button");
             	}
             });
@@ -68,7 +61,7 @@ public class TippyTipper extends Activity  {
         	{
             	public void onClick(View v) 
             	{
-            		AddBillAmount("4");
+            		addBillAmount("4");
             		FlurryAgent.onEvent("4 Button");
             	}
             });
@@ -77,7 +70,7 @@ public class TippyTipper extends Activity  {
         	{
             	public void onClick(View v) 
             	{
-            		AddBillAmount("5");
+            		addBillAmount("5");
             		FlurryAgent.onEvent("5 Button");
             	}
             });
@@ -86,7 +79,7 @@ public class TippyTipper extends Activity  {
         	{
             	public void onClick(View v) 
             	{
-            		AddBillAmount("6");
+            		addBillAmount("6");
             		FlurryAgent.onEvent("6 Button");
             	}
             });
@@ -95,7 +88,7 @@ public class TippyTipper extends Activity  {
         	{
             	public void onClick(View v) 
             	{
-            		AddBillAmount("7");
+            		addBillAmount("7");
             		FlurryAgent.onEvent("7 Button");
             	}
             });
@@ -104,7 +97,7 @@ public class TippyTipper extends Activity  {
         	{
             	public void onClick(View v) 
             	{
-            		AddBillAmount("8");
+            		addBillAmount("8");
             		FlurryAgent.onEvent("8 Button");
             	}
             });
@@ -113,7 +106,7 @@ public class TippyTipper extends Activity  {
         	{
             	public void onClick(View v) 
             	{
-            		AddBillAmount("9");
+            		addBillAmount("9");
             		FlurryAgent.onEvent("9 Button");
             	}
             });
@@ -122,7 +115,7 @@ public class TippyTipper extends Activity  {
 	        {
 	        	public void onClick(View v) 
 	        	{
-	        		AddBillAmount("0");
+	        		addBillAmount("0");
 	        		FlurryAgent.onEvent("0 Button");
 	        	}
 	        });
@@ -131,7 +124,7 @@ public class TippyTipper extends Activity  {
         	{
             	public void onClick(View v) 
             	{
-            		RemoveBillAmount();
+            		removeBillAmount();
             		FlurryAgent.onEvent("Delete Button");
             	}
             });
@@ -140,10 +133,32 @@ public class TippyTipper extends Activity  {
 			{
 				public boolean onLongClick(View v)
 				{
-					ClearBillAmount();
+					clearBillAmount();
 					return true;
 				}
 			});
+        
+        // Added Clear Button -- Maintained the Long-Click Delete -- SPDJR
+        View btn_clear = findViewById(R.id.btn_clear);
+        btn_clear.setOnClickListener(new OnClickListener() 
+        	{
+            	public void onClick(View v) 
+            	{
+            		clearBillAmount();
+            		FlurryAgent.onEvent("Clear Button");
+            	}
+            });
+        
+        btn_clear.setOnLongClickListener(new OnLongClickListener()
+			{
+				public boolean onLongClick(View v)
+				{
+					clearBillAmount();
+					return true;
+				}
+			});
+        
+        
 //        Drawable d_delete = findViewById(R.id.btn_delete).getBackground();
 //        int red = Color.parseColor("#8E1609");
 //        PorterDuffColorFilter filter_red = new PorterDuffColorFilter(red, PorterDuff.Mode.SRC_ATOP);
@@ -154,7 +169,7 @@ public class TippyTipper extends Activity  {
         	{
             	public void onClick(View v) 
             	{
-            		CalcualteTipWithDefaultTipPercentage();
+            		calcualteTipWithDefaultTipPercentage();
             		
             		Intent i = new Intent(getBaseContext(), Total.class);//new Intent(this, Total.class);
             		startActivity(i);
@@ -166,10 +181,11 @@ public class TippyTipper extends Activity  {
 //        d_ok.setColorFilter(filter_green);
     }
     
-    public void onStart()
+    @Override
+	public void onStart()
     {
        super.onStart();
-       boolean enableErrorLogging = (boolean)Settings.getEnableErrorLogging(getBaseContext());
+       boolean enableErrorLogging = Settings.getEnableErrorLogging(getBaseContext());
        String API = getString(R.string.flurrykey);
        if(!API.equals("") && enableErrorLogging == true)
        {
@@ -178,7 +194,8 @@ public class TippyTipper extends Activity  {
        }
     }
     
-    public void onStop()
+    @Override
+	public void onStop()
     {
        super.onStop();
       
@@ -218,54 +235,54 @@ public class TippyTipper extends Activity  {
   		return false;
   	}
   	
-  	private void CalcualteTipWithDefaultTipPercentage()
+  	private void calcualteTipWithDefaultTipPercentage()
   	{
   		TippyTipperApplication appState = ((TippyTipperApplication)this.getApplication());
-		double defaultTipPercentage = (double)Settings.getDefaultTipPercentage(getBaseContext());
-		float excludeTaxRate = (float)Settings.getExcludeTaxRate(getBaseContext());
-		boolean enableExcludeTaxRate = (boolean)Settings.getEnableExcludeTaxRate(getBaseContext());
+		double defaultTipPercentage = Settings.getDefaultTipPercentage(getBaseContext());
+		float excludeTaxRate = Settings.getExcludeTaxRate(getBaseContext());
+		boolean enableExcludeTaxRate = Settings.getEnableExcludeTaxRate(getBaseContext());
 		if(enableExcludeTaxRate == false)
 			excludeTaxRate = 0;
 		
 		Map<String, String> params = new HashMap<String, String>();
 		params.put("Default Tip Percentage", String.valueOf(defaultTipPercentage));
 		params.put("Exclude Tax Rate", String.valueOf(excludeTaxRate));
-		params.put("Bill Amount", appState.service.GetBillAmount());
+		params.put("Bill Amount", appState.service.getBillAmount());
 		FlurryAgent.onEvent("OK Button", params);
 		
-		appState.service.CalculateTip(defaultTipPercentage/100.0, excludeTaxRate/100.0);
+		appState.service.calculateTip(defaultTipPercentage/100.0, excludeTaxRate/100.0);
   	}
     
-    private void AddBillAmount(String number)
+    private void addBillAmount(String number)
     {
     	TippyTipperApplication appState = ((TippyTipperApplication)this.getApplication());
-    	appState.service.AppendNumberToBillAmount(number);
+    	appState.service.appendNumberToBillAmount(number);
     	
-		BindData();
+		bindData();
     }
     
-    private void RemoveBillAmount()
+    private void removeBillAmount()
     {
     	TippyTipperApplication appState = ((TippyTipperApplication)this.getApplication());
-    	appState.service.RemoveEndNumberFromBillAmount();
+    	appState.service.removeEndNumberFromBillAmount();
     	
-    	BindData();
+    	bindData();
     }
     
-    private void ClearBillAmount()
+    private void clearBillAmount()
     {
     	TippyTipperApplication appState = ((TippyTipperApplication)this.getApplication());
-    	appState.service.ClearBillAmount();
+    	appState.service.clearBillAmount();
     	
-    	BindData();
+    	bindData();
     }
     
-    private void BindData()
+    private void bindData()
     {
     	TippyTipperApplication appState = ((TippyTipperApplication)this.getApplication());
    
     	EditText txt_amount = (EditText)findViewById(R.id.txt_amount);
-		txt_amount.setText(appState.service.GetBillAmount());
+		txt_amount.setText(appState.service.getBillAmount());
     }
  
 }

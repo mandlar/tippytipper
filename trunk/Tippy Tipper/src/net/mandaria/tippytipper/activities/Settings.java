@@ -17,10 +17,11 @@ public class Settings extends PreferenceActivity
 		addPreferencesFromResource(R.xml.settings);
 	}
 	
+	@Override
 	public void onStart()
     {
        super.onStart();
-       boolean enableErrorLogging = (boolean)Settings.getEnableErrorLogging(getBaseContext());
+       boolean enableErrorLogging = Settings.getEnableErrorLogging(getBaseContext());
        String API = getString(R.string.flurrykey);
        if(!API.equals("") && enableErrorLogging == true)
        {
@@ -29,7 +30,8 @@ public class Settings extends PreferenceActivity
        }
     }
     
-    public void onStop()
+    @Override
+	public void onStop()
     {
        super.onStop();
        FlurryAgent.onEndSession(this);

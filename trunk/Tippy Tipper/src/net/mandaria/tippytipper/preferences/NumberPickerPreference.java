@@ -1,21 +1,15 @@
 package net.mandaria.tippytipper.preferences;
 
 import net.mandaria.tippytipper.R;
-import net.mandaria.tippytipper.*;
 import net.mandaria.tippytipper.widgets.*;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.Gravity;
 import android.view.View;
-import android.view.ViewGroup;
 import android.preference.DialogPreference;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.SeekBar;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
-import android.widget.LinearLayout;
 import android.content.res.*;
 
 public class NumberPickerPreference extends DialogPreference
@@ -84,12 +78,12 @@ public class NumberPickerPreference extends DialogPreference
 		if (shouldPersist())
 			mValue = getPersistedInt(mDefault);
 
-		BindData();
+		bindData();
 
 		return layout;
 	}
 
-	private void BindData()
+	private void bindData()
 	{
 		try
 		{
@@ -105,7 +99,7 @@ public class NumberPickerPreference extends DialogPreference
 	protected void onBindDialogView(View v)
 	{
 		super.onBindDialogView(v);
-		BindData();
+		bindData();
 	}
 
 	@Override
