@@ -24,6 +24,6 @@
 <activity android:label="Tippy Tipper Settings" android:name=".activities.Settings"></activity>
 
 </application>
-    <uses-sdk android:minSdkVersion="3"  android:targetSdkVersion="4" />
+    <uses-sdk android:minSdkVersion="3" android:targetSdkVersion="6"/>
 <uses-permission android:name="android.permission.INTERNET"></uses-permission>
 </manifest>  

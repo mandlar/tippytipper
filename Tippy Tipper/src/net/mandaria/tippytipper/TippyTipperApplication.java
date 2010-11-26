@@ -1,4 +1,4 @@
-package net.mandaria.tippytipper;
+  package net.mandaria.tippytipper;
 
 import net.mandaria.tippytipper.services.TipCalculatorService;
 import android.app.*;
@@ -10,7 +10,7 @@ public class TippyTipperApplication extends Application {
 	
 	@Override
 	public void onCreate() 
-	{
+	{ 
 		super.onCreate();
 	}
-}
+} 

@@ -1,21 +1,14 @@
 package net.mandaria.tippytipper.preferences;
 
-import net.mandaria.tippytipper.*;
 import net.mandaria.tippytipper.widgets.*;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.Gravity;
 import android.view.View;
-import android.view.ViewGroup;
 import android.preference.DialogPreference;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.SeekBar;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
-import android.widget.LinearLayout;
-import android.content.res.*;
 
 public class DecimalPreference extends DialogPreference
 {
@@ -89,14 +82,14 @@ public class DecimalPreference extends DialogPreference
 		if (shouldPersist())
 			mValue = getPersistedFloat(mDefault);
 
-		BindData();
+		bindData();
 
 		return layout;
 	}
 
-	private void BindData()
+	private void bindData()
 	{
-		mInteger = (int) Math.floor((double) mValue);
+		mInteger = (int) Math.floor(mValue);
 		float decimal = (mValue * 1000) - (mInteger * 1000);
 		mDecimal = (int) decimal;
 		try
@@ -115,7 +108,7 @@ public class DecimalPreference extends DialogPreference
 	protected void onBindDialogView(View v)
 	{
 		super.onBindDialogView(v);
-		BindData();
+		bindData();
 	}
 
 	@Override
