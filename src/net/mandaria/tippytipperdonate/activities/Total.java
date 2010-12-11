@@ -6,16 +6,9 @@ import java.util.Map;
 import com.flurry.android.FlurryAgent;
 
 import net.mandaria.tippytipperdonate.R;
-import net.mandaria.tippytipperdonate.R.id;
-import net.mandaria.tippytipperdonate.R.layout;
-import net.mandaria.tippytipperdonate.R.menu;
 import net.mandaria.tippytipperdonate.TippyTipperApplication;
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.*;
 import android.view.View.OnClickListener;
@@ -32,14 +25,14 @@ public class Total extends Activity {
         
         TippyTipperApplication appState = ((TippyTipperApplication)this.getApplication());
         
-        CalculateTip(appState.service.GetTipPercentageAsDouble());
+        calculateTip(appState.service.getTipPercentageAsDouble());
         
         View btn_SplitBill = findViewById(R.id.btn_SplitBill);
         btn_SplitBill.setOnClickListener(new OnClickListener() 
         	{
             	public void onClick(View v) 
             	{
-            		SplitBillWithDefaultNumberOfPeople();
+            		splitBillWithDefaultNumberOfPeople();
             		
             		Intent i = new Intent(getBaseContext(), SplitBill.class);
             		startActivity(i);
@@ -55,7 +48,7 @@ public class Total extends Activity {
         	{
             	public void onClick(View v) 
             	{
-            		RoundDown();
+            		roundDown();
             	}
             });
         
@@ -64,7 +57,7 @@ public class Total extends Activity {
         	{
             	public void onClick(View v) 
             	{
-            		RoundUp();
+            		roundUp();
             	}
             });
 		
@@ -77,7 +70,7 @@ public class Total extends Activity {
 				{
 					if(fromUser)
 					{
-						CalculateTip((double)progress);
+						calculateTip((double)progress);
 					}
 				}
 
@@ -91,7 +84,7 @@ public class Total extends Activity {
 				@Override
 				public void onStopTrackingTouch(SeekBar seekBar)
 				{
-					TipPercentageSliderOnStopTouch();
+					tipPercentageSliderOnStopTouch();
 				}
 			});
 		
@@ -102,7 +95,7 @@ public class Total extends Activity {
 	public void onStart()
 	{
 		super.onStart();
-		boolean enableErrorLogging = (boolean)Settings.getEnableErrorLogging(getBaseContext());
+		boolean enableErrorLogging = Settings.getEnableErrorLogging(getBaseContext());
         String API = getString(R.string.flurrykey);
         if(!API.equals("") && enableErrorLogging == true)
 		{
@@ -110,17 +103,17 @@ public class Total extends Activity {
 			FlurryAgent.onStartSession(this, API);
 		}
 		
-		RefreshBillAmount();
+		refreshBillAmount();
 		
 		Button btn_TipAmount1 = (Button)findViewById(R.id.btn_TipAmount1);
-        double tipPercentagePresetOne = (double)Settings.getTipPercentagePresetOne(getBaseContext());
+        double tipPercentagePresetOne = Settings.getTipPercentagePresetOne(getBaseContext());
         btn_TipAmount1.setText((int)tipPercentagePresetOne + "%");
         btn_TipAmount1.setOnClickListener(new OnClickListener() 
     	{
         	public void onClick(View v) 
         	{
-        		double tipPercentagePresetOne = (double)Settings.getTipPercentagePresetOne(getBaseContext());
-        		CalculateTip(tipPercentagePresetOne);
+        		double tipPercentagePresetOne = Settings.getTipPercentagePresetOne(getBaseContext());
+        		calculateTip(tipPercentagePresetOne);
         		
         		Map<String, String> params = new HashMap<String, String>();
         		params.put("Tip Percentage Preset", String.valueOf(tipPercentagePresetOne));
@@ -129,14 +122,14 @@ public class Total extends Activity {
         });
         
         Button btn_TipAmount2 = (Button)findViewById(R.id.btn_TipAmount2);
-        double tipPercentagePresetTwo = (double)Settings.getTipPercentagePresetTwo(getBaseContext());
+        double tipPercentagePresetTwo = Settings.getTipPercentagePresetTwo(getBaseContext());
         btn_TipAmount2.setText((int)tipPercentagePresetTwo + "%");
         btn_TipAmount2.setOnClickListener(new OnClickListener() 
     	{
         	public void onClick(View v) 
         	{
-        		double tipPercentagePresetTwo = (double)Settings.getTipPercentagePresetTwo(getBaseContext());
-        		CalculateTip(tipPercentagePresetTwo);
+        		double tipPercentagePresetTwo = Settings.getTipPercentagePresetTwo(getBaseContext());
+        		calculateTip(tipPercentagePresetTwo);
         		
         		Map<String, String> params = new HashMap<String, String>();
         		params.put("Tip Percentage Preset", String.valueOf(tipPercentagePresetTwo));
@@ -145,14 +138,14 @@ public class Total extends Activity {
         });
         
         Button btn_TipAmount3 = (Button)findViewById(R.id.btn_TipAmount3);
-        double tipPercentagePresetThree = (double)Settings.getTipPercentagePresetThree(getBaseContext());
+        double tipPercentagePresetThree = Settings.getTipPercentagePresetThree(getBaseContext());
         btn_TipAmount3.setText((int)tipPercentagePresetThree + "%");
         btn_TipAmount3.setOnClickListener(new OnClickListener() 
     	{
         	public void onClick(View v) 
         	{
-        		double tipPercentagePresetThree = (double)Settings.getTipPercentagePresetThree(getBaseContext());
-        		CalculateTip(tipPercentagePresetThree);
+        		double tipPercentagePresetThree = Settings.getTipPercentagePresetThree(getBaseContext());
+        		calculateTip(tipPercentagePresetThree);
         		
         		Map<String, String> params = new HashMap<String, String>();
         		params.put("Tip Percentage Preset", String.valueOf(tipPercentagePresetThree));
@@ -161,7 +154,8 @@ public class Total extends Activity {
         });
 	}
 	
-	 public void onStop()
+	 @Override
+	public void onStop()
     {
        super.onStop();
        FlurryAgent.onEndSession(this);
@@ -194,117 +188,117 @@ public class Total extends Activity {
   		return false;
   	}
   	
-  	private void TipPercentageSliderOnStopTouch()
+  	private void tipPercentageSliderOnStopTouch()
   	{
   		TippyTipperApplication appState = ((TippyTipperApplication)this.getApplication());
 		Map<String, String> params = new HashMap<String, String>();
-		params.put("Bill Amount", appState.service.GetBillAmount());
-		params.put("Tax Amount", appState.service.GetTaxAmount());
-		params.put("Tip Amount", appState.service.GetTipAmount());
-		params.put("Tip Percentage", appState.service.GetTipPercentage());
-		params.put("Tax Percentage", appState.service.GetTaxPercentage());
+		params.put("Bill Amount", appState.service.getBillAmount());
+		params.put("Tax Amount", appState.service.getTaxAmount());
+		params.put("Tip Amount", appState.service.getTipAmount());
+		params.put("Tip Percentage", appState.service.getTipPercentage());
+		params.put("Tax Percentage", appState.service.getTaxPercentage());
 		
 		FlurryAgent.onEvent("Tip Percentage Slider", params);
   	}
   	
-  	private void SplitBillWithDefaultNumberOfPeople()
+  	private void splitBillWithDefaultNumberOfPeople()
   	{
   		TippyTipperApplication appState = ((TippyTipperApplication)this.getApplication());
-  		int numberOfPeople = (int)Settings.getDefaultNumberOfPeopleToSplitBill(getBaseContext());
+  		int numberOfPeople = Settings.getDefaultNumberOfPeopleToSplitBill(getBaseContext());
   		
   		Map<String, String> params = new HashMap<String, String>();
 		params.put("Default Number Of People", String.valueOf(numberOfPeople));
-		params.put("Bill Amount", appState.service.GetBillAmount());
-		params.put("Tax Amount", appState.service.GetTaxAmount());
-		params.put("Tip Amount", appState.service.GetTipAmount());
-		params.put("Total Amount", appState.service.GetTotalAmount());
-		params.put("Tip Percentage", appState.service.GetTipPercentage());
-		params.put("Tax Percentage", appState.service.GetTaxPercentage());
+		params.put("Bill Amount", appState.service.getBillAmount());
+		params.put("Tax Amount", appState.service.getTaxAmount());
+		params.put("Tip Amount", appState.service.getTipAmount());
+		params.put("Total Amount", appState.service.getTotalAmount());
+		params.put("Tip Percentage", appState.service.getTipPercentage());
+		params.put("Tax Percentage", appState.service.getTaxPercentage());
 		FlurryAgent.onEvent("Split Bill Button", params);
 		
-		appState.service.SplitBill(numberOfPeople);
+		appState.service.splitBill(numberOfPeople);
   	}
     
-    private void CalculateTip(Double percent)
+    private void calculateTip(Double percent)
     {
 		TippyTipperApplication appState = ((TippyTipperApplication)this.getApplication());
-		float excludeTaxRate = (float)Settings.getExcludeTaxRate(getBaseContext());
-		boolean enableExcludeTaxRate = (boolean)Settings.getEnableExcludeTaxRate(getBaseContext());
+		float excludeTaxRate = Settings.getExcludeTaxRate(getBaseContext());
+		boolean enableExcludeTaxRate = Settings.getEnableExcludeTaxRate(getBaseContext());
 		if(enableExcludeTaxRate == false)
 			excludeTaxRate = 0;
 		
 		//appState.service.CalculateTip(percent/100.0);
-		appState.service.CalculateTip(percent/100.0, excludeTaxRate/100.0);
+		appState.service.calculateTip(percent/100.0, excludeTaxRate/100.0);
 
-		BindData();
+		bindData();
     }
     
-    private void RoundDown()
+    private void roundDown()
     {
     	TippyTipperApplication appState = ((TippyTipperApplication)this.getApplication());
-    	boolean roundTip = (boolean)Settings.isSetToRoundByTip(getBaseContext());
+    	boolean roundTip = Settings.isSetToRoundByTip(getBaseContext());
     	
-    	String preRoundTipAmount = appState.service.GetTipAmount();
-    	String preRoundTotalAmount = appState.service.GetTotalAmount();
+    	String preRoundTipAmount = appState.service.getTipAmount();
+    	String preRoundTotalAmount = appState.service.getTotalAmount();
     	
-    	appState.service.RoundDown(roundTip);
+    	appState.service.roundDown(roundTip);
     	
     	Map<String, String> params = new HashMap<String, String>();
 		params.put("Round Tip", String.valueOf(roundTip));
 		params.put("Pre Round Tip Amount", preRoundTipAmount);
 		params.put("Pre Round Total Amount", preRoundTotalAmount);
-		params.put("Bill Amount", appState.service.GetBillAmount());
-		params.put("Tax Amount", appState.service.GetTaxAmount());
-		params.put("Tip Amount", appState.service.GetTipAmount());
-		params.put("Total Amount", appState.service.GetTotalAmount());
+		params.put("Bill Amount", appState.service.getBillAmount());
+		params.put("Tax Amount", appState.service.getTaxAmount());
+		params.put("Tip Amount", appState.service.getTipAmount());
+		params.put("Total Amount", appState.service.getTotalAmount());
     	FlurryAgent.onEvent("Round Down Button", params);
     	
-    	BindData();
+    	bindData();
     }
     
-    private void RoundUp()
+    private void roundUp()
     {
     	TippyTipperApplication appState = ((TippyTipperApplication)this.getApplication());
-    	boolean roundTip = (boolean)Settings.isSetToRoundByTip(getBaseContext());
+    	boolean roundTip = Settings.isSetToRoundByTip(getBaseContext());
     	
-    	String preRoundTipAmount = appState.service.GetTipAmount();
-    	String preRoundTotalAmount = appState.service.GetTotalAmount();
+    	String preRoundTipAmount = appState.service.getTipAmount();
+    	String preRoundTotalAmount = appState.service.getTotalAmount();
     	
-    	appState.service.RoundUp(roundTip);
+    	appState.service.roundUp(roundTip);
     	
     	Map<String, String> params = new HashMap<String, String>();
 		params.put("Round Tip", String.valueOf(roundTip));
 		params.put("Pre Round Tip Amount", preRoundTipAmount);
 		params.put("Pre Round Total Amount", preRoundTotalAmount);
-		params.put("Bill Amount", appState.service.GetBillAmount());
-		params.put("Tax Amount", appState.service.GetTaxAmount());
-		params.put("Tip Amount", appState.service.GetTipAmount());
-		params.put("Total Amount", appState.service.GetTotalAmount());
+		params.put("Bill Amount", appState.service.getBillAmount());
+		params.put("Tax Amount", appState.service.getTaxAmount());
+		params.put("Tip Amount", appState.service.getTipAmount());
+		params.put("Total Amount", appState.service.getTotalAmount());
     	FlurryAgent.onEvent("Round Up Button", params);
     	
-    	BindData();
+    	bindData();
     }
     
-    public void RefreshBillAmount()
+    public void refreshBillAmount()
     {
     	TippyTipperApplication appState = ((TippyTipperApplication)this.getApplication());
-		double tipPercent = appState.service.GetTipPercentageAsDouble();
-		float excludeTaxRate = (float)Settings.getExcludeTaxRate(getBaseContext());
-		boolean enableExcludeTaxRate = (boolean)Settings.getEnableExcludeTaxRate(getBaseContext());
+		double tipPercent = appState.service.getTipPercentageAsDouble();
+		float excludeTaxRate = Settings.getExcludeTaxRate(getBaseContext());
+		boolean enableExcludeTaxRate = Settings.getEnableExcludeTaxRate(getBaseContext());
 		if(enableExcludeTaxRate == false)
 			excludeTaxRate = 0;
 		
 		if(excludeTaxRate == 0)
 		{
-			appState.service.RefreshBillAmount();
-			appState.service.CalculateTip(appState.service.GetTipPercentageAsDouble()/100.0, excludeTaxRate);
-			BindData();
+			appState.service.refreshBillAmount();
+			appState.service.calculateTip(appState.service.getTipPercentageAsDouble()/100.0, excludeTaxRate);
+			bindData();
 		}
 		else
-			CalculateTip(tipPercent);
+			calculateTip(tipPercent);
     }
     
-    private void BindData()
+    private void bindData()
     {
     	TippyTipperApplication appState = ((TippyTipperApplication)this.getApplication());
     	
@@ -316,8 +310,8 @@ public class Total extends Activity {
 		View inflated_excludetax = findViewById(R.id.inflated_excludeTax);
 		TextView lbl_tip_text = (TextView)findViewById(R.id.lbl_tip_text);
 		
-		float excludeTaxRate = (float)Settings.getExcludeTaxRate(getBaseContext());
-		boolean enableExcludeTaxRate = (boolean)Settings.getEnableExcludeTaxRate(getBaseContext());
+		float excludeTaxRate = Settings.getExcludeTaxRate(getBaseContext());
+		boolean enableExcludeTaxRate = Settings.getEnableExcludeTaxRate(getBaseContext());
 		if(enableExcludeTaxRate == false)
 			excludeTaxRate = 0;
 		
@@ -325,33 +319,33 @@ public class Total extends Activity {
 		{
 			ViewStub stub_excludeTax = (ViewStub)findViewById(R.id.stub_excludeTax);
 			if(stub_excludeTax != null)
-				stub_excludeTax.setVisibility((int)View.VISIBLE);
+				stub_excludeTax.setVisibility(View.VISIBLE);
 			else if(inflated_excludetax != null)
-				inflated_excludetax.setVisibility((int)View.VISIBLE);
+				inflated_excludetax.setVisibility(View.VISIBLE);
 			TextView lbl_tax_amount = (TextView)findViewById(R.id.lbl_tax_amount);
-			lbl_tax_amount.setText(appState.service.GetTaxAmount());
+			lbl_tax_amount.setText(appState.service.getTaxAmount());
 			
 			// Add (tax%): to label
 			TextView lbl_tax_text = (TextView)findViewById(R.id.lbl_tax_text);
 			String tax_text = lbl_tax_text.getText().toString();
-			if(!tax_text.contains(appState.service.GetTaxPercentage()))
-				lbl_tax_text.setText(this.getString(R.string.tax).replace(":", " (" + appState.service.GetTaxPercentage() + "):"));
+			if(!tax_text.contains(appState.service.getTaxPercentage()))
+				lbl_tax_text.setText(this.getString(R.string.tax).replace(":", " (" + appState.service.getTaxPercentage() + "):"));
 		}
 		else
 		{
 			if(inflated_excludetax != null)
-				inflated_excludetax.setVisibility((int)View.GONE);
+				inflated_excludetax.setVisibility(View.GONE);
 		}
 
 		// Add (tip%): to label
 		String tip_text = lbl_tip_text.getText().toString();
-		if(!tip_text.contains(appState.service.GetTipPercentage()))
-			lbl_tip_text.setText(this.getString(R.string.tip).replace(":", " (" + appState.service.GetTipPercentage() + "):"));
+		if(!tip_text.contains(appState.service.getTipPercentage()))
+			lbl_tip_text.setText(this.getString(R.string.tip).replace(":", " (" + appState.service.getTipPercentage() + "):"));
 		
 		//lbl_tip_percentage.setText(appState.service.GetTipPercentage());
-		lbl_bill_amount.setText(appState.service.GetBillAmount());
-		lbl_tip_amount.setText(appState.service.GetTipAmount());
-		lbl_total_amount.setText(appState.service.GetTotalAmount());
-		seek_tip_percentage.setProgress(appState.service.GetTipPercentageRounded());
+		lbl_bill_amount.setText(appState.service.getBillAmount());
+		lbl_tip_amount.setText(appState.service.getTipAmount());
+		lbl_total_amount.setText(appState.service.getTotalAmount());
+		seek_tip_percentage.setProgress(appState.service.getTipPercentageRounded());
     }
 }

@@ -7,16 +7,21 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.view.Gravity;
 import android.view.View;
+import android.view.ViewGroup;
 import android.preference.DialogPreference;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.SeekBar;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
+import android.widget.LinearLayout;
 import android.content.res.*;
 
 public class NumberPickerPreference extends DialogPreference
 {
 	private static final String androidns = "http://schemas.android.com/apk/res/android";
-	private static final String appns = "http://schemas.android.com/apk/res/net.mandaria.tippytipper";
+	private static final String appns = "http://schemas.android.com/apk/res/net.mandaria.tippytipperdonate";
 
 	private NumberPicker mPickInteger;
 	private TextView mSplashText, mValueText;
@@ -79,12 +84,12 @@ public class NumberPickerPreference extends DialogPreference
 		if (shouldPersist())
 			mValue = getPersistedInt(mDefault);
 
-		bindData();
+		BindData();
 
 		return layout;
 	}
 
-	private void bindData()
+	private void BindData()
 	{
 		try
 		{
@@ -100,7 +105,7 @@ public class NumberPickerPreference extends DialogPreference
 	protected void onBindDialogView(View v)
 	{
 		super.onBindDialogView(v);
-		bindData();
+		BindData();
 	}
 
 	@Override
