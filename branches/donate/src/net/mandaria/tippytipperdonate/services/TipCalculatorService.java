@@ -3,29 +3,24 @@ package net.mandaria.tippytipperdonate.services;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 
-import net.mandaria.tippytipperdonate.R;
-import net.mandaria.tippytipperdonate.TippyTipperApplication;
-import android.widget.EditText;
-import android.widget.TextView;
-
 public class TipCalculatorService 
 {
-	private String BillEntry = "";
-	private double BillAmount = 0;
-	private double BillAmountBeforeTax = 0;
-	private double TaxAmount = 0;
-	private double TipAmount = 0;
-	private double TipAmountBeforeRounded = 0;
-	private double TotalAmount = 0;
-	private double TotalAmountBeforeRounded = 0;
-	private double TipPercentage = 0.15;
-	private double TaxPercentage = 0;
-	private double SplitBillAmount = 0;
-	private double SplitTaxAmount = 0;
-	private double SplitTipAmount = 0;
-	private double SplitTotalAmount = 0;
-	private double SplitAdjustment = 0;
-	private int NumberOfPeople = 2;
+	private String billEntry = "";
+	private double billAmount = 0;
+	private double billAmountBeforeTax = 0;
+	private double taxAmount = 0;
+	private double tipAmount = 0;
+	private double tipAmountBeforeRounded = 0;
+	private double totalAmount = 0;
+	private double totalAmountBeforeRounded = 0;
+	private double tipPercentage = 0.15;
+	private double taxPercentage = 0;
+	private double splitBillAmount = 0;
+	private double splitTaxAmount = 0;
+	private double splitTipAmount = 0;
+	private double splittotalAmount = 0;
+	private double splitAdjustment = 0;
+	private int numberOfPeople = 2;
 	NumberFormat nf = NumberFormat.getCurrencyInstance();
 	
 	public TipCalculatorService()
@@ -33,280 +28,280 @@ public class TipCalculatorService
 		
 	}
 	
-	public String GetBillAmount() 
+	public String getBillAmount() 
 	{
-		return nf.format(BillAmount);
+		return nf.format(billAmount);
     }
 	
-	public String GetTipAmount()
+	public String getTipAmount()
 	{
-		return nf.format(TipAmount);
+		return nf.format(tipAmount);
 	}
 	
-	public String GetTotalAmount()
+	public String getTotalAmount()
 	{
-		return nf.format(TotalAmount);
+		return nf.format(totalAmount);
 	}
 	
-	public String GetTaxAmount()
+	public String getTaxAmount()
 	{
-		return nf.format(TaxAmount);
+		return nf.format(taxAmount);
 	}
 	
-	public String GetSplitBillAmount()
+	public String getSplitBillAmount()
 	{
-		return nf.format(SplitBillAmount);
+		return nf.format(splitBillAmount);
 	}
 	
-	public String GetSplitTaxAmount()
+	public String getSplitTaxAmount()
 	{
-		return nf.format(SplitTaxAmount);
+		return nf.format(splitTaxAmount);
 	}
 	
-	public String GetSplitTipAmount()
+	public String getSplitTipAmount()
 	{
-		return nf.format(SplitTipAmount);
+		return nf.format(splitTipAmount);
 	}
 	
-	public String GetSplitAdjustment()
+	public String getSplitAdjustment()
 	{
-		return nf.format(SplitAdjustment);
+		return nf.format(splitAdjustment);
 	}
 	
-	public String GetSplitTotalAmount()
+	public String getSplitTotalAmount()
 	{
-		return nf.format(SplitTotalAmount);
+		return nf.format(splittotalAmount);
 	}
 	
-	public String GetTipPercentage()
+	public String getTipPercentage()
 	{
-		double percent = TipPercentage * 100;
+		double percent = tipPercentage * 100;
 		DecimalFormat dec = new DecimalFormat("0.0");
 		return dec.format(percent) + "%";
 	}
 	
-	public String GetTaxPercentage()
+	public String getTaxPercentage()
 	{
-		double percent = TaxPercentage * 100;
+		double percent = taxPercentage * 100;
 		DecimalFormat dec = new DecimalFormat("0.0##");
 		return dec.format(percent) + "%";
 	}
 	
-	public double GetTipPercentageAsDouble()
+	public double getTipPercentageAsDouble()
 	{
-		double percent = TipPercentage * 100;
+		double percent = tipPercentage * 100;
 		return percent;
 	}
 	
-	public int GetNumberOfPeople()
+	public int getNumberOfPeople()
 	{
-		return NumberOfPeople;
+		return numberOfPeople;
 	}
-	
-	public int GetTipPercentageRounded()
+
+	public int getTipPercentageRounded()
 	{
-		int percent = (int)Math.round(TipPercentage * 100);
+		int percent = (int)Math.round(tipPercentage * 100);
 		return percent;
 	}
 	
-	public void SetTipPercentage(double percent)
+	public void setTipPercentage(double percent)
 	{
-		TipPercentage = percent;
+		tipPercentage = percent;
 	}
 	
-	public void SetTaxPercentage(double percent)
+	public void setTaxPercentage(double percent)
 	{
-		TaxPercentage = percent;
+		taxPercentage = percent;
 	}
 	
-	public void RefreshBillAmount()
+	public void refreshBillAmount()
 	{
 		double amount;
 		try
 		{
-			amount = Double.valueOf(BillEntry);
+			amount = Double.valueOf(billEntry);
 		}
 		catch(Exception ex)
 		{
 			amount = 0;
 		}
     	amount = amount / 100;
-    	BillAmount = amount; 
-    	BillAmountBeforeTax = BillAmount;
+    	billAmount = amount; 
+    	billAmountBeforeTax = billAmount;
 	}
     
-    public void AppendNumberToBillAmount(String number)
+    public void appendNumberToBillAmount(String number)
     {
-    	if(BillEntry.length() < 15)
+    	if(billEntry.length() < 15)
     	{
-	    	BillEntry = BillEntry + "" + number;
+	    	billEntry = billEntry + "" + number;
     	}
-    	double amount = Double.valueOf(BillEntry);
+    	double amount = Double.valueOf(billEntry);
     	amount = amount / 100;
-    	BillAmount = amount; 
-    	BillAmountBeforeTax = BillAmount;
+    	billAmount = amount; 
+    	billAmountBeforeTax = billAmount;
     }
     
-    public void RemoveEndNumberFromBillAmount()
+    public void removeEndNumberFromBillAmount()
     {
-    	if(BillEntry.length() > 1)
+    	if(billEntry.length() > 1)
     	{
-    		BillEntry = BillEntry.substring(0, BillEntry.length() - 1);
-    		double amount = Double.valueOf(BillEntry);
+    		billEntry = billEntry.substring(0, billEntry.length() - 1);
+    		double amount = Double.valueOf(billEntry);
     		amount = amount / 100;
-    		BillAmount = amount;
+    		billAmount = amount;
     	}
     	else 
     	{
-    		BillEntry = "";
-    		BillAmount = 0;
+    		billEntry = "";
+    		billAmount = 0;
 		}
-    	BillAmountBeforeTax = BillAmount;
+    	billAmountBeforeTax = billAmount;
     }
     
-    public void ClearBillAmount()
+    public void clearBillAmount()
     {
-    	BillEntry = "";
-    	BillAmount = 0;
-    	BillAmountBeforeTax = BillAmount;
+    	billEntry = "";
+    	billAmount = 0;
+    	billAmountBeforeTax = billAmount;
     }
     
-    public void CalculateTip()
+    public void calculateTip()
     {	
-    	if(TaxPercentage > 0)
+    	if(taxPercentage > 0)
     	{
-    		BillAmount = BillAmountBeforeTax;
-    		double bill_amount = BillAmount / (1 + TaxPercentage);
+    		billAmount = billAmountBeforeTax;
+    		double bill_amount = billAmount / (1 + taxPercentage);
     		double bill_amount_rounded = Math.round(bill_amount * 100) / 100.0; // round bill to nearest penny
-    		BillAmount = bill_amount_rounded;
+    		billAmount = bill_amount_rounded;
     		
-    		double tax_amount = bill_amount * TaxPercentage; // Note: must calculate tax off of non-rounded bill amount to avoid off by 1 cent errors
+    		double tax_amount = bill_amount * taxPercentage; // Note: must calculate tax off of non-rounded bill amount to avoid off by 1 cent errors
     		tax_amount = Math.round(tax_amount * 100) / 100.0; // round tax to nearest penny
-    		TaxAmount = tax_amount;
+    		taxAmount = tax_amount;
     	}
     	else
     	{
-    		TaxAmount = 0;
+    		taxAmount = 0;
     	}
     	
-  		double tip_amount = BillAmount * TipPercentage;
+  		double tip_amount = billAmount * tipPercentage;
   		tip_amount = Math.round(tip_amount * 100) / 100.0; // round tip to nearest penny
-  		double total_amount = BillAmount + TaxAmount + tip_amount; 
+  		double total_amount = billAmount + taxAmount + tip_amount; 
   		
-  		TipAmount = tip_amount;
-  		TotalAmount = total_amount;
-  		TotalAmountBeforeRounded = TotalAmount;
-  		TipAmountBeforeRounded = TipAmount;
+  		tipAmount = tip_amount;
+  		totalAmount = total_amount;
+  		totalAmountBeforeRounded = totalAmount;
+  		tipAmountBeforeRounded = tipAmount;
     }
     
-    public void CalculateTip(double percent)
+    public void calculateTip(double percent)
     {
-    	SetTipPercentage(percent);
-    	CalculateTip();
+    	setTipPercentage(percent);
+    	calculateTip();
     }
     
-    public void CalculateTip(double percent, double taxPercent)
+    public void calculateTip(double percent, double taxPercent)
     {
-    	SetTaxPercentage(taxPercent);
-    	CalculateTip(percent);
+    	setTaxPercentage(taxPercent);
+    	calculateTip(percent);
     }
     
-    public void RoundUp(boolean RoundTip)
+    public void roundUp(boolean roundTip)
     {
-    	if(RoundTip)
+    	if(roundTip)
     	{
-    		TipAmount = TipAmountBeforeRounded;
-    		TipAmount = Math.ceil(TipAmount);
-    		TotalAmount = BillAmount + TaxAmount + TipAmount;
+    		tipAmount = tipAmountBeforeRounded;
+    		tipAmount = Math.ceil(tipAmount);
+    		totalAmount = billAmount + taxAmount + tipAmount;
     	}
     	else
     	{
-    		TotalAmount = TotalAmountBeforeRounded;
-        	TotalAmount = Math.ceil(TotalAmount);
-        	TipAmount = TotalAmount - BillAmount - TaxAmount;
+    		totalAmount = totalAmountBeforeRounded;
+        	totalAmount = Math.ceil(totalAmount);
+        	tipAmount = totalAmount - billAmount - taxAmount;
     	}
-    	TipPercentage = ((TotalAmount - TaxAmount)/BillAmount) - 1;
+    	tipPercentage = ((totalAmount - taxAmount)/billAmount) - 1;
     }
     
-    public void RoundDown(boolean RoundTip)
+    public void roundDown(boolean roundTip)
     {
-    	if(RoundTip)
+    	if(roundTip)
     	{
-    		TipAmount = TipAmountBeforeRounded;
-    		TipAmount = Math.floor(TipAmount);
-    		TotalAmount = BillAmount + TaxAmount + TipAmount;
-    		TipPercentage = ((TotalAmount - TaxAmount)/BillAmount) - 1;
+    		tipAmount = tipAmountBeforeRounded;
+    		tipAmount = Math.floor(tipAmount);
+    		totalAmount = billAmount + taxAmount + tipAmount;
+    		tipPercentage = ((totalAmount - taxAmount)/billAmount) - 1;
     	}
     	else
     	{
-	    	if(Math.floor(TotalAmountBeforeRounded) >= (BillAmount + TaxAmount))
+	    	if(Math.floor(totalAmountBeforeRounded) >= (billAmount + taxAmount))
 	    	{
-	    		TotalAmount = TotalAmountBeforeRounded;
-	    		TotalAmount = Math.floor(TotalAmount);
-	    		TipAmount = TotalAmount - BillAmount - TaxAmount;
-	    		TipPercentage = ((TotalAmount - TaxAmount)/BillAmount) - 1;
+	    		totalAmount = totalAmountBeforeRounded;
+	    		totalAmount = Math.floor(totalAmount);
+	    		tipAmount = totalAmount - billAmount - taxAmount;
+	    		tipPercentage = ((totalAmount - taxAmount)/billAmount) - 1;
 	    	}
     	}
     }
     
-    public void SplitBill(int people)
+    public void splitBill(int people)
     {
     	if(people < 1)
     		throw new IllegalArgumentException("Number of people cannot be below one.");
-    	NumberOfPeople = people;
+    	numberOfPeople = people;
     	
-//    	int SplitTotalInteger = (int)(TotalAmount *100.0);
-//    	int SplitTotalRemainder = (int)SplitTotalInteger % NumberOfPeople;
+//    	int splitTotalInteger = (int)(totalAmount *100.0);
+//    	int splitTotalRemainder = (int)SplitTotalInteger % numberOfPeople;
 //    	double Adjustment = 0;
-//    	if(SplitTotalRemainder != 0)
-//    		Adjustment = -(double)SplitTotalRemainder + (double)NumberOfPeople;
-//    	Adjustment = (Math.round(Adjustment/NumberOfPeople)/100.0);
+//    	if(splitTotalRemainder != 0)
+//    		Adjustment = -(double)SplitTotalRemainder + (double)numberOfPeople;
+//    	Adjustment = (Math.round(Adjustment/numberOfPeople)/100.0);
     	
     	
-//    	int SplitBillInteger = (int)(BillAmount * 100.0);
-//    	int SplitBillRemainder = (int)SplitBillInteger % NumberOfPeople;
-//    	if(SplitBillRemainder != 0)
-//    		SplitBillAmount = (double)SplitBillInteger - (double)SplitBillRemainder + (double)NumberOfPeople;
+//    	int splitBillInteger = (int)(billAmount * 100.0);
+//    	int splitBillRemainder = (int)splitBillInteger % numberOfPeople;
+//    	if(splitBillRemainder != 0)
+//    		splitBillAmount = (double)splitBillInteger - (double)splitBillRemainder + (double)numberOfPeople;
 //    	else
-//    		SplitBillAmount = (double)SplitBillInteger;
-    	//SplitBillAmount = SplitBillAmount / 100.0;
-    	//SplitBillAmount = SplitBillAmount / NumberOfPeople;
+//    		splitBillAmount = (double)splitBillInteger;
+    	//splitBillAmount = splitBillAmount / 100.0;
+    	//splitBillAmount = splitBillAmount / numberOfPeople;
     	
-    	SplitBillAmount = Math.floor((BillAmount / NumberOfPeople) * 100.0)/100.0;
+    	splitBillAmount = Math.floor((billAmount / numberOfPeople) * 100.0)/100.0;
     	
     	
     	// calculate tip TODO: Can be refactored with CalculateTip() function into a generic function for both places
     	double tax_amount = 0;
-    	if(TaxPercentage > 0)
+    	if(taxPercentage > 0)
     	{
-    		//tax_amount = SplitBillAmount * TaxPercentage;
+    		//tax_amount = splitBillAmount * taxPercentage;
     		//tax_amount = Math.floor(tax_amount * 100) / 100.0; // round tax to nearest penny
     		//tax_amount = tax_amount + Adjustment;
     		
-    		tax_amount = Math.floor((TaxAmount / NumberOfPeople) * 100.0) / 100.0; 
+    		tax_amount = Math.floor((taxAmount / numberOfPeople) * 100.0) / 100.0; 
     	}
     	else
     	{
     		tax_amount = 0;
     	}
     	
-    	//double tip_amount = SplitBillAmount * TipPercentage;
-  		double tip_amount = Math.floor((TipAmount / NumberOfPeople) * 100.0) / 100.0; // round tip to nearest penny
-  		double total_amount = SplitBillAmount + tax_amount + tip_amount; 
+    	//double tip_amount = splitBillAmount * tipPercentage;
+  		double tip_amount = Math.floor((tipAmount / numberOfPeople) * 100.0) / 100.0; // round tip to nearest penny
+  		double total_amount = splitBillAmount + tax_amount + tip_amount; 
   		
   		// if off by one penny, adjust the amount to reflect this correctly by increasing the tax_amount
   		double adjustment = 0;
-  		if(total_amount < Math.ceil((TotalAmount/NumberOfPeople)*100.0)/100.0)
+  		if(total_amount < Math.ceil((totalAmount/numberOfPeople)*100.0)/100.0)
   		{
-  			adjustment =  Math.round((Math.ceil((TotalAmount/NumberOfPeople)*100.0)/100.0 - total_amount)*100.0)/100.0;//Math.round((TotalAmount - (total_amount * NumberOfPeople))*100.0)/100.0;
+  			adjustment =  Math.round((Math.ceil((totalAmount/numberOfPeople)*100.0)/100.0 - total_amount)*100.0)/100.0;//Math.round((totalAmount - (total_amount * numberOfPeople))*100.0)/100.0;
   			total_amount = total_amount + adjustment;
   			
   		}
   		
-  		SplitAdjustment = adjustment;
-  		SplitTaxAmount = tax_amount;
-  		SplitTipAmount = tip_amount;
-  		SplitTotalAmount = total_amount;
+  		splitAdjustment = adjustment;
+  		splitTaxAmount = tax_amount;
+  		splitTipAmount = tip_amount;
+  		splittotalAmount = total_amount;
     }
     
 }

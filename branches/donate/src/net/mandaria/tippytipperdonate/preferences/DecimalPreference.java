@@ -6,21 +6,15 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.view.Gravity;
 import android.view.View;
-import android.view.ViewGroup;
 import android.preference.DialogPreference;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.SeekBar;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
-import android.widget.LinearLayout;
-import android.content.res.*;
 
 public class DecimalPreference extends DialogPreference
 {
 	private static final String androidns = "http://schemas.android.com/apk/res/android";
-	private static final String appns = "http://schemas.android.com/apk/res/net.mandaria.tippytipperdonate";
+	private static final String appns = "http://schemas.android.com/apk/res/net.mandaria.tippytipper";
 
 	private NumberPicker mPickInteger, mPickDecimal;
 	private TextView mSplashText, mValueText;
@@ -89,14 +83,14 @@ public class DecimalPreference extends DialogPreference
 		if (shouldPersist())
 			mValue = getPersistedFloat(mDefault);
 
-		BindData();
+		bindData();
 
 		return layout;
 	}
 
-	private void BindData()
+	private void bindData()
 	{
-		mInteger = (int) Math.floor((double) mValue);
+		mInteger = (int) Math.floor(mValue);
 		float decimal = (mValue * 1000) - (mInteger * 1000);
 		mDecimal = (int) decimal;
 		try
@@ -115,7 +109,7 @@ public class DecimalPreference extends DialogPreference
 	protected void onBindDialogView(View v)
 	{
 		super.onBindDialogView(v);
-		BindData();
+		bindData();
 	}
 
 	@Override
