@@ -61,6 +61,17 @@
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:textStyle="bold"
+			android:text="Version 1.2: "
+			/>
+		<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text=" * Updated main layout: now includes a CLEAR and Calculate! button  \n * Enabled install to SD card, prefers external  \n * Reduced space (removed duplicate images) \n * Thanks to Stephen Donaldson, Jr. for submitted patch \n"
+			/>
+		<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:textStyle="bold"
 			android:text="Version 1.1.3: "
 			/>
 		<TextView
