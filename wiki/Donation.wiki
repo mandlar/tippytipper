@@ -1,3 +1,9 @@
 #summary How to Donate.
 
 = Donations =
+
+If you find this application useful, please consider buying the donation version or donating via PayPal below.
+
+<a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=SMYSRUZJZLFTY">
+<img src="https://www.paypal.com/en_US/i/btn/btn_donateCC_LG.gif" border="0" alt="PayPal - The safer, easier way to pay online!"/>
+</a>
