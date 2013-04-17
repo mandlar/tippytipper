@@ -1,10 +1,9 @@
 package net.mandaria.tests;
 
-import static org.junit.Assert.*;
-import net.mandaria.tippytipper.services.*;
+import static org.junit.Assert.assertTrue;
+import net.mandaria.tippytipperlibrary.services.TipCalculatorService;
 
 import org.junit.Test;
-import org.junit.Assert.*;
 
 
 public class TestTipCalculatorService
