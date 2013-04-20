@@ -3,12 +3,12 @@ package net.mandaria.tippytipperlibrary.activities;
 import net.mandaria.tippytipperlibrary.R;
 import android.content.Context;
 import android.os.Bundle;
-import android.preference.PreferenceActivity;
 import android.preference.PreferenceManager;
 
+import com.actionbarsherlock.app.SherlockPreferenceActivity;
 import com.flurry.android.FlurryAgent;
 
-public class Settings extends PreferenceActivity
+public class Settings extends SherlockPreferenceActivity
 {
 
 	@Override
