@@ -1,12 +1,12 @@
 package net.mandaria.tippytipperlibrary.activities;
 
 import net.mandaria.tippytipperlibrary.R;
-import android.app.Activity;
 import android.os.Bundle;
 
+import com.actionbarsherlock.app.SherlockActivity;
 import com.flurry.android.FlurryAgent;
 
-public class About extends Activity  {
+public class About extends SherlockActivity  {
 	
     /** Called when the activity is first created. */
     @Override

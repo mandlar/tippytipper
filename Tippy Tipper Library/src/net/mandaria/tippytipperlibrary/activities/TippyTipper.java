@@ -5,20 +5,20 @@ import java.util.Map;
 
 import net.mandaria.tippytipperlibrary.R;
 import net.mandaria.tippytipperlibrary.TippyTipperApplication;
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnLongClickListener;
 import android.widget.EditText;
 
+import com.actionbarsherlock.app.SherlockActivity;
+import com.actionbarsherlock.view.Menu;
+import com.actionbarsherlock.view.MenuInflater;
+import com.actionbarsherlock.view.MenuItem;
 import com.flurry.android.FlurryAgent;
 
-public class TippyTipper extends Activity  {
+public class TippyTipper extends SherlockActivity  {
 	
     /** Called when the activity is first created. */
     @Override
@@ -212,7 +212,7 @@ public class TippyTipper extends Activity  {
   	public boolean onCreateOptionsMenu(Menu menu)
   	{
   		super.onCreateOptionsMenu(menu);
-  		MenuInflater inflater = getMenuInflater();
+  		MenuInflater inflater = getSupportMenuInflater();
   		inflater.inflate(R.menu.menu, menu);
   		FlurryAgent.onEvent("Menu Button");
   		return true;

@@ -1,10 +1,11 @@
 package net.mandaria.tippytipperlibrary.activities;
 
 import net.mandaria.tippytipperlibrary.R;
-import android.app.Activity;
 import android.os.Bundle;
 
-public class Test extends Activity  {
+import com.actionbarsherlock.app.SherlockActivity;
+
+public class Test extends SherlockActivity  {
 	
     /** Called when the activity is first created. */
     @Override
