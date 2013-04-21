@@ -1,7 +1,15 @@
 <resources>
     <style name="ThemeSelector" parent="Theme.Sherlock">
-        
+        <item name="android:actionBarStyle">@style/ActionBar</item>
+        <item name="actionBarStyle">@style/ActionBar</item>
 	</style>
+	 <!-- Action bar style -->
+      <style name="ActionBar" parent="Widget.Sherlock.Light.ActionBar.Solid">
+        <item name="android:background">@color/DarkGreen</item>
+        <item name="background">@color/DarkGreen</item>
+         -->
+    </style>
+    
 	<style name="CalculatorButton">
 		<item name="android:layout_margin">4dp</item>
 		<item name="android:layout_weight">1</item>

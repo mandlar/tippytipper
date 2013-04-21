@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>    
+    <!-- Colors -->
+    <color name="TippyTipperGreen">#216c2a</color>
+    <color name="DarkGreen">#113916</color>
+</resources>
