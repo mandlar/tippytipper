@@ -1,0 +1,40 @@
+=============================================================================================
+* 								Tippy Tipper									*
+=============================================================================================
+
+Change log:
+
+* 2.0 - ?
+- Switch project to using Android library for free/donate version
+- Add Action Bar Sherlock
+* New About Page
+
+* 1.2 - December 11th, 2010
+- Updated main layout: now includes a CLEAR and Calculate! button
+- Enabled install to SD card, prefers external
+- Reduced space (removed duplicate images)
+- Thanks to Stephen Donaldson, Jr. for submitted patch
+ 
+* 1.1.3 - June 25th, 2010
+- Bug fix: The bill amount will properly display when exiting and re-launching the app (instead of a blank text box)
+- Long press the DEL button to clear the bill amount
+  
+* 1.1.2 - June 20th, 2010
+- Bug fix: Entering tax rate as 8.75 used to save it as 8.075, now correctly saves it as 8.750
+   
+* 1.1.1 - June 6th, 2010
+- Bug fix: Fixed force close with Android 1.5 when opening Tax Rate or Number of People preferences
+- Bug fix: Fixed tax rate from truncating leading zeroes after the decimal place
+	
+* 1.1 - June 6th, 2010
+- Error/event logging added (app now requires Internet permission)
+- Privacy preference added to enable/disable error/event logging
+- Tax rate preference added to enable/disable excluding tax rate (instead of setting tax rate to 0% to disable)
+- Bug fix: tip percentage wasn't re-calculating when switching from excluding tax rate to no longer excluding tax rate
+- Tax rate can now be up to three decimal places
+- Bug fix: Round Up and Down buttons were reversed in landscape mode
+
+* 1.0 - May 23rd, 2010
+- Initial version released!
+	 
+	 
