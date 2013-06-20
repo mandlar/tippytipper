@@ -135,5 +135,18 @@
 					android:text="@string/split_bill" />
 			</TableRow>
 		</TableLayout>
+		<!-- Ads -->
+		<LinearLayout
+			android:id="@+id/div_ads"
+			android:orientation="vertical"
+			android:layout_width="fill_parent"
+			android:layout_height="50dip"
+			>
+			<WebView
+			    android:id="@+id/ad"
+			    android:layout_width="fill_parent"
+			    android:layout_height="50dip"
+			/>
+		</LinearLayout>
 	</LinearLayout>
 </ScrollView>

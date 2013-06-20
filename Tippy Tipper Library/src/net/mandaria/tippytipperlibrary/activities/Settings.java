@@ -90,4 +90,28 @@ public class Settings extends SherlockPreferenceActivity
 	{
 		return PreferenceManager.getDefaultSharedPreferences(context).getFloat("exclude_tax", 0);
 	}
+	
+	// Ad Refresh Rate, in miliseconds
+	
+	public static int getAdRefreshRate(Context context)
+	{
+		return PreferenceManager.getDefaultSharedPreferences(context).getInt("ad_refresh_rate", 60000);
+	}
+	  
+	public static void setAdRefreshRate(Context context, int adRefreshRate)
+	{
+		PreferenceManager.getDefaultSharedPreferences(context).edit().putInt("ad_refresh_rate", adRefreshRate).commit();
+	}
+	
+	// In House Ads Percentage
+	
+	public static int getInHouseAdsPercentage(Context context)
+	{
+		return PreferenceManager.getDefaultSharedPreferences(context).getInt("in_house_ads_percentage", 0);
+	}
+	
+	public static void setInHouseAdsPercentage(Context context, int inHouseAdsPercentage)
+	{
+		PreferenceManager.getDefaultSharedPreferences(context).edit().putInt("in_house_ads_percentage", inHouseAdsPercentage).commit();
+	}
 }
