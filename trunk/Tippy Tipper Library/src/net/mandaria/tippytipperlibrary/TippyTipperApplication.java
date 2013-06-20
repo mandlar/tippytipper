@@ -37,9 +37,7 @@ public class TippyTipperApplication extends Application {
 	{
 		int applicationID = 5; // free - play store
 		if(TippyTipperApplication.getPaidVersionLink().contains("amazon"))
-			applicationID = 7; // free - amazon
-		if(TippyTipperApplication.isProVersion(context))
-			applicationID = 6; // donate - either store
+			applicationID = 6; // free - amazon
 		
 		return applicationID;
 	}
