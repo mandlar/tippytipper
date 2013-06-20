@@ -1,19 +1,30 @@
 package net.mandaria.tippytipperlibrary.activities;
 
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
+import java.util.Random;
 
 import net.mandaria.tippytipperlibrary.R;
 import net.mandaria.tippytipperlibrary.TippyTipperApplication;
+import net.mandaria.tippytipperlibrary.tasks.GetAdRefreshRateTask;
+import net.mandaria.tippytipperlibrary.tasks.GetInHouseAdsPercentageTask;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.SystemClock;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewStub;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.Menu;
@@ -22,6 +33,12 @@ import com.actionbarsherlock.view.MenuItem;
 import com.flurry.android.FlurryAgent;
 
 public class Total extends SherlockActivity {
+	
+	WebView adView;
+	LinearLayout div_ads;
+	
+	private long mLastAdServedMillis = 0; // last ad update
+	private Handler mHandler = new Handler();
 
 	/** Called when the activity is first created. */
     @Override
@@ -94,6 +111,8 @@ public class Total extends SherlockActivity {
 				}
 			});
 		
+		adView = (WebView)findViewById(R.id.ad);
+		div_ads = (LinearLayout)findViewById(R.id.div_ads);
     }
     
     /* Called after onCreate or onRestart */
@@ -108,6 +127,8 @@ public class Total extends SherlockActivity {
 			FlurryAgent.setContinueSessionMillis(30000);
 			FlurryAgent.onStartSession(this, API);
 		}
+        
+        UpdateAdValues();
 		
 		refreshBillAmount();
 		
@@ -176,6 +197,33 @@ public class Total extends SherlockActivity {
   		FlurryAgent.onEvent("Menu Button");
   		return true;
   	}
+    
+    @Override
+	protected void onResume()
+	{
+		super.onResume();
+
+		startUpdateTimer();
+		displayAd();
+	}
+    
+    @Override
+	protected void onPause()
+	{
+		super.onPause();
+		stopUpdateTimer();
+	}
+
+	private void startUpdateTimer()
+	{
+		mHandler.removeCallbacks(mUpdateTimeTask);
+		mHandler.postDelayed(mUpdateTimeTask, 0);
+	}
+
+	private void stopUpdateTimer()
+	{
+		mHandler.removeCallbacks(mUpdateTimeTask);
+	}
 
   	@Override
   	public boolean onOptionsItemSelected(MenuItem item)
@@ -355,4 +403,84 @@ public class Total extends SherlockActivity {
 		lbl_total_amount.setText(appState.service.getTotalAmount());
 		seek_tip_percentage.setProgress(appState.service.getTipPercentageRounded());
     }
+    
+    private Runnable mUpdateTimeTask = new Runnable()
+	{
+		@Override
+		public void run()
+		{
+			// Refresh the ads
+			if((SystemClock.elapsedRealtime() - mLastAdServedMillis) > Settings.getAdRefreshRate(Total.this))
+			{
+				displayAd();
+				mLastAdServedMillis = SystemClock.elapsedRealtime();
+			}
+
+			mHandler.postDelayed(this, 1000); // update every 1 second
+		}
+		
+	};
+	
+	private void UpdateAdValues() 
+	{
+		GetAdRefreshRateTask task_adrefreshrate = (GetAdRefreshRateTask) new GetAdRefreshRateTask(getApplication(), this, Locale.getDefault()).execute();
+	
+		GetInHouseAdsPercentageTask task_inhouseadspercentage = (GetInHouseAdsPercentageTask) new GetInHouseAdsPercentageTask(getApplication(), this, Locale.getDefault()).execute();
+	}
+	
+	// Used to show ads or a banner message (e.g. radioreddit.com is down)
+	private void displayAd()
+	{
+		Random r = new Random();
+		int randomInt = r.nextInt(100);
+		
+		// Display in house ad
+		if(randomInt < Settings.getInHouseAdsPercentage(this))
+		{
+			div_ads.setVisibility(View.VISIBLE);
+			
+			// Setup handler for 404's
+			adView.setWebViewClient(new WebViewClient() 
+			{
+			    @Override
+			    public void onReceivedError(WebView view, int errorCode, String description, String failingUrl) 
+			    {
+			    	//displayOfflineAd(); 
+			    	// For now, just don't display any ads
+			    	div_ads.setVisibility(View.GONE);
+					
+			        super.onReceivedError(view, errorCode, description, failingUrl);
+			    }
+			    
+			    @Override
+			    public boolean shouldOverrideUrlLoading(WebView view, String url) 
+			    {
+			    	try
+			    	{ 
+				    	Intent i = new Intent(Intent.ACTION_VIEW);
+				    	i.setData(Uri.parse(url));
+				    	startActivity(i);
+			    	}
+			    	catch(Exception ex)
+			    	{
+			    		// TODO: this should be made into it's own string
+			    		Toast.makeText(Total.this, "Web Browser Error: Application is not installed on your phone", Toast.LENGTH_LONG).show();
+			    	}
+			    	return true;
+			    	
+			    }
+
+			 });
+
+			int applicationID = TippyTipperApplication.getApplicationID(Total.this);
+			
+			// Request an ad
+			adView.loadUrl("http://www.bryandenny.com/software/android/default.aspx?id=" + applicationID);
+			//Toast.makeText(getApplicationContext(), "Show inhouse ad " + randomInt, Toast.LENGTH_LONG).show();
+		}
+		else // display no ads
+		{
+			div_ads.setVisibility(View.GONE);
+		}
+	}
 }
