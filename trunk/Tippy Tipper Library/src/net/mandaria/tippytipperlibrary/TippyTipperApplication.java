@@ -35,11 +35,11 @@ public class TippyTipperApplication extends Application {
 	
 	public static int getApplicationID(Context context)
 	{
-		int applicationID = 2; // free - play store
+		int applicationID = 5; // free - play store
 		if(TippyTipperApplication.getPaidVersionLink().contains("amazon"))
-			applicationID = 4; // free - amazon
+			applicationID = 7; // free - amazon
 		if(TippyTipperApplication.isProVersion(context))
-			applicationID = 3; // pro - either store
+			applicationID = 6; // donate - either store
 		
 		return applicationID;
 	}
