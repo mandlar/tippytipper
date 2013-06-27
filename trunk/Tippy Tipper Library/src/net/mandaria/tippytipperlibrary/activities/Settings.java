@@ -1,6 +1,7 @@
 package net.mandaria.tippytipperlibrary.activities;
 
 import net.mandaria.tippytipperlibrary.R;
+import net.mandaria.tippytipperlibrary.TippyTipperApplication;
 import android.content.Context;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -66,6 +67,16 @@ public class Settings extends SherlockPreferenceActivity
 	public static boolean getEnableErrorLogging(Context context)
 	{
 		return PreferenceManager.getDefaultSharedPreferences(context).getBoolean("enable_error_logging", true);
+	}
+	
+	public static boolean getEnableAds(Context context)
+	{
+		boolean adsEnabledByDefault = true;
+		
+		if(TippyTipperApplication.isProVersion(context))
+			adsEnabledByDefault = false;
+		
+		return PreferenceManager.getDefaultSharedPreferences(context).getBoolean("enable_ads", adsEnabledByDefault);
 	}
 	
 	public static boolean getEnableExcludeTaxRate(Context context)

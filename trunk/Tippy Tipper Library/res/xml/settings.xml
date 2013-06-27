@@ -95,7 +95,7 @@
 	   		android:key="enable_ads"
 	   		android:title="Enable Ads"
 	   		android:summary="Show advertisements"
-	   		android:defaultValue="true"
+	   		android:defaultValue="@string/default_enable_ads"
 	   		/>
 	</PreferenceCategory>
 </PreferenceScreen>
