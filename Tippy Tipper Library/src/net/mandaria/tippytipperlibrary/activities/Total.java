@@ -435,7 +435,7 @@ public class Total extends SherlockActivity {
 		int randomInt = r.nextInt(100);
 		
 		// Display in house ad
-		if(randomInt < Settings.getInHouseAdsPercentage(this))
+		if(randomInt < Settings.getInHouseAdsPercentage(this) && Settings.getEnableAds(this))
 		{
 			div_ads.setVisibility(View.VISIBLE);
 			

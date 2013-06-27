@@ -19,7 +19,7 @@ public class TippyTipperApplication extends Application {
 	
 	public static boolean isProVersion(Context context)
 	{
-		return context.getString(R.string.app_name).contains("donate");
+		return context.getString(R.string.app_name).toLowerCase().contains("donate");
 	}
 	
 	public static String getPaidVersionLink()
