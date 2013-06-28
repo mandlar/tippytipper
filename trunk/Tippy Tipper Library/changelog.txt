@@ -8,6 +8,7 @@ Change log:
 - Switch project to using Android library for free/donate version
 - Add Action Bar Sherlock
 - New About Page
+- Added in house ads. Only show if enabled in settings (true by default for free, false for donate)
 
 * 1.2 - December 11th, 2010
 - Updated main layout: now includes a CLEAR and Calculate! button
