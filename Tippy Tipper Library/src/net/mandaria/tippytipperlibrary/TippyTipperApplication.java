@@ -1,5 +1,6 @@
 package net.mandaria.tippytipperlibrary;
 
+import net.mandaria.tippytipperlibrary.errors.CustomExceptionHandler;
 import net.mandaria.tippytipperlibrary.services.TipCalculatorService;
 import android.app.Application;
 import android.content.Context;
@@ -12,8 +13,10 @@ public class TippyTipperApplication extends Application {
 	public final static boolean usePlayStoreLink = true;
 	
 	@Override
-	public void onCreate() 
-	{ 
+	public void onCreate()
+	{
+		Thread.setDefaultUncaughtExceptionHandler(new CustomExceptionHandler(getApplicationContext()));
+
 		super.onCreate();
 	}
 	
