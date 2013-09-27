@@ -11,6 +11,7 @@ Change log:
 - Added in house ads. Only show if enabled in settings (true by default for free, false for donate)
 - Add exception handling / error reporting
 - Bumped min api to 4
+- Added menu option to email feedback
 
 * 1.2 - December 11th, 2010
 - Updated main layout: now includes a CLEAR and Calculate! button
