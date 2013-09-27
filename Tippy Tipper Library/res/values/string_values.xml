@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!--  Email -->
+	<string name="email_address">support@mandaria.net</string>
     <!-- About -->
 	<string name="aboutdetails"><![CDATA[
 		<h4>About Tippy Tipper</h4>
