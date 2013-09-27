@@ -24,7 +24,7 @@ public class SplitBill extends SherlockActivity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.splitbill);  
+		setContentView(R.layout.activity_splitbill);  
 
 		TippyTipperApplication appState = ((TippyTipperApplication)this.getApplication());
 
