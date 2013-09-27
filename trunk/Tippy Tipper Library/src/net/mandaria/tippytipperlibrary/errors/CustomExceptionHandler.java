@@ -8,6 +8,7 @@ import java.io.Writer;
 import java.lang.Thread.UncaughtExceptionHandler;
 
 import net.mandaria.tippytipperlibrary.R;
+import net.mandaria.tippytipperlibrary.activities.Settings;
 import net.mandaria.tippytipperlibrary.tasks.SendExceptionEmailTask;
 import android.content.Context;
 import android.content.pm.PackageManager.NameNotFoundException;
@@ -101,7 +102,11 @@ public class CustomExceptionHandler implements UncaughtExceptionHandler
 	{
 		try
 		{
-			sendEmail(e);
+			boolean enableErrorLogging = Settings.getEnableErrorLogging(context);
+			if(enableErrorLogging)
+			{
+				sendEmail(e);
+			}
 		}
 		catch(Exception ex)
 		{
