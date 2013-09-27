@@ -13,7 +13,7 @@ public class Test extends SherlockActivity  {
         super.onCreate(savedInstanceState);
         try
         {
-        setContentView(R.layout.test);  
+        setContentView(R.layout.activity_test);  
         }
         catch(Exception ex)
         {

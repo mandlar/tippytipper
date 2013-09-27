@@ -44,7 +44,7 @@ public class Total extends SherlockActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.total);
+        setContentView(R.layout.activity_total);
         
         TippyTipperApplication appState = ((TippyTipperApplication)this.getApplication());
         

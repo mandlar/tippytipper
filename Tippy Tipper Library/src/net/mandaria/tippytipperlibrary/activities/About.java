@@ -22,7 +22,7 @@ public class About extends SherlockActivity  {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.about);  
+        setContentView(R.layout.activity_about);  
 
 		getSupportActionBar().setTitle(getString(R.string.about));
 		
