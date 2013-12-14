@@ -2,7 +2,7 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
 	android:layout_width="fill_parent"
 	android:layout_height="fill_parent">
-	<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	<LinearLayout
 		style="@style/LinearLayout">
 		<TextView 
 			style="@style/TextView"
@@ -11,7 +11,7 @@
 			android:id="@+id/txt_amount"
 			style="@style/BillAmountEditText"/>
 	
-		<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+		<LinearLayout
 			android:layout_marginTop="25dp"
 			android:layout_width="fill_parent"
 			android:layout_height="fill_parent"
