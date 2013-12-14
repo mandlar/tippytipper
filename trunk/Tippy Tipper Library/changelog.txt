@@ -4,7 +4,7 @@
 
 Change log:
 
-* 2.0 - ?
+* 2.0 - December 14, 2013
 - Switch project to using Android library for free/donate version
 - Add Action Bar Sherlock
 - New About Page
