@@ -259,6 +259,11 @@ public class Total extends SherlockActivity {
 			FlurryAgent.onEvent("About Button");
 			return true;
 		}
+		else if (item.getItemId() == R.id.email_feedback) {
+			FlurryAgent.onEvent("Email Feedback");
+			TippyTipperApplication.SendEmail(this);
+			return true;
+		} 
   		return false;
   	}
   	

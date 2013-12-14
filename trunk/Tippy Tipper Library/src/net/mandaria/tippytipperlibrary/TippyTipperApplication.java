@@ -23,6 +23,9 @@ import net.mandaria.tippytipperlibrary.errors.CustomExceptionHandler;
 import net.mandaria.tippytipperlibrary.services.TipCalculatorService;
 import android.app.Application;
 import android.content.Context;
+import android.content.Intent;
+import android.content.pm.PackageManager.NameNotFoundException;
+import android.os.Build;
 
 public class TippyTipperApplication extends Application {
 	
@@ -62,5 +65,56 @@ public class TippyTipperApplication extends Application {
 			applicationID = 6; // free - amazon
 		
 		return applicationID;
+	}
+	
+	public static void SendEmail(Context context)
+	{
+		// Setup an intent to send email
+		Intent sendIntent;
+		sendIntent = new Intent(Intent.ACTION_SEND);
+		sendIntent.setType("application/octet-stream");
+		// Address
+		sendIntent.putExtra(Intent.EXTRA_EMAIL, new String[] { context.getString(R.string.email_address) });
+		// Subject
+		String appName = context.getString(R.string.app_name);
+		String version = "";
+		try
+		{
+			version = context.getPackageManager().getPackageInfo(context.getPackageName(), 0).versionName;
+		}
+		catch(NameNotFoundException e)
+		{
+
+		}
+
+		sendIntent.putExtra(Intent.EXTRA_SUBJECT, appName + " " + version);
+		// Body
+		String body = "\n\n\n\n\n";
+		body += context.getString(R.string.email_using_custom_rom) + "\n";
+		body += "--------------------\n";
+		body += context.getString(R.string.email_do_not_edit_message) + "\n\n";
+		body += "BOARD: " + Build.BOARD + "\n";
+		body += "BRAND: " + Build.BRAND + "\n";
+		body += "CPU_ABI: " + Build.CPU_ABI + "\n";
+		body += "DEVICE: " + Build.DEVICE + "\n";
+		body += "DISPLAY: " + Build.DISPLAY + "\n";
+		body += "FINGERPRINT: " + Build.FINGERPRINT + "\n";
+		body += "HOST: " + Build.HOST + "\n";
+		body += "ID: " + Build.ID + "\n";
+		body += "MANUFACTURER: " + Build.MANUFACTURER + "\n";
+		body += "MODEL: " + Build.MODEL + "\n";
+		body += "PRODUCT: " + Build.PRODUCT + "\n";
+		body += "TAGS: " + Build.TAGS + "\n";
+		body += "TIME: " + Build.TIME + "\n";
+		body += "TYPE: " + Build.TYPE + "\n";
+		body += "USER: " + Build.USER + "\n";
+		body += "VERSION.CODENAME: " + Build.VERSION.CODENAME + "\n";
+		body += "VERSION.INCREMENTAL: " + Build.VERSION.INCREMENTAL + "\n";
+		body += "VERSION.RELEASE: " + Build.VERSION.RELEASE + "\n";
+		body += "VERSION.SDK: " + Build.VERSION.SDK + "\n";
+		body += "VERSION.SDK_INT: " + Build.VERSION.SDK_INT + "\n";
+
+		sendIntent.putExtra(Intent.EXTRA_TEXT, body);
+		context.startActivity(Intent.createChooser(sendIntent, "Send Mail"));
 	}
 } 
