@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="hello">Hello World, TippyTipper!</string>
+	<string name="enter_bill_amount">Enter bill amount:</string>
+	<string name="bill_amount">Subtotal:</string>
+	<string name="tip">Tip:</string>
+	<string name="total">Total:</string>
+	<string name="tip_percentage">Tip Percentage:</string>
+	<string name="round_up">Round Up</string>
+	<string name="round_down">Round Down</string>
+	<string name="split_bill">Split Bill</string>
+	<string name="split_bill_amount">Subtotal:</string>
+	<string name="split_tax">Tax:</string>
+	<string name="split_tip">Tip:</string>
+	<string name="split_adjustment">Adjustment:</string>
+	<string name="split_total">Total:</string>
+	<string name="tax">Tax:</string>
+	<!-- Menu items -->
+	<string name="settings">Settings</string>
+	<string name="email_feedback">Email Feedback</string>
+	<!-- About -->
+	<string name="about">About</string>
+	<string name="visit_bryandenny_com">Visit bryandenny.com</string>
+	<string name="more_apps_by_dev">More apps by dev</string>
+	<string name="source_code_project">Source code project</string>
+	<string name="thanks_for_purchasing">Thanks for purchasing!</string>
+	<string name="buy_donate_version">Buy donate version</string>
+	<!--  * Support Email Feedback -->
+	<string name="email_using_custom_rom">Please indicate if you are using a custom rom.</string>
+	<string name="email_do_not_edit_message">The following is useful information for the developer.  Please do not edit.</string>
+</resources>
