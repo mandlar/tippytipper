@@ -1,0 +1,4 @@
+<resources>
+	<string name="app_name">Tippy Tipper Donate</string>
+	<string name="default_enable_ads">false</string>  
+</resources>
